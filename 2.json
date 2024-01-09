@@ -17,7 +17,6 @@
         {"key": "荐片","name": "荐片|JS","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/荐片.js"},
         {"key":"农民影视","name":"农民影视|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/农民影视.js"},
         {"key":"畅梦影视","name":"畅梦影视|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/畅梦影视.js"},
-        {"key":"cokemv","name":"cokemv|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/cokemv.js"},
         {"key":"人人影视","name":"人人影视|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/人人影视.js"},
         {"key":"爱看机器人","name": "爱看机器人|JS","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/爱看机器人.js"},
         {"key":"骚火电影","name": "骚火电影|JS","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/骚火电影.js"},
@@ -25,7 +24,7 @@
         {"key":"一三九","name":"一三九|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/一三九.js"},
         {"key":"369影视","name":"369影视|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/369影视.js"},
 
-        {"key": "少泽","name": "️少泽影视┃App","type": 3,"api": "csp_AppYsV2","searchable": 1, "changeable": 1,"ext": "https://yk.shaozeyy.com/api.php/app/"},
+        {"key": "少泽","name":"少泽影视┃App","type": 3,"api": "csp_AppYsV2","searchable": 1, "changeable": 1,"ext": "https://yk.shaozeyy.com/api.php/app/"},
         {"key":"落攻阁","name":"落攻阁┃App","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://www.lggys.com/api.php/app/"},
         {"key":"迪迪","name":"迪迪┃App","type":3,"api":"csp_AppYsV2","filterable":1,"quickSearch":1,"searchable":1,"categories":["电影","连续剧","综艺","樱花动漫"],"ext":"https://api123.adys.app/xgapp.php/v3/"},
         {"key":"可可","name":"可可┃APP","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"http://4k.953365.cn:8090/xgapp.php/v3/"},

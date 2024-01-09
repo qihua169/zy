@@ -17,7 +17,6 @@
         {"key": "荐片","name": "荐片|JS","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/荐片.js"},
         {"key":"农民影视","name":"农民影视|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/农民影视.js"},
         {"key":"畅梦影视","name":"畅梦影视|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/畅梦影视.js"},
-        {"key":"cokemv","name":"cokemv|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/cokemv.js"},
         {"key":"人人影视","name":"人人影视|JS","type":3,"api":"./lib/drpy2.min.js","ext":"./js/人人影视.js"},
         {"key":"爱看机器人","name": "爱看机器人|JS","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/爱看机器人.js"},
         {"key":"骚火电影","name": "骚火电影|JS","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/骚火电影.js"},
