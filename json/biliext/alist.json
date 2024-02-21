@@ -1,0 +1,13 @@
+{
+    "vodPic": "https://s1.ax1x.com/2023/05/04/p9tgI81.png",
+    "drives": [
+      {
+        "name": "小学学习",
+        "server": "http://shicheng.wang:555/学习资源/幼儿~小学~中学~高中~大学/02-中小学教育/233网校1-6年全套培训"
+      },
+      {
+        "name": "学习网盘",
+        "server": "http://shicheng.wang:555"
+      }
+    ]
+  }
