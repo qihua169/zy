@@ -12,8 +12,17 @@
         }
     ],
     "sites": [
-
+        {"key":"芒果TV","name":"芒果TV","type":3,"api":"./lib/drpy2.min.js","ext":"./js/mangguo.js","playUrl":"https://jx.playerjy.com/?url=","categories": ["少儿","教育","电视剧","电影","综艺","动漫"]},
+        {"key": "腾讯","name": "腾讯","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/tengxun.js","categories": ["少儿","电视剧","电影","综艺","动漫"],"playUrl":"https://www.8090g.cn/?url="},
+        {"key":"爱奇艺","name":"爱奇艺","type":3,"api":"./lib/drpy2.min.js","ext":"./js/aiqiyi.js","categories": ["少儿","电视剧","电影","综艺","动漫"],"playUrl":"https://www.yemu.xyz/?url="},
+        {"key": "py_cctv_1","name": "CCTV","type": 3, "api": "py_cctv","searchable": 0,"quickSearch": 0,"filterable": 1,"ext": "./json/biliext/cctv.py","categories": ["动画片","电视剧","纪录片","特别节目","节目大全"]},
+        {"key":"搜狗视频","name":"搜狗视频","type":3,"api":"./lib/drpy2.min.js","ext":"./js/souguo.js"},
         {"key": "360","name": "360","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/360.js","playUrl":"https://www.yemu.xyz/?url="},
+        {"key": "优酷","name": "优酷", "type":3,"api":"./lib/drpy2.min.js","ext":"./js/youku.js","categories": ["少儿","电视剧","电影","综艺","动漫"],"playUrl":"https://jx.xmflv.cc/?url="},
+        {"key": "alist","name": "学习网盘","type": 3,"api": "csp_AList","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "./json/biliext/alist.json"},
+        {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"},
+        {"key": "益智动画","name": "益智动画","type": 3,"api": "csp_Bili","ext": "./json/biliext/yizhi.json"},
+        {"key": "小学课堂", "name": "小学课堂", "type": 3,"api": "csp_Bili","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "./json/biliext/ketang.json"},
         {"key":"csp_NanGua","name":"南瓜","type":3,"api":"csp_NanGua","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
         {"key":"csp_YQKan","name":"一起看","type":3,"api":"csp_YQKan","searchable":1,"quickSearch":1,"filterable":1},
         {"key":"酷看","name":"酷看","type":3,"api":"csp_Kkys","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
