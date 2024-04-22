@@ -12,6 +12,15 @@
         }
     ],
     "sites": [
+        {"key":"csp_NanGua","name":"南瓜","type":3,"api":"csp_NanGua","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
+        {"key":"酷看","name":"酷看","type":3,"api":"csp_Kkys","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
+        {"key":"csp_LiteApple","name":"小苹果","type":3,"api":"csp_LiteApple","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
+        {"key":"csp_YCyz","name":"原创","type":3,"api":"csp_YCyz","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
+        {"key":"csp_DiDuan","name":"低端","type":3,"api":"csp_Ddrk","searchable":1,"quickSearch":1,"filterable":0},
+        {"key":"csp_Auete","name":"奥特","type":3,"api":"csp_Auete","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://auete.pro/"},
+        {"key":"csp_MLYS","name":"毛驴","type":3,"api":"csp_MLYS","searchable":1,"quickSearch":1,"filterable":0,"changeable":1,"ext":"https://www.maolvys.com/"},
+        {"key":"csp_Bttwoo","name":"比特","type":3,"api":"csp_Bttwoo","searchable":1,"quickSearch":1,"filterable":1},
+        {"key":"csp_Lib","name":"LibVio","type":3,"api":"csp_Libvio","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://www.libvio.pw/"},
         {"key":"芒果TV","name":"芒果TV","type":3,"api":"./lib/drpy2.min.js","ext":"./js/mangguo.js","playUrl":"https://jx.playerjy.com/?url=","categories": ["少儿","教育","电视剧","电影","综艺","动漫"]},
         {"key": "腾讯","name": "腾讯","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/tengxun.js","categories": ["少儿","电视剧","电影","综艺","动漫"],"playUrl":"https://www.8090g.cn/?url="},
         {"key":"爱奇艺","name":"爱奇艺","type":3,"api":"./lib/drpy2.min.js","ext":"./js/aiqiyi.js","categories": ["少儿","电视剧","电影","综艺","动漫"],"playUrl":"https://www.yemu.xyz/?url="},
@@ -22,6 +31,7 @@
         {"key": "alist","name": "学习网盘","type": 3,"api": "csp_AList","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "./json/biliext/alist.json"},
         {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"},
         {"key": "益智动画","name": "益智动画","type": 3,"api": "csp_Bili","ext": "./json/biliext/yizhi.json"},
+        {"key":"csp_WoGG","name":"影视","type":3,"api":"csp_WoGG","searchable":1,"quickSearch":1,"filterable":1,"changeable":0,"ext": "./alitoken.txt+auto|4k|fhd$$$https://api.wogg.xyz/$$$关"},
         {"key": "小学课堂", "name": "小学课堂", "type": 3,"api": "csp_Bili","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "./json/biliext/ketang.json"}
     ],
     "parses": [
