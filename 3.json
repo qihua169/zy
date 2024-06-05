@@ -1,27 +1,27 @@
 {
     "wallpaper": "http://www.kf666888.cn/api/tvbox/img",
-    "spider": "./jar/spider.jar",
+    "spider": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/jar/spider.jar",
     "lives": [
         {
             "name": "综合1",
             "playerType": 1,
             "type": 0,
-            "url": "./json/live.txt",
+            "url": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/json/live.txt",
             "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
         }
     ],
     "sites": [
-        {"key": "360","name": "360","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/360.js"},
-        {"key":"芒果TV","name":"芒果TV","type":3,"api":"./lib/drpy2.min.js","ext":"./js/mangguo.js"},
-        {"key": "腾讯","name": "腾讯","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/tengxun.js"},
-        {"key":"爱奇艺","name":"爱奇艺","type":3,"api":"./lib/drpy2.min.js","ext":"./js/aiqiyi.js"},
-        {"key":"搜狗视频","name":"搜狗视频","type":3,"api":"./lib/drpy2.min.js","ext":"./js/souguo.js"},
-        {"key": "优酷","name": "优酷", "type":3,"api":"./lib/drpy2.min.js","ext":"./js/youku.js"},
-        {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"},
+        {"key": "360","name": "360","type": 3,"api": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/lib/drpy2.min.js","ext": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/js/360.js"},
+        {"key":"芒果TV","name":"芒果TV","type":3,"api":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/lib/drpy2.min.js","ext":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/js/mangguo.js"},
+        {"key": "腾讯","name": "腾讯","type": 3,"api": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/lib/drpy2.min.js","ext": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/js/tengxun.js"},
+        {"key":"爱奇艺","name":"爱奇艺","type":3,"api":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/lib/drpy2.min.js","ext":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/js/aiqiyi.js"},
+        {"key":"搜狗视频","name":"搜狗视频","type":3,"api":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/lib/drpy2.min.js","ext":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/js/souguo.js"},
+        {"key": "优酷","name": "优酷", "type":3,"api":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/lib/drpy2.min.js","ext":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/js/youku.js"},
+        {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/lib/drpy2.min.js","ext":"https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/js/bilibili.js"},
         {"key":"南瓜影视","name":"南瓜影视","type":3,"api":"csp_WexNgys","searchable":1,"quickSearch":1,"filterable":0},
-        {"key": "益智动画","name": "益智动画","type": 3,"api": "csp_Bili","ext": "./json/biliext/yizhi.json"},
-        {"key": "小学课堂", "name": "小学课堂", "type": 3,"api": "csp_Bili","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "./json/biliext/ketang.json"}
+        {"key": "益智动画","name": "益智动画","type": 3,"api": "csp_Bili","ext": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/json/biliext/yizhi.json"},
+        {"key": "小学课堂", "name": "小学课堂", "type": 3,"api": "csp_Bili","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/json/biliext/ketang.json"}
     ],
     "parses": [
         {"name":"Web聚合","type":3,"url":"Web"},

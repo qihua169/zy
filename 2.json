@@ -1,6 +1,6 @@
 {
     "wallpaper": "http://www.kf666888.cn/api/tvbox/img",
-    "spider": "./jar/spider.jar",
+    "spider": "https://ghproxy.net/raw.githubusercontent.com/qihua169/zy/main/jar/spider.jar",
     "lives": [
         {
             "name": "本地",
