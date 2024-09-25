@@ -24,7 +24,7 @@ var rule= {
 		39:{cateId:'39'},
 		40:{cateId:'40'}
 	},
-	cate_exclude:'网址|演员',
+	cate_exclude:'网址|演员|伦理',
 	lazy:`js:
 		var html = JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1]);
 		var url = html.url;
