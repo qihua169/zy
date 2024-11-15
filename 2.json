@@ -8,8 +8,17 @@
     ],
     "sites": [
         {"key": "非凡资源","name": "非凡资源","type": 1,"api": "http://ffzy1.tv/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧",  "国产动漫",  "大陆综艺","动作片",  "喜剧片",  "科幻片",  "恐怖片",  "爱情片",  "剧情片",  "战争片",  "记录片","港台综艺"]},
-        {"key": "360资源","name": "360资源","type": 1,"api": "https://360zy.com/api.php/seaxml/vod/","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧",  "国产动漫",  "大陆综艺","动作片",  "喜剧片",  "科幻片",  "恐怖片",  "爱情片",  "剧情片",  "战争片",  "记录片","港台综艺"]},
-        {"key": "七新影视","name": "七新影视","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "./json/XBPQ/qixin.json","jar": "./jar/XBPQ.jar"},
+        {
+          "key": "alllive",
+          "name": "📽️星河共影┃2K直播",
+          "type": 3,
+          "api": "csp_Alllive",
+          "playerType": 2,
+          "searchable": 0,
+          "quickSearch": 0,
+          "jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php",
+          "changeable": 0
+        },{"key": "七新影视","name": "七新影视","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "./json/XBPQ/qixin.json","jar": "./jar/XBPQ.jar"},
         {"key":"轨道","name":"轨道影院","type":3,"api":"csp_XBPQ","searchable": 1,"ext":{"播放标题":"+>&&</a>","分类url":"http://www.ruiyicn.com/show/{cateId}-{area}-{by}-{class}-----{catePg}---{year}.html","分类数组":"*\">&&</li>[不包含:部#最新#最热#]","分类":"电视剧&电影&国产剧&香港剧&韩剧&欧美剧&台湾剧&泰剧&日本剧&综艺&动漫","分类值":"2&1&13&14&15&16&20&21&34&3&4"},"jar": "./jar/XBPQ.jar","categories": [ "国产剧",  "电影","动漫","综艺"]},
         {"key": "文采","name": "文采┃秒播","type": 3,"api": "csp_Jpys","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1},
         {"key": "比特","name": "Btt┃秒播","type": 3,"api": "csp_Bttwoo","searchable": 1,"quickSearch": 1,"changeable": 1},
