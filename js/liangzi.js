@@ -3,7 +3,7 @@ muban.mxone5.二级.tab_text = 'body--small&&Text';
 var rule= {
 	title:'量子影视',
 	模板:'mxone5',
-	host:'http://www.lzizy9.com',
+	host:'http://www.Lzizy9.com',
 	// url:'/index.php/vod/show/id/fyclass/page/fypage.html',
 	url:'/index.php/vod/show/id/fyfilter.html',
 	filterable:1,//是否启用分类筛选,
