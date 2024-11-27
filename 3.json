@@ -1,6 +1,6 @@
 {
     "wallpaper": "http://www.kf666888.cn/api/tvbox/img",
-    "spider": "./jar/fan.txt",
+    "spider": "http://我不是.摸鱼儿.com/by/jar/moyu.php;md5;be6121b5c37471b191114027123912d2",
     "lives": [
         {"name": "本地","playerType": "1","type": 0,"url": "./json/live.txt","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"},
         {"name": "在线-1","playerType": "1","type": 0,"url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"},
@@ -18,7 +18,6 @@
         {"key": "苹果","name": "苹果┃IJK","type": 3,"api": "csp_LiteApple","searchable": 1,"quickSearch": 1,"changeable": 1},
         {"key": "萌米","name": "萌米┃多线","type": 3,"api": "csp_AppTT","timeout": 15,"playerType": 1,"ext": "AO7TcBkd8Iifux0Y8Qze6tVlMg=="},
         {"key": "欢视","name": "欢视┃多线","type": 3,"api": "csp_AppTT","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1,"ext": "AO7TcBkd8IPB+BwH4Qma+opv"},
-        {"key":"木星","name":"木星┃多线","type":3,"api":"csp_AppSx","searchable":1,"quickSearch":1,"changeable":1,"ext":"FbjDcUxPqpfNr0QF4QvE6sExbctTGI9OTT9b/fj1hQEfFo3ZpT7IjxyVo6ytU3boJSbS02op2WA9SGNlCJpscUJASIjSk1eTbWgFj3BY0O58XL66c3hoMFG1cCcjgoux+ibEY4c2WZ85pgVQ9BW3RV1NZ7a2+xJHJdcafyUM"},
         {"key": "七新影视","name": "七新影视","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": {
         "主页url": "http://www.7xdy.com/",
         "简介": "<span class=\"detail-content\" style=\"display: none;\">&&</span>",
@@ -27,7 +26,6 @@
         "分类": "电影$dianyingpian#电视剧$dianshiju#综艺$zongyi#动漫$dongman"
         },"jar": "./jar/XBPQ.jar"},
         {"key":"轨道","name":"轨道影院","type":3,"api":"csp_XBPQ","searchable": 1,"ext":{"播放标题":"+>&&</a>","分类url":"http://www.ruiyicn.com/show/{cateId}-{area}-{by}-{class}-----{catePg}---{year}.html","分类数组":"*\">&&</li>[不包含:部#最新#最热#]","分类":"电视剧&电影&国产剧&香港剧&韩剧&欧美剧&台湾剧&泰剧&日本剧&综艺&动漫","分类值":"2&1&13&14&15&16&20&21&34&3&4"},"jar": "./jar/XBPQ.jar","categories": [ "国产剧",  "电影","动漫","综艺"]},
-        {"key": "影探4K[V2]","name": "影探4K","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/yt.js"},
         {"key": "农民影视[优]","name": "农民影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/nongming.js"},
         {"key": "星辰[优][优]","name": "星辰影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xingcheng.js"},
         {"key": "金牌影视","name": "金牌影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/jpys.js"},
