@@ -3,9 +3,8 @@
     "spider": "http://我不是.摸鱼儿.com/by/jar/moyu.php;md5;be6121b5c37471b191114027123912d2",
     "lives": [
         {"name": "本地","playerType": "1","type": 0,"url": "./json/live.txt","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"},
-        {"name": "在线-1","playerType": "1","type": 0,"url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"},
-        {"name": "在线-2","playerType": "1","type": 0,"url": "https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/hipy-sniffer/refs/heads/main/static/lives/lives.txt","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"}
-    ],
+        {"name": "在线-1","playerType": "1","type": 0,"url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"}
+   ],
     "sites": [
         {"key": "非凡资源","name": "非凡资源","type": 1,"api": "http://ffzy1.tv/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧",  "国产动漫",  "大陆综艺","动作片",  "喜剧片",  "科幻片",  "恐怖片",  "爱情片",  "剧情片",  "战争片",  "记录片","港台综艺"]},
         {"key": "哔哩直播","name": "哔哩直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/blzb.js","categories":["网游","手游","单机游戏"]},
@@ -25,6 +24,18 @@
         "免嗅": "0","图片": "data-original=\"&&\"","线路标题": "云仓2K","线路数组": "<h3&&</h3>", "分类url": "http://www.7xdy.com/{cateId}/index{catePg}.html[firstPage=http://www.7xdy.com/{cateId}/index.html",
         "分类": "电影$dianyingpian#电视剧$dianshiju#综艺$zongyi#动漫$dongman"
         },"jar": "./jar/XBPQ.jar"},
+        {"key": "8号影院","name": "八号1080", "type": 3, "api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+            "ext": {
+                "搜索url": "http://www.soutiyi.com/search.php?searchword={wd}",
+                "搜索链接": "href=\\\\\\\"&&\\\\\\\"",
+                "简介": "请勿相信影片中的广告，以免上当受骗。+<p class=\\\\\\\"col-pd detail\\\\\\\"&&</span>",
+                "线路数组": "<img src=\\\\\\\"/statics/icon/icon_26.png\\\\\\\"&&</h3>",
+                "线路标题": "蓝光专线",
+                "分类url": "http://www.soutiyi.com/frim/{cateId}-{catePg}.html",
+                "分类": "国产剧$13#动作片$5#爱情片$6#科幻片$7#恐怖片$8#喜剧片$10#剧情片$12#港台剧$14#综艺$3#动漫$4"
+              }
+              ,"jar": "./jar/XBPQ.jar"
+        },
         {"key":"轨道","name":"轨道影院","type":3,"api":"csp_XBPQ","searchable": 1,"ext":{"播放标题":"+>&&</a>","分类url":"http://www.ruiyicn.com/show/{cateId}-{area}-{by}-{class}-----{catePg}---{year}.html","分类数组":"*\">&&</li>[不包含:部#最新#最热#]","分类":"电视剧&电影&国产剧&香港剧&韩剧&欧美剧&台湾剧&泰剧&日本剧&综艺&动漫","分类值":"2&1&13&14&15&16&20&21&34&3&4"},"jar": "./jar/XBPQ.jar","categories": [ "国产剧",  "电影","动漫","综艺"]},
         {"key": "农民影视[优]","name": "农民影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/nongming.js"},
         {"key": "星辰[优][优]","name": "星辰影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xingcheng.js"},
@@ -37,9 +48,8 @@
         {"key": "骚火电影","name": "骚火电影","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/saohuo.js"},
         {"key":"南瓜影视","name":"南瓜影视","type":3,"api":"./lib/drpy2.min.js","ext":"./js/nangua.js"},
         {"key": "诸城影视","name": "诸城影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/zhuch.js"},
-        {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"},
-        {"key":"MG影视","name":"MG影视┃4K纯净","type":3,"api":"./lib/drpy2.min.js","searchable":1,"quickSearch":1,"filterable":1,"order_num":0,"changeable":0,"ext":"./js/mgtv.js"},
-        {"key":"Tx影视" ,"name":"Tx影视┃4K纯净","type":3,"api":"./lib/drpy2.min.js","ext":"./js/tx.js"}
+        {"key":"玩偶","name":"玩偶智能┃4K弹幕","type":3,"api":"csp_WoGG","searchable":1,"quickSearch":1,"changeable":0,"ext":{"Cloud-drive":"TVBox/Cloud-drive.txt","from":"4k|auto","siteUrl":"https://www.wogg.net/","danMu":"弹"}},
+        {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"}
     ],
     "parses": [
         {"name":"Web聚合","type":3,"url":"Web"},
