@@ -6,24 +6,32 @@
         {"name": "在线-1","playerType": "1","type": 0,"url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"}
    ],
     "sites": [
-        {"key": "非凡资源","name": "非凡资源","type": 1,"api": "http://ffzy1.tv/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧",  "国产动漫",  "大陆综艺","动作片",  "喜剧片",  "科幻片",  "恐怖片",  "爱情片",  "剧情片",  "战争片",  "记录片","港台综艺"]},
-        {"key": "哔哩直播","name": "哔哩直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/blzb.js","categories":["网游","手游","单机游戏"]},
-        {"key": "虎牙直播","name": "虎牙直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/huya.js"},
-        {"key":"快看影视","name":"快看┃蓝光","type":3,"api":"csp_Kuaikan","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
-        {"key":"耐看影视","name":"耐看┃蓝光","type":3,"api":"csp_WebNK","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
-        {"key":"酷影视","name":"酷影┃蓝光","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://www.tvkuys.xyz/api.php/app/"},
-        {"key": "文采","name": "文采┃秒播","type": 3,"api": "csp_Jpys","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1},
+        {"key": "非凡资源","name":"非凡资源","type": 1,"api": "http://ffzy1.tv/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧",  "国产动漫",  "大陆综艺","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片","港台综艺"]},
+        {"key": "文采","name":"文采┃秒播","type": 3,"api": "csp_Jpys","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1},
         {"key":"南瓜","name":"南瓜┃多线","type":3,"api":"csp_NanGua","playerType":2,"searchable":1,"quickSearch":1,"changeable":1},
-        {"key": "苹果","name": "苹果┃IJK","type": 3,"api": "csp_LiteApple","searchable": 1,"quickSearch": 1,"changeable": 1},
-        {"key": "萌米","name": "萌米┃多线","type": 3,"api": "csp_AppTT","timeout": 15,"playerType": 1,"ext": "AO7TcBkd8Iifux0Y8Qze6tVlMg=="},
-        {"key": "欢视","name": "欢视┃多线","type": 3,"api": "csp_AppTT","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1,"ext": "AO7TcBkd8IPB+BwH4Qma+opv"},
-        {"key": "七新影视","name": "七新影视","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": {
-        "主页url": "http://www.7xdy.com/",
-        "简介": "<span class=\"detail-content\" style=\"display: none;\">&&</span>",
-        "导演": "导演：&&</a>","主演": "主演：&&</a>","搜索url": "http://www.7xdy.com/search.php;post;searchword={wd}","影片状态": "集数：&&</div>","影片类型": "video-tag-icon\">&&立即播放",
-        "免嗅": "0","图片": "data-original=\"&&\"","线路标题": "云仓2K","线路数组": "<h3&&</h3>", "分类url": "http://www.7xdy.com/{cateId}/index{catePg}.html[firstPage=http://www.7xdy.com/{cateId}/index.html",
-        "分类": "电影$dianyingpian#电视剧$dianshiju#综艺$zongyi#动漫$dongman"
-        },"jar": "./jar/XBPQ.jar"},
+        {"key":"酷影视","name":"酷影┃蓝光","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://www.tvkuys.xyz/api.php/app/"},
+        {"key": "苹果","name":"苹果┃IJK","type": 3,"api": "csp_LiteApple","searchable": 1,"quickSearch": 1,"changeable": 1},
+        {"key": "萌米","name":"萌米┃多线","type": 3,"api": "csp_AppTT","timeout": 15,"playerType": 1,"ext": "AO7TcBkd8Iifux0Y8Qze6tVlMg=="},
+        {"key": "欢视","name":"欢视┃多线","type": 3,"api": "csp_AppTT","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1,"ext": "AO7TcBkd8IPB+BwH4Qma+opv"},
+        {"key":"新6V","name":"新6V┃磁力","type":3,"api":"csp_SixV","searchable":1,"quickSearch":1,"changeable":0,"ext":"https://www.xb6v.com/"},
+
+        {"key":"快看影视","name":"快看┃蓝光","type":3,"api":"csp_Kuaikan","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+        {"key":"瓜子影视","name":"瓜子┃蓝光","type":3,"api":"csp_AppGZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+        {"key":"真心影视","name":"真心┃蓝光","type":3,"api":"csp_WebGZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+        {"key":"忍者影视","name":" 忍者┃蓝光","type":3,"api":"csp_AppRZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+        {"key":"星芽短剧","name":"星芽┃短剧","type":3,"api":"csp_AppXY","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":0,"filterable":0},
+        {"key":"csp_SuBaiBai","name":"白白┃秒播","type":3,"api":"csp_SuBaiBai","jar":"https://10759.kstore.vip/xcxl/DEMO.jar","playerType":2,"ext":"https://subaibai.com/"},
+        {"key":"五五影视","name":"呜呜┃蓝光","type":3,"api":"csp_XBPQ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1,"ext":"http://我不是.摸鱼儿.com/api/moyu.php?file=55"},
+
+        {"key": "七新影视","name": "七新影视","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+        "ext": {
+            "主页url": "http://www.7xdy.com/",
+            "简介": "<span class=\"detail-content\" style=\"display: none;\">&&</span>",
+            "导演": "导演：&&</a>","主演": "主演：&&</a>","搜索url": "http://www.7xdy.com/search.php;post;searchword={wd}","影片状态": "集数：&&</div>","影片类型": "video-tag-icon\">&&立即播放",
+            "免嗅": "0","图片": "data-original=\"&&\"","线路标题": "云仓2K","线路数组": "<h3&&</h3>", "分类url": "http://www.7xdy.com/{cateId}/index{catePg}.html[firstPage=http://www.7xdy.com/{cateId}/index.html",
+            "分类": "电影$dianyingpian#电视剧$dianshiju#综艺$zongyi#动漫$dongman"
+            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+        },
         {"key": "8号影院","name": "八号1080", "type": 3, "api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
             "ext": {
                 "搜索url": "http://www.soutiyi.com/search.php?searchword={wd}",
@@ -33,22 +41,50 @@
                 "线路标题": "蓝光专线",
                 "分类url": "http://www.soutiyi.com/frim/{cateId}-{catePg}.html",
                 "分类": "国产剧$13#动作片$5#爱情片$6#科幻片$7#恐怖片$8#喜剧片$10#剧情片$12#港台剧$14#综艺$3#动漫$4"
-              }
-              ,"jar": "./jar/XBPQ.jar"
+              },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
         },
-        {"key":"轨道","name":"轨道影院","type":3,"api":"csp_XBPQ","searchable": 1,"ext":{"播放标题":"+>&&</a>","分类url":"http://www.ruiyicn.com/show/{cateId}-{area}-{by}-{class}-----{catePg}---{year}.html","分类数组":"*\">&&</li>[不包含:部#最新#最热#]","分类":"电视剧&电影&国产剧&香港剧&韩剧&欧美剧&台湾剧&泰剧&日本剧&综艺&动漫","分类值":"2&1&13&14&15&16&20&21&34&3&4"},"jar": "./jar/XBPQ.jar","categories": [ "国产剧",  "电影","动漫","综艺"]},
+        {"key":"轨道","name":"轨道影院","type":3,"api":"csp_XBPQ","searchable": 1,
+        "ext":{
+            "播放标题":"+>&&</a>",
+            "分类url":"http://www.ruiyicn.com/show/{cateId}-{area}-{by}-{class}-----{catePg}---{year}.html",
+            "分类数组":"*\">&&</li>[不包含:部#最新#最热#]","分类":"电视剧&电影&国产剧&香港剧&韩剧&欧美剧&台湾剧&泰剧&日本剧&综艺&动漫",
+            "分类值":"2&1&13&14&15&16&20&21&34&3&4"
+            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php","categories": [ "国产剧",  "电影","动漫","综艺"]
+        },
+        {"key": "csp_大海","name": "大海┃秒播","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+            "ext": {
+              "分类url": "https://www.hemahd.com/tags/{cateId}-{area}-------{catePg}---{year}.html",
+              "分类": "电影&电视剧&动漫&综艺",
+              "分类值": "1&2&3&4"
+            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+        },
+        {"key": "稀饭影视", "name": "稀饭┃蓝光","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+            "ext": {
+              "分类url": "https://www.xifanys.com/index.php/vod/type/id/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html",
+              "分类": "电影$1#连续剧$2#动漫$4#综艺$3"
+            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+          },
+          {"key": "晴天","name": "晴天┃1080P","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+            "ext": {
+              "分类url": "https://www.qinttv.com/qtyy/{cateId}/area/{area}/page/{catePg}/year/{year}.html",
+              "搜索url": "https://www.qinttv.com/qtcz.html;post;wd={wd}&submit=",
+              "分类": "电影$dianying#电视剧$dianshiju#动漫$dongmna#综艺$zongyi"
+            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+          },
         {"key": "农民影视[优]","name": "农民影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/nongming.js"},
         {"key": "星辰[优][优]","name": "星辰影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xingcheng.js"},
         {"key": "金牌影视","name": "金牌影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/jpys.js"},
         {"key": "达达龟","name": "达达影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/dadagui.js"},
         {"key": "瓜子","name": "瓜子影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/guazi.js"},
-        {"key": "量子影视","name": "量子影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/liangzi.js"},
-        {"key": "悠悠","name": "悠悠影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/youyou.js"},
         {"key": "小熊","name": "小熊影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xiaoxiong.js"},
         {"key": "骚火电影","name": "骚火电影","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/saohuo.js"},
         {"key":"南瓜影视","name":"南瓜影视","type":3,"api":"./lib/drpy2.min.js","ext":"./js/nangua.js"},
         {"key": "诸城影视","name": "诸城影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/zhuch.js"},
-        {"key":"玩偶","name":"玩偶智能┃4K弹幕","type":3,"api":"csp_WoGG","searchable":1,"quickSearch":1,"changeable":0,"ext":{"Cloud-drive":"TVBox/Cloud-drive.txt","from":"4k|auto","siteUrl":"https://www.wogg.net/","danMu":"弹"}},
+        {"key": "哔哩直播","name": "哔哩直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/blzb.js","categories":["网游","手游","单机游戏"]},
+        {"key": "虎牙直播","name": "虎牙直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/huya.js"},
+        {"key":"玩偶","name":"玩偶智能┃4K弹幕","type":3,"api":"csp_WoGG","searchable":1,"quickSearch":1,"changeable":0,"ext":{
+            "Cloud-drive":"TVBox/Cloud-drive.txt","from":"4k|auto","siteUrl":"https://www.wogg.net/","danMu":"弹"
+            }},
         {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"}
     ],
     "parses": [
