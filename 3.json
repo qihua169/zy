@@ -1,140 +1,120 @@
 {
-    "wallpaper": "http://www.kf666888.cn/api/tvbox/img",
-    "spider": "http://我不是.摸鱼儿.com/by/jar/moyu.php;md5;be6121b5c37471b191114027123912d2",
-    "lives": [
-        {"name": "本地","playerType": "1","type": 0,"url": "./json/live.txt","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"},
-        {"name": "在线-1","playerType": "1","type": 0,"url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"}
-   ],
-    "sites": [
-        {"key": "非凡资源","name":"非凡资源","type": 1,"api": "http://ffzy1.tv/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧",  "国产动漫",  "大陆综艺","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片","港台综艺"]},
-        {"key": "文采","name":"文采┃秒播","type": 3,"api": "csp_Jpys","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1},
-        {"key":"南瓜","name":"南瓜┃多线","type":3,"api":"csp_NanGua","playerType":2,"searchable":1,"quickSearch":1,"changeable":1},
-        {"key":"酷影视","name":"酷影┃蓝光","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://www.tvkuys.xyz/api.php/app/"},
-        {"key": "苹果","name":"苹果┃IJK","type": 3,"api": "csp_LiteApple","searchable": 1,"quickSearch": 1,"changeable": 1},
-        {"key": "萌米","name":"萌米┃多线","type": 3,"api": "csp_AppTT","timeout": 15,"playerType": 1,"ext": "AO7TcBkd8Iifux0Y8Qze6tVlMg=="},
-        {"key": "欢视","name":"欢视┃多线","type": 3,"api": "csp_AppTT","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1,"ext": "AO7TcBkd8IPB+BwH4Qma+opv"},
-        {"key":"新6V","name":"新6V┃磁力","type":3,"api":"csp_SixV","searchable":1,"quickSearch":1,"changeable":0,"ext":"https://www.xb6v.com/"},
-
-        {"key":"快看影视","name":"快看┃蓝光","type":3,"api":"csp_Kuaikan","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
-        {"key":"瓜子影视","name":"瓜子┃蓝光","type":3,"api":"csp_AppGZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
-        {"key":"真心影视","name":"真心┃蓝光","type":3,"api":"csp_WebGZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
-        {"key":"忍者影视","name":" 忍者┃蓝光","type":3,"api":"csp_AppRZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
-        {"key":"星芽短剧","name":"星芽┃短剧","type":3,"api":"csp_AppXY","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":0,"filterable":0},
-        {"key":"csp_SuBaiBai","name":"白白┃秒播","type":3,"api":"csp_SuBaiBai","jar":"https://10759.kstore.vip/xcxl/DEMO.jar","playerType":2,"ext":"https://subaibai.com/"},
-        {"key":"五五影视","name":"呜呜┃蓝光","type":3,"api":"csp_XBPQ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1,"ext":"http://我不是.摸鱼儿.com/api/moyu.php?file=55"},
-
-        {"key": "七新影视","name": "七新影视","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
-        "ext": {
-            "主页url": "http://www.7xdy.com/",
-            "简介": "<span class=\"detail-content\" style=\"display: none;\">&&</span>",
-            "导演": "导演：&&</a>","主演": "主演：&&</a>","搜索url": "http://www.7xdy.com/search.php;post;searchword={wd}","影片状态": "集数：&&</div>","影片类型": "video-tag-icon\">&&立即播放",
-            "免嗅": "0","图片": "data-original=\"&&\"","线路标题": "云仓2K","线路数组": "<h3&&</h3>", "分类url": "http://www.7xdy.com/{cateId}/index{catePg}.html[firstPage=http://www.7xdy.com/{cateId}/index.html",
-            "分类": "电影$dianyingpian#电视剧$dianshiju#综艺$zongyi#动漫$dongman"
-            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+  "wallpaper": "http://www.kf666888.cn/api/tvbox/img",
+  "spider": "http://我不是.摸鱼儿.com/by/jar/moyu.php;md5;be6121b5c37471b191114027123912d2",
+  "lives": [
+      {"name": "本地","playerType": "1","type": 0,"url": "./json/live.txt","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"},
+      {"name": "在线-1","playerType": "1","type": 0,"url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"}
+ ],
+  "sites": [
+      {"key": "非凡资源","name":"非凡资源","type": 1,"api":"http://api.ffzyapi.com/api.php/provide/vod/from/ffm3u8/at/json","searchable": 1,"quickSearch": 1,"filterable": 1,"playurl": "https://svip.ffzyplay.com/?url=","categories": [ "国产剧","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片", "国产动漫", "大陆综艺"]},
+      {"key":"魔都资源","name":"魔都资源","type":1,"api":"https://moduzy1.com/api.php/provide/vod/?ac=list","searchable":1,"quickSearch":1,"playurl":"https://jiexi.modujx01.com/?url=","categories":["国产剧","喜剧片","科幻片","恐怖片","爱情片","剧情片","战争片","记录片","动漫电影","国产动漫","大陆综艺"]},
+      {"key":"虎牙资源","name":"虎牙资源","type":1,"api":"https://www.huyaapi.com/api.php/provide/vod/from/hym3u8/at/json","searchable":1,"quickSearch":1,"playurl":"https://huyajx.com/play?url=","categories":["内地剧","动作片","喜剧片","科幻片","恐怖片","爱情片","剧情片","战争片","记录片","动画片","中国动漫","综艺"]},
+      {"key":"豪华资源","name":"豪华资源","type":1,"api":"https://hhzyapi.com/api.php/provide/vod/from/hhm3u8/at/json","searchable":1,"quickSearch":1,"playurl":"https://hhjiexi.com/play/?url=","categories":["内地剧","动作片","喜剧片","科幻片","恐怖片","爱情片","动画片","中国动漫","剧情片","战争片","记录片","大陆综艺"]},
+      {"key":"速播资源","name":"速播资源","type":1,"api":"https://subocaiji.com/api.php/provide/vod/from/subm3u8/at/json","searchable":1,"quickSearch":1,"playurl":"https://subojiexi.com/play/?url=","categories":["大陆剧","动作片","喜剧片","科幻片","恐怖片","爱情片","动漫电影","动画片","中国动漫","剧情片","战争片","记录片","大陆综艺"]},
+      {"key": "文采","name":"文采┃秒播","type": 3,"api": "csp_Jpys","playerType": 2,"searchable": 1,"quickSearch": 1,"changeable": 1},
+      {"key":"南瓜","name":"南瓜┃多线","type":3,"api":"csp_NanGua","playerType":2,"searchable":1,"quickSearch":1,"changeable":1},
+      {"key":"酷影视","name":"酷影┃蓝光","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://www.tvkuys.xyz/api.php/app/"},
+      {"key": "苹果","name":"苹果┃IJK","type": 3,"api": "csp_LiteApple","searchable": 1,"quickSearch": 1,"changeable": 1},
+      {"key": "萌米","name":"萌米┃多线","type": 3,"api": "csp_AppTT","timeout": 15,"playerType": 1,"ext": "AO7TcBkd8Iifux0Y8Qze6tVlMg=="},
+      {"key":"热播","name":"热播┃纯净","type":3,"api":"csp_AppTT","playerType":2,"searchable":1,"quickSearch":1,"changeable":1,"ext":"AO7TcBkd8I/B5wQc4Qma+pU="},
+      {"key":"Auete","name":"奥特┃纯净","type":3,"api":"csp_Auete","timeout":15,"searchable":1,"quickSearch":1,"changeable":1,"ext":"https://auete.pro/"},
+      {"key":"新6V","name":"新6V┃磁力","type":3,"api":"csp_SixV","searchable":1,"quickSearch":1,"changeable":0,"ext":"https://www.xb6v.com/"},
+      {"key":"快看影视","name":"快看┃蓝光","type":3,"api":"csp_Kuaikan","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+      {"key":"瓜子影视","name":"瓜子┃蓝光","type":3,"api":"csp_AppGZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+      {"key":"真心影视","name":"真心┃蓝光","type":3,"api":"csp_WebGZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+      {"key":"忍者影视","name":" 忍者┃蓝光","type":3,"api":"csp_AppRZ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1},
+      {"key":"星芽短剧","name":"星芽┃短剧","type":3,"api":"csp_AppXY","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":0,"filterable":0},
+      {"key":"csp_SuBaiBai","name":"白白┃秒播","type":3,"api":"csp_SuBaiBai","jar":"https://10759.kstore.vip/xcxl/DEMO.jar","playerType":2,"ext":"https://subaibai.com/"},
+      {"key":"五五影视","name":"呜呜┃蓝光","type":3,"api":"csp_XBPQ","jar":"http://我不是.摸鱼儿.com/by/jar/danmu.php","searchable":1,"quickSearch":1,"filterable":1,"ext":"http://我不是.摸鱼儿.com/api/moyu.php?file=55"},
+      {"key": "七新影视","name": "七新影视","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+      "ext": {
+          "主页url": "http://www.7xdy.com/",
+          "简介": "<span class=\"detail-content\" style=\"display: none;\">&&</span>",
+          "导演": "导演：&&</a>","主演": "主演：&&</a>","搜索url": "http://www.7xdy.com/search.php;post;searchword={wd}","影片状态": "集数：&&</div>","影片类型": "video-tag-icon\">&&立即播放",
+          "免嗅": "0","图片": "data-original=\"&&\"","线路标题": "云仓2K","线路数组": "<h3&&</h3>", "分类url": "http://www.7xdy.com/{cateId}/index{catePg}.html[firstPage=http://www.7xdy.com/{cateId}/index.html",
+          "分类": "电影$dianyingpian#电视剧$dianshiju#综艺$zongyi#动漫$dongman"
+          },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+      },
+      {"key": "csp_大海","name": "大海┃秒播","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+          "ext": {
+            "分类url": "https://www.hemahd.com/tags/{cateId}-{area}-------{catePg}---{year}.html",
+            "分类": "电影&电视剧&动漫&综艺",
+            "分类值": "1&2&3&4"
+          },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+      },
+      {"key": "稀饭影视", "name": "稀饭┃蓝光","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+          "ext": {
+            "分类url": "https://www.xifanys.com/index.php/vod/type/id/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html",
+            "分类": "电影$1#连续剧$2#动漫$4#综艺$3"
+          },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
         },
-        {"key": "8号影院","name": "八号1080", "type": 3, "api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
-            "ext": {
-                "搜索url": "http://www.soutiyi.com/search.php?searchword={wd}",
-                "搜索链接": "href=\\\\\\\"&&\\\\\\\"",
-                "简介": "请勿相信影片中的广告，以免上当受骗。+<p class=\\\\\\\"col-pd detail\\\\\\\"&&</span>",
-                "线路数组": "<img src=\\\\\\\"/statics/icon/icon_26.png\\\\\\\"&&</h3>",
-                "线路标题": "蓝光专线",
-                "分类url": "http://www.soutiyi.com/frim/{cateId}-{catePg}.html",
-                "分类": "国产剧$13#动作片$5#爱情片$6#科幻片$7#恐怖片$8#喜剧片$10#剧情片$12#港台剧$14#综艺$3#动漫$4"
-              },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
+        {"key": "晴天","name": "晴天┃1080P","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
+          "ext": {
+            "分类url": "https://www.qinttv.com/qtyy/{cateId}/area/{area}/page/{catePg}/year/{year}.html",
+            "搜索url": "https://www.qinttv.com/qtcz.html;post;wd={wd}&submit=",
+            "分类": "电影$dianying#电视剧$dianshiju#动漫$dongmna#综艺$zongyi"
+          },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
         },
-        {"key":"轨道","name":"轨道影院","type":3,"api":"csp_XBPQ","searchable": 1,
-        "ext":{
-            "播放标题":"+>&&</a>",
-            "分类url":"http://www.ruiyicn.com/show/{cateId}-{area}-{by}-{class}-----{catePg}---{year}.html",
-            "分类数组":"*\">&&</li>[不包含:部#最新#最热#]","分类":"电视剧&电影&国产剧&香港剧&韩剧&欧美剧&台湾剧&泰剧&日本剧&综艺&动漫",
-            "分类值":"2&1&13&14&15&16&20&21&34&3&4"
-            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php","categories": [ "国产剧",  "电影","动漫","综艺"]
-        },
-        {"key": "csp_大海","name": "大海┃秒播","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
-            "ext": {
-              "分类url": "https://www.hemahd.com/tags/{cateId}-{area}-------{catePg}---{year}.html",
-              "分类": "电影&电视剧&动漫&综艺",
-              "分类值": "1&2&3&4"
-            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
-        },
-        {"key": "稀饭影视", "name": "稀饭┃蓝光","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
-            "ext": {
-              "分类url": "https://www.xifanys.com/index.php/vod/type/id/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html",
-              "分类": "电影$1#连续剧$2#动漫$4#综艺$3"
-            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
-          },
-          {"key": "晴天","name": "晴天┃1080P","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,
-            "ext": {
-              "分类url": "https://www.qinttv.com/qtyy/{cateId}/area/{area}/page/{catePg}/year/{year}.html",
-              "搜索url": "https://www.qinttv.com/qtcz.html;post;wd={wd}&submit=",
-              "分类": "电影$dianying#电视剧$dianshiju#动漫$dongmna#综艺$zongyi"
-            },"jar": "http://我不是.摸鱼儿.com/by/jar/danmu.php"
-          },
-        {"key": "农民影视[优]","name": "农民影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/nongming.js"},
-        {"key": "星辰[优][优]","name": "星辰影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xingcheng.js"},
-        {"key": "金牌影视","name": "金牌影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/jpys.js"},
-        {"key": "达达龟","name": "达达影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/dadagui.js"},
-        {"key": "瓜子","name": "瓜子影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/guazi.js"},
-        {"key": "小熊","name": "小熊影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xiaoxiong.js"},
-        {"key": "骚火电影","name": "骚火电影","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/saohuo.js"},
-        {"key":"南瓜影视","name":"南瓜影视","type":3,"api":"./lib/drpy2.min.js","ext":"./js/nangua.js"},
-        {"key": "诸城影视","name": "诸城影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/zhuch.js"},
-        {"key": "哔哩直播","name": "哔哩直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/blzb.js","categories":["网游","手游","单机游戏"]},
-        {"key": "虎牙直播","name": "虎牙直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/huya.js"},
-        {"key":"玩偶","name":"玩偶智能┃4K弹幕","type":3,"api":"csp_WoGG","searchable":1,"quickSearch":1,"changeable":0,"ext":{
-            "Cloud-drive":"TVBox/Cloud-drive.txt","from":"4k|auto","siteUrl":"https://www.wogg.net/","danMu":"弹"
-            }},
-        {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"}
-    ],
-    "parses": [
-        {"name":"Web聚合","type":3,"url":"Web"},
-        {"name":"Json聚合","type":3,"url":"Demo"},
-        {"name":"咸鱼","type":0,"url":"https://jx.xyflv.cc/?url=","ext":{"header":{"user-agent":"Mozilla/5.0(Linux;Android13;V2049ABuild/TP1A.220624.014;wv)AppleWebKit/537.36(KHTML,likeGecko)Version/4.0Chrome/116.0.0.0MobileSafari/537.36","referer":"https://www.xyflv.cc/"}}},
-        {"name":"虾米","type":0,"url":"https://jx.xmflv.com/?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","imgo","rx","ltnb","bilibili","1905","xigua"]}},
-        {"name":"josn-3","type":1,"url":"http://qn6z7b.yun.42jx.com/jx/jx.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","rx","ltnb","bilibili","1905","xigua"]}},
-        {"name":"云","type":0,"url":"https://yparse.ik9.cc/index.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","mgtv","芒果","letv","乐视","pptv","PPTV","sohu","bilibili","哔哩哔哩","哔哩"],"header":{"User-Agent":"okhttp/4.1.0"}}},
-        {"name":"PM","url":"https://www.playm3u8.cn/jiexi.php?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","bilibili","哔哩哔哩","哔哩","mgtv","芒果","sohu","xigua","fun","风行"],"header":{"User-Agent":"Mozilla/5.0"}},"header":{"User-Agent":"Mozilla/5.0"}},
-        {"name":"摸鱼儿解析","type":1,"url":"http://110.40.61.139:4655/zhuimi666.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","rx","ltnb","bilibili","1905","xigua"]}},
-        {"name":"线路4","type":0,"url":"https://jx.jiexila.com/?url=","ext":{"header":{"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"}}},
-        {"name":"m3u8TV","url":"https://jx.m3u8.tv/jiexi/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
-        {"name":"冰豆","url":"https://bd.jx.cn/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
-        {"name":"线路10","type":0,"url":"https://live.fanmingming.com/player/?vurl=","ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
-        {"name":"线路11","type":0,"url":"https://www.pouyun.com/?url=","ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
-        {"name":"红狐","url":"https://player.mrgaocloud.com/player/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
-        {"name":"爱豆","type":0,"url":"https://jx.aidouer.net/?url=","ext":{"header":{"user-agent":"Mozilla/5.0(Linux;Android13;V2049ABuild/TP1A.220624.014;wv)AppleWebKit/537.36(KHTML,likeGecko)Version/4.0Chrome/116.0.0.0MobileSafari/537.36","referer":"https://jiejie.uk/"}}},
-        {"name":"8090","url":"https://www.8090.la/8090/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","bilibili","哔哩哔哩","哔哩","mgtv","芒果","sohu","xigua","fun","风行"],"header":{"User-Agent":"Mozilla/5.0"}}},
-        {"name":"巧技","type":1,"url":"http://pan.qiaoji8.com/tvbox/neibu.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","tnmb","seven","bilibili","1905"],"header":{"User-Agent":"okhttp/4.9.1"}}},
-        {"name":"巧技二","type":1,"url":"http://pan.qiaoji8.com/tvbox/gouzi.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","tnmb","seven","bilibili","1905","NetFilx"],"header":{"User-Agent":"okhttp/4.9.1"}}},
-        {"name":"夜幕","type":0,"url":"https://www.yemu.xyz/?url=","ext":{"header":{"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"}}}
-    ],
-    "doh":[{"name":"Google","url":"https://dns.google/dns-query","ips":["8.8.4.4","8.8.8.8"]},{"name":"Cloudflare","url":"https://cloudflare-dns.com/dns-query","ips":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"]},{"name":"AdGuard","url":"https://dns.adguard.com/dns-query","ips":["94.140.14.140","94.140.14.141"]},{"name":"DNSWatch","url":"https://resolver2.dns.watch/dns-query","ips":["84.200.69.80","84.200.70.40"]},{"name":"Quad9","url":"https://dns.quad9.net/dns-quer","ips":["9.9.9.9","149.112.112.112"]}],
-    "rules":[
-        {"name":"proxy","hosts":["raw.githubusercontent.com","googlevideo.com","cdn.v82u1l.com","cdn.iz8qkg.com","cdn.kin6c1.com","c.biggggg.com","c.olddddd.com","haiwaikan.com","www.histar.tv","youtube.com","uhibo.com",".*boku.*",".*nivod.*",".*ulivetv.*"]},
-        {"name":"cl","hosts":["magnet"],"regex":["最 新","直 播","更 新"]},
-        {"name": "hwk","hosts": ["haiwaikan"],"regex": ["10.0099",  "10.3333",  "16.0599",  "8.1748",  "10.85"]},
-        {"name": "yqk","hosts": ["yqk88"],"regex": [  "18.4",  "15.1666"]},
-        {"name": "sn","hosts": ["suonizy"],"regex": [  "15.1666",  "15.2666"]},
-        {"name": "bf","hosts": ["bfzy"],"regex": [  "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:3,[\\s\\S]*?#EXT-X-DISCONTINUITY"]},
-        {"name": "xx","hosts": ["aws.ulivetv.net"],"regex": [  "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:8,[\\s\\S]*?#EXT-X-DISCONTINUITY"]},
-        {"name": "lz","hosts": ["vip.lz",  "hd.lz",  "v.cdnlz1",  "v.cdnlz"],"regex": [  "18.5333"]},
-        {"name": "非凡","hosts": ["vip.ffzy",  "hd.ffzy"],"regex": [  "25.0666"]},
-        {"name":"暴风","hosts":["bfzy","bfbfvip","bfengbf"],"regex":["#EXTINF.*?\\s+.*?adjump.*?\\.ts"]},
-        {"name":"量子","hosts":["vip.lz","hd.lz",".cdnlz"],"regex":["#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:7\\.166667,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:4\\.066667,[\\s\\S]*?#EXT-X-DISCONTINUITY","17.19"]},
-        {"name":"非凡","hosts":["vip.ffzy","hd.ffzy","super.ffzy"],"regex":["#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.400000,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.666667,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXTINF.*?\\s+.*?1171(057).*?\\.ts","#EXTINF.*?\\s+.*?6d7b(077).*?\\.ts","#EXTINF.*?\\s+.*?6718a(403).*?\\.ts","17.99","14.45"]},
-        {"name":"索尼","hosts":["suonizy"],"regex":["#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:1\\.000000,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXTINF.*?\\s+.*?p1ayer.*?\\.ts","#EXTINF.*?\\s+.*?\\/video\\/original.*?\\.ts"]},
-        {"name":"快看","hosts":["kuaikan"],"regex":["#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:5,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:2\\.4,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:1\\.467,[\\s\\S]*?#EXT-X-DISCONTINUITY"]},
-        {"name":"火山嗅探","hosts":["huoshan.com"],"regex":["item_id="]},
-        {"name":"抖音嗅探","hosts":["douyin.com"],"regex":["is_play_url="]},
-        {"name":"农民嗅探","hosts":["toutiaovod.com"],"regex":["video/tos/cn"]},
-        {"name":"七新嗅探","hosts":["api.52wyb.com"],"regex":["m3u8?pt=m3u8"]},
-        {"name":"夜市","hosts":["yeslivetv.com"],"script":["document.getElementsByClassName('vjs-big-play-button')[0].click()"]},
-        {"name":"毛驴","hosts":["www.maolvys.com"],"script":["document.getElementsByClassName('swal-button swal-button--confirm')[0].click()"]},
-        {"name":"czzy","hosts":["10086.cn"],"regex":["/storageWeb/servlet/downloadServlet"]},
-        {"name":"bdys","hosts":["bytetos.com","byteimg.com","bytednsdoc.com","pstatp.com"],"regex":["/tos-cn"],"exclude":[".m3u8"]},
-        {"name":"磁力广告","hosts":["magnet"],"regex":["更多","社 區","x u u","最 新","更 新","社 区","有趣","有 趣","英皇体育","全中文AV在线","澳门皇冠赌场","哥哥快来","美女荷官","裸聊","新片首发","UUE29"]},
-        {"name":"bdys10","hosts":["bdys10.com"],"regex":["/obj/"],"exclude":[".m3u8"]}
-    ],
-    "ads":["mimg.0c1q0l.cn","www.googletagmanager.com","www.google-analytics.com","mc.usihnbcq.cn","mg.g1mm3d.cn","mscs.svaeuzh.cn","cnzz.hhttm.top","tp.vinuxhome.com","cnzz.mmstat.com","www.baihuillq.com","s23.cnzz.com","z3.cnzz.com","c.cnzz.com","stj.v1vo.top","z12.cnzz.com","img.mosflower.cn","tips.gamevvip.com","ehwe.yhdtns.com","xdn.cqqc3.com","www.jixunkyy.cn","sp.chemacid.cn","hm.baidu.com","s9.cnzz.com","z6.cnzz.com","um.cavuc.com","mav.mavuz.com","wofwk.aoidf3.com","z5.cnzz.com","xc.hubeijieshikj.cn","tj.tianwenhu.com","xg.gars57.cn","k.jinxiuzhilv.com","cdn.bootcss.com","ppl.xunzhuo123.com","xomk.jiangjunmh.top","img.xunzhuo123.com","z1.cnzz.com","s13.cnzz.com","xg.huataisangao.cn","z7.cnzz.com","xg.huataisangao.cn","z2.cnzz.com","s96.cnzz.com","q11.cnzz.com","thy.dacedsfa.cn","xg.whsbpw.cn","s19.cnzz.com","z8.cnzz.com","s4.cnzz.com","f5w.as12df.top","ae01.alicdn.com","www.92424.cn","k.wudejia.com","vivovip.mmszxc.top","qiu.xixiqiu.com","cdnjs.hnfenxun.com","cms.qdwght.com","api.htpan.net"],
-    "flags":["imgo","youku","qq","qq 预告及花絮","iqiyi","qiyi","fun","letv","leshi","sohu","tudou","xigua","cntv","1905","pptv","mgtv","wasu","bilibili","renrenmi"]
+      {"key": "农民影视","name": "农民影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/nongming.js"},
+      {"key": "星辰影视","name": "星辰影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xingcheng.js"},
+      {"key": "达达龟","name": "达达影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/dadagui.js"},
+      {"key": "小熊","name": "小熊影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/xiaoxiong.js"},
+      {"key": "骚火电影","name": "骚火电影","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/saohuo.js"},
+      {"key": "诸城影视","name": "诸城影视","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/zhuch.js"},
+      {"key": "哔哩直播","name": "哔哩直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/blzb.js","categories":["网游","手游","单机游戏"]},
+      {"key": "虎牙直播","name": "虎牙直播","type": 3, "api": "./lib/drpy2.min.js","ext": "./js/huya.js"},
+      {"key":"玩偶","name":"玩偶智能┃4K弹幕","type":3,"api":"csp_WoGG","searchable":1,"quickSearch":1,"changeable":0,"ext":{ "Cloud-drive":"TVBox/Cloud-drive.txt","from":"4k|auto","siteUrl":"https://www.wogg.net/","danMu":"弹"}},
+      {"key":"UCsousou","name":"优汐搜搜┃4K纯净","type":3,"api":"csp_UuSs","searchable":1,"quickSearch":1,"changeable":0,"ext":{"Cloud-drive":"TVBox/Cloud-drive.txt","from":"4k|auto"}},
+      {"key":"哔哩哔哩" ,"name":"哔哩哔哩","type":3,"api":"./lib/drpy2.min.js","ext":"./js/bilibili.js"}
+  ],
+  "parses": [
+      {"name":"Web聚合","type":3,"url":"Web"},
+      {"name":"Json聚合","type":3,"url":"Demo"},
+      {"name":"咸鱼","type":0,"url":"https://jx.xyflv.cc/?url=","ext":{"header":{"user-agent":"Mozilla/5.0(Linux;Android13;V2049ABuild/TP1A.220624.014;wv)AppleWebKit/537.36(KHTML,likeGecko)Version/4.0Chrome/116.0.0.0MobileSafari/537.36","referer":"https://www.xyflv.cc/"}}},
+      {"name":"虾米","type":0,"url":"https://jx.xmflv.com/?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","imgo","rx","ltnb","bilibili","1905","xigua"]}},
+      {"name":"josn-3","type":1,"url":"http://qn6z7b.yun.42jx.com/jx/jx.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","rx","ltnb","bilibili","1905","xigua"]}},
+      {"name":"云","type":0,"url":"https://yparse.ik9.cc/index.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","mgtv","芒果","letv","乐视","pptv","PPTV","sohu","bilibili","哔哩哔哩","哔哩"],"header":{"User-Agent":"okhttp/4.1.0"}}},
+      {"name":"PM","url":"https://www.playm3u8.cn/jiexi.php?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","bilibili","哔哩哔哩","哔哩","mgtv","芒果","sohu","xigua","fun","风行"],"header":{"User-Agent":"Mozilla/5.0"}},"header":{"User-Agent":"Mozilla/5.0"}},
+      {"name":"摸鱼儿解析","type":1,"url":"http://110.40.61.139:4655/zhuimi666.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","rx","ltnb","bilibili","1905","xigua"]}},
+      {"name":"线路4","type":0,"url":"https://jx.jiexila.com/?url=","ext":{"header":{"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"}}},
+      {"name":"m3u8TV","url":"https://jx.m3u8.tv/jiexi/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
+      {"name":"冰豆","url":"https://bd.jx.cn/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
+      {"name":"线路10","type":0,"url":"https://live.fanmingming.com/player/?vurl=","ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
+      {"name":"线路11","type":0,"url":"https://www.pouyun.com/?url=","ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
+      {"name":"红狐","url":"https://player.mrgaocloud.com/player/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","qq 预告及花絮","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","mgtv","芒果","sohu","xigua","fun","风行"]},"header":{"User-Agent":"Mozilla/5.0"}},
+      {"name":"爱豆","type":0,"url":"https://jx.aidouer.net/?url=","ext":{"header":{"user-agent":"Mozilla/5.0(Linux;Android13;V2049ABuild/TP1A.220624.014;wv)AppleWebKit/537.36(KHTML,likeGecko)Version/4.0Chrome/116.0.0.0MobileSafari/537.36","referer":"https://jiejie.uk/"}}},
+      {"name":"8090","url":"https://www.8090.la/8090/?url=","type":0,"ext":{"flag":["qiyi","imgo","爱奇艺","奇艺","qq","腾讯","youku","优酷","pptv","PPTV","letv","乐视","leshi","bilibili","哔哩哔哩","哔哩","mgtv","芒果","sohu","xigua","fun","风行"],"header":{"User-Agent":"Mozilla/5.0"}}},
+      {"name":"巧技","type":1,"url":"http://pan.qiaoji8.com/tvbox/neibu.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","tnmb","seven","bilibili","1905"],"header":{"User-Agent":"okhttp/4.9.1"}}},
+      {"name":"巧技二","type":1,"url":"http://pan.qiaoji8.com/tvbox/gouzi.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","tnmb","seven","bilibili","1905","NetFilx"],"header":{"User-Agent":"okhttp/4.9.1"}}},
+      {"name":"夜幕","type":0,"url":"https://www.yemu.xyz/?url=","ext":{"header":{"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"}}}
+  ],
+  "doh":[{"name":"Google","url":"https://dns.google/dns-query","ips":["8.8.4.4","8.8.8.8"]},{"name":"Cloudflare","url":"https://cloudflare-dns.com/dns-query","ips":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"]},{"name":"AdGuard","url":"https://dns.adguard.com/dns-query","ips":["94.140.14.140","94.140.14.141"]},{"name":"DNSWatch","url":"https://resolver2.dns.watch/dns-query","ips":["84.200.69.80","84.200.70.40"]},{"name":"Quad9","url":"https://dns.quad9.net/dns-quer","ips":["9.9.9.9","149.112.112.112"]}],
+  "rules":[
+      {"name":"proxy","hosts":["raw.githubusercontent.com","googlevideo.com","cdn.v82u1l.com","cdn.iz8qkg.com","cdn.kin6c1.com","c.biggggg.com","c.olddddd.com","haiwaikan.com","www.histar.tv","youtube.com","uhibo.com",".*boku.*",".*nivod.*",".*ulivetv.*"]},
+      {"name":"cl","hosts":["magnet"],"regex":["最 新","直 播","更 新"]},
+      {"name": "hwk","hosts": ["haiwaikan"],"regex": ["10.0099",  "10.3333",  "16.0599",  "8.1748",  "10.85"]},
+      {"name": "yqk","hosts": ["yqk88"],"regex": [  "18.4",  "15.1666"]},
+      {"name": "sn","hosts": ["suonizy"],"regex": [  "15.1666",  "15.2666"]},
+      {"name": "bf","hosts": ["bfzy"],"regex": [  "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:3,[\\s\\S]*?#EXT-X-DISCONTINUITY"]},
+      {"name": "xx","hosts": ["aws.ulivetv.net"],"regex": [  "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:8,[\\s\\S]*?#EXT-X-DISCONTINUITY"]},
+      {"name": "lz","hosts": ["vip.lz",  "hd.lz",  "v.cdnlz1",  "v.cdnlz"],"regex": [  "18.5333"]},
+      {"name": "非凡","hosts": ["vip.ffzy",  "hd.ffzy"],"regex": [  "25.0666"]},
+      {"name":"暴风","hosts":["bfzy","bfbfvip","bfengbf"],"regex":["#EXTINF.*?\\s+.*?adjump.*?\\.ts"]},
+      {"name":"量子","hosts":["vip.lz","hd.lz",".cdnlz"],"regex":["#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:7\\.166667,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:4\\.066667,[\\s\\S]*?#EXT-X-DISCONTINUITY","17.19"]},
+      {"name":"非凡","hosts":["vip.ffzy","hd.ffzy","super.ffzy"],"regex":["#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.400000,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.666667,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXTINF.*?\\s+.*?1171(057).*?\\.ts","#EXTINF.*?\\s+.*?6d7b(077).*?\\.ts","#EXTINF.*?\\s+.*?6718a(403).*?\\.ts","17.99","14.45"]},
+      {"name":"索尼","hosts":["suonizy"],"regex":["#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:1\\.000000,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXTINF.*?\\s+.*?p1ayer.*?\\.ts","#EXTINF.*?\\s+.*?\\/video\\/original.*?\\.ts"]},
+      {"name":"快看","hosts":["kuaikan"],"regex":["#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:5,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:2\\.4,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:1\\.467,[\\s\\S]*?#EXT-X-DISCONTINUITY"]},
+      {"name":"火山嗅探","hosts":["huoshan.com"],"regex":["item_id="]},
+      {"name":"抖音嗅探","hosts":["douyin.com"],"regex":["is_play_url="]},
+      {"name":"农民嗅探","hosts":["toutiaovod.com"],"regex":["video/tos/cn"]},
+      {"name":"七新嗅探","hosts":["api.52wyb.com"],"regex":["m3u8?pt=m3u8"]},
+      {"name":"夜市","hosts":["yeslivetv.com"],"script":["document.getElementsByClassName('vjs-big-play-button')[0].click()"]},
+      {"name":"毛驴","hosts":["www.maolvys.com"],"script":["document.getElementsByClassName('swal-button swal-button--confirm')[0].click()"]},
+      {"name":"czzy","hosts":["10086.cn"],"regex":["/storageWeb/servlet/downloadServlet"]},
+      {"name":"bdys","hosts":["bytetos.com","byteimg.com","bytednsdoc.com","pstatp.com"],"regex":["/tos-cn"],"exclude":[".m3u8"]},
+      {"name":"磁力广告","hosts":["magnet"],"regex":["更多","社 區","x u u","最 新","更 新","社 区","有趣","有 趣","英皇体育","全中文AV在线","澳门皇冠赌场","哥哥快来","美女荷官","裸聊","新片首发","UUE29"]},
+      {"name":"bdys10","hosts":["bdys10.com"],"regex":["/obj/"],"exclude":[".m3u8"]}
+  ],
+  "ads":["mimg.0c1q0l.cn","www.googletagmanager.com","www.google-analytics.com","mc.usihnbcq.cn","mg.g1mm3d.cn","mscs.svaeuzh.cn","cnzz.hhttm.top","tp.vinuxhome.com","cnzz.mmstat.com","www.baihuillq.com","s23.cnzz.com","z3.cnzz.com","c.cnzz.com","stj.v1vo.top","z12.cnzz.com","img.mosflower.cn","tips.gamevvip.com","ehwe.yhdtns.com","xdn.cqqc3.com","www.jixunkyy.cn","sp.chemacid.cn","hm.baidu.com","s9.cnzz.com","z6.cnzz.com","um.cavuc.com","mav.mavuz.com","wofwk.aoidf3.com","z5.cnzz.com","xc.hubeijieshikj.cn","tj.tianwenhu.com","xg.gars57.cn","k.jinxiuzhilv.com","cdn.bootcss.com","ppl.xunzhuo123.com","xomk.jiangjunmh.top","img.xunzhuo123.com","z1.cnzz.com","s13.cnzz.com","xg.huataisangao.cn","z7.cnzz.com","xg.huataisangao.cn","z2.cnzz.com","s96.cnzz.com","q11.cnzz.com","thy.dacedsfa.cn","xg.whsbpw.cn","s19.cnzz.com","z8.cnzz.com","s4.cnzz.com","f5w.as12df.top","ae01.alicdn.com","www.92424.cn","k.wudejia.com","vivovip.mmszxc.top","qiu.xixiqiu.com","cdnjs.hnfenxun.com","cms.qdwght.com","api.htpan.net"],
+  "flags":["imgo","youku","qq","qq 预告及花絮","iqiyi","qiyi","fun","letv","leshi","sohu","tudou","xigua","cntv","1905","pptv","mgtv","wasu","bilibili","renrenmi"]
 }
