@@ -1,6 +1,6 @@
 {
   "wallpaper": "http://bobohome.ignorelist.com:20247/bing",
-  "spider": "https://gitee.com/155585955/zy/raw/master/xm.jar",
+  "spider": "https://gitee.com/155585955/zy/raw/master/xm.jar;md5;bcb27d2740df8d21bfc49c507432663a",
   "lives": [
     {"name":"在线-2","type":0,"url":"https://gitproxy.mrhjx.cn/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u","playerType": 1}
   ],
@@ -8,7 +8,7 @@
       {"key":"csp_非凡","name":"非凡资源","type":1,"api":"http://api.ffzyapi.com/api.php/provide/vod/?ac=list","searchable": 1,"quickSearch": 1,"filterable": 1,"playurl": "json:https://svip.ffzyplay.com/?url=","categories": [ "国产剧","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片", "国产动漫", "大陆综艺"]},
       {"key":"csp_量子","name":"量子资源","type":1,"api":"https://cj.lziapi.com/api.php/provide/vod/?ac=list","searchable":1,"quickSearch":1,"playurl":"json:https://lziplayer.com/?url=","categories":["国产剧","动作片","喜剧片","科幻片","恐怖片","爱情片","国产动漫","剧情片","战争片","记录片","大陆综艺"]},
       {"key":"天天","name":"天天影视","type":3,"quickSearch":1,"api":"csp_AppRJ","ext":"sHR2rlsfjI4L3t4RXQMknxhunFUlA4159TKiKvIPpfcM1xianxebcSLajBbwFymqC+z9WoGzQYbh7FSvh8KdiC0BKF0CalaPaCEMOZm+ClGEeNzXAaR0FnrV04SiB2NK"},
-      {"key":"热热","name":"热热影视","type":3,"quickSearch":1,"api":"csp_AppRJ","ext":"sHR2rlsfjI4L3t4RXQMkn9mmg6Ofmy66+wcs9waIyn4hKqT9jG9s4kO6qzcu2OSqWS1/T+wfkqe+UwoipekwvcM11PTDrQqKYI8lmMXUc1vBHxp/2uWIw5HUoscBNWEb"},
+      {"key": "热热","name": "热热影视","type": 3,"quickSearch": 1,"api": "https://13826.kstore.space/rebo.py"},
       {"key":"csp_Wwys","name":"农民影视","type":3,"quickSearch":1,"api":"csp_Wwys","ext":"https://www.wwgz.cn"},
       {"key":"人人","name":"人人影视","type":3,"api":"csp_AppGet","ext":"sHR2rlsfjI4L3t4RXQMknw+zXdsvYSFPrylVBk8Otj7BtrOcImUIxu7uCmi/oCEVSH+1Tuw/tXHzW47SGQsj8bRydPRgWesjHAxv9eu8eO9hOGeUeBKsucMHODs09HXY4kiPp3p1vemBghpvJFm9mx/FFTQYaEQ33Bpqwk73VkDa2zWgoB0CNuBseJhbj2hRKqOiT08iymzh4sSfhjJ5tbS5yTDxPIJAjwMijWuyOJB++d859vxajKD2Jg5qw0lv"},
       {"key":"csp_Jpys","name":"金牌影视","type":3,"quickSearch":1,"api":"csp_Jpys"},
@@ -18,11 +18,15 @@
       {"key":"csp_baibai","name":"白白影视","type":3,"quickSearch":1,"api":"csp_SuBaiBai","ext":"https://www.subaibai.com"},
       {"key": "步步","name": "步步影视","type": 3,"api": "https://weixine.net/js/lib/drpy2.min.js","ext": "https://gitee.com/smallmi1007/mimi/raw/master/ceshi.js"},
       {"key":"QD4K","name":"猪猪影视","type":3,"api":"csp_AppYsV2","playerType":2,"ext":"http://172.83.156.150:1010/api.php/app/"},
-      {"key":"海马","name":"海马影视","type":3,"quickSearch":0,"api":"https://13826.kstore.space/haima.py","ext":""},
       {"key": "巧技","name": "聚搜影视","type": 3,"api": "csp_qiao2","playerType": 2,
         "jar": "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1740965279595/0303.jar;md5;ec975f203099b42d6286751914e27fc9",
         "ext": "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1745208060258/cksp.txt"
       },
+      {"key": "仓鼠","name": "仓鼠┃1080P","type": 3,"quickSearch": 1,"api": "https://13826.kstore.space/cangshu.py","ext": ""},
+      {"key": "水滴","name": "水滴┃1080P","type": 3,"quickSearch": 1,"api": "https://13826.kstore.space/SHUIDI.py","ext": ""},
+      {"key": "csp_臻彩","name": "臻彩4K","type": 3,"api": "csp_AppYsV2","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "http://cms.lygdyy.cn/api.php/app/"},
+      {"key": "海马影视","name": "海马影视","type": 3,"quickSearch": 0,"api": "https://13826.kstore.space/haima.py","ext": ""},
+      {"key": "测试","name": "剧霸影视","type": 3,"quickSearch": 0,"api": "https://13826.kstore.space/jubaba.py","ext": ""},
       {"key":"边缘影视","name":"边缘影视","type":3,"quickSearch":1,"api":"./py/byys.py","ext": {"danmu": false}},
       {"key":"魔方影视","name":"魔方影视","type":3,"quickSearch":1,"api":"./py/mfys.py","ext": {"danmu": false}},
       {"key":"美帕影视","name":"美帕｜影视","type":3,"api":"https://gitee.com/PizazzXS/another-d/raw/master/movie/py/MPYS.py","searchable":1,"changeable":1,"quickSearch":1,"filterable":1,"playerType":2},
