@@ -4,6 +4,9 @@
   "lives": [ ],
   "sites": [
       {"key":"csp_LiteApple","name":"苹果影视","type":3,"quickSearch":1,"api":"csp_LiteApple"},
+      {"key":"儿童英语","name":"🌏儿童英语","type":3,"api":"csp_Bili","searchable":0,"quickSearch":1,"filterable":1,"ext":"./jar/yinyu.json","jar":"./jar/spider.jar"},
+      {"key":"小学","name":"🌏小学教育","type":3,"api":"csp_Bili","searchable":0,"quickSearch":1,"filterable":1,"ext":"./jar/xiaoxue.json","jar":"./jar/spider.jar"},
+      {"key":"儿童识字","name":"🌏儿童识字","type":3,"api":"csp_Bili","searchable":0,"quickSearch":1,"filterable":1,"ext":"./jar/shzi.json","jar":"./jar/spider.jar"},
       {"key":"QD4K","name":"猪猪影视","type":3,"api":"csp_AppYsV2","playerType":2,"ext":"http://jxfmax.juxiafan.com/icciu_api.php/v1.vod"},
       {"key":"咖啡","name":"咖啡丨APP","type":3,"quickSearch":1,"api":"csp_AppQi","ext":{"url":"","site":"https://daen-1256234123.cos.ap-shanghai.myqcloud.com/MuQi/mqxh.txt","dataKey":"37kj83zs1q16jk6t","dataIv":"37kj83zs1q16jk6t","deviceId":"","version":"101","ua":""}},
       {"key":"哔滴","name":"哔滴丨APP","type":3,"quickSearch":1,"api":"csp_AppQi","ext":{"url":"","site":"https://ooxooxooxooxoo-1259561579.cos.ap-chengdu.myqcloud.com/ip.json","dataKey":"5ae8ee4bb95ea0ce","dataIv":"5ae8ee4bb95ea0ce","deviceId":"","version":"120","ua":"okhttp/3.10.0 BDYS/109.0.0.8"}},
@@ -16,7 +19,6 @@
       {"key":"饺子影视","name":"饺子｜影视","type":3,"api":"csp_Jiaozi"},
       {"key":"低端影视","name":"低端｜影视","type":3,"api":"csp_Ddys","searchable":1,"quickSearch":1,"filterable":1},
       {"key":"动漫","name":"动漫｜APP","type":3,"quickSearch":1,"api":"csp_AppGet","ext":{"url":"http://tv.yy-fun.cc","dataKey":"qkxnwkfjwpcnwycl","dataIv":"qkxnwkfjwpcnwycl","deviceId":"","version":""}},
-      {"key":"狂人","name":"狂人 I APP","type":3,"quickSearch":1,"api":"csp_AppGet","ext":{"url":"https://www.zjkrmv.vip","dataKey":"vXeyuJFqTKqWUtWU","dataIv":"vXeyuJFqTKqWUtWU","deviceId":"","version":""}},
       {"key":"厂长影视","name":"厂长｜影视","type":3,"playerType":"2","api":"csp_Czsapp","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://www.czzymovie.com/"},
       {"key":"萝卜","name":"萝卜｜APP","type":3,"quickSearch":1,"api":"csp_AppGet","ext":{"url":"https://apiapplbys.lbys.app:5678","dataKey":"apiapplbyskey168","dataIv":"apiapplbyskey168","deviceId":"","version":"107"}},
       {"key":"热播影视","name":"热播｜APP","type":3,"api":"csp_AppRJ","searchable":1,"quickSearch":1,"filterable":0,"ext":{"url":"http://v.rbotv.cn"}},
