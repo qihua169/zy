@@ -1,15 +1,21 @@
 {
   "wallpaper": "https://xn--spsx60cgim8pd.xxooo.cf/",
-  "spider":"./jar/fish03050051.png;md5;cd5f9778824ad3072244710d34477822",
+//   "spider":"./jar/fish03050051.png;md5;cd5f9778824ad3072244710d34477822",
+   "spider": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260309/VWfh/0X0/fish03092137.png;md5;cd5f9778824ad3072244710d34477822",
   "lives":[
      {
         "name": "AI直播",
         "type": 0,
         "url": "https://ghfast.top/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt"
+    },
+    {
+        "name": "直播2",
+        "type": 0,
+        "url": "https://gh-proxy.org/https://raw.githubusercontent.com/ewctt/tvbox/refs/heads/main/lib/iptv.txt"
     }
   ],
   "sites": [
-       {"key":"csp_非凡","name":"非凡资源","type":1,"api":"http://api.ffzyapi.com/api.php/provide/vod","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片", "国产动漫", "大陆综艺"]},
+        {"key":"csp_非凡","name":"非凡资源","type":1,"api":"http://api.ffzyapi.com/api.php/provide/vod","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片", "国产动漫", "大陆综艺"]},
         {"key":"csp_量子","name":"量子资源","type":1,"api":"https://cj.lziapi.com/api.php/provide/vod","searchable":1,"quickSearch":1,"categories":["国产剧","动作片","喜剧片","科幻片","恐怖片","爱情片","国产动漫","剧情片","战争片","记录片","大陆综艺"]},
         {"key":"360资源","name":"360资源","type": 1,"api":"https://360zy.com/api.php/provide/vod","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": ["国产剧","大陆综艺", "国产动漫","动作片","喜剧片","科幻片","恐怖片","爱情片","剧情片","战争片","记录片","爽文短剧"]},
         {"key":"优质资源","name":"优质资源","type":1,"api":"https://api.yzzy-api.com/inc/apijson.php","searchable":1,"quickSearch":1,"categories":["国产剧","动作片","喜剧片","科幻片","恐怖片","爱情片","国产动漫","剧情片","战争片","记录片","大陆综艺"]},
