@@ -11,10 +11,15 @@
         "name": "直播2",
         "type": 0,
         "url": "https://gh-proxy.org/https://raw.githubusercontent.com/ewctt/tvbox/refs/heads/main/lib/iptv.txt"
+    },
+     {
+      "name": "TV直播",
+      "type": 0,
+      "url": "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u"
     }
   ],
   "sites": [
-        {"key":"csp_非凡","name":"非凡资源","type":1,"api":"http://api.ffzyapi.com/api.php/provide/vod","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片", "国产动漫", "大陆综艺"]},
+        {"key":"csp_非凡","name":"非凡资源","type":1,"api":"http://api.ffzyapi.com/api.php/provide/vod?ac=list","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片", "国产动漫", "大陆综艺"]},
         {"key":"csp_量子","name":"量子资源","type":1,"api":"https://cj.lziapi.com/api.php/provide/vod","searchable":1,"quickSearch":1,"categories":["国产剧","动作片","喜剧片","科幻片","恐怖片","爱情片","国产动漫","剧情片","战争片","记录片","大陆综艺"]},
         {"key":"360资源","name":"360资源","type": 1,"api":"https://360zy.com/api.php/provide/vod","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": ["国产剧","大陆综艺", "国产动漫","动作片","喜剧片","科幻片","恐怖片","爱情片","剧情片","战争片","记录片","爽文短剧"]},
         {"key":"优质资源","name":"优质资源","type":1,"api":"https://api.yzzy-api.com/inc/apijson.php","searchable":1,"quickSearch":1,"categories":["国产剧","动作片","喜剧片","科幻片","恐怖片","爱情片","国产动漫","剧情片","战争片","记录片","大陆综艺"]},
@@ -44,11 +49,11 @@
         {"key":"裤佬猎手PY","name":"猎手丨PY","api":"https://mpimg.cn/down.php/60fab5ff33f0b0fd88f099ae3be708bf.py","filterable":1,"quickSearch":1,"searchable":1,"type":3},
         {"key":"裤佬芒果PY","name":"芒果丨PY","api":"https://mpimg.cn/down.php/643d3f9a0b601f25d3e372eeb66e82a5.py","filterable":1,"quickSearch":1,"searchable":1,"type":3},
         {"key":"裤佬兄弟PY","name":"兄弟丨PY","api":"https://mpimg.cn/down.php/b1cdcf76574a0cb24d5b937d46458cdf.py","filterable":1,"quickSearch":1,"searchable":1,"type":3},
+        {"key": "cbh","name": "茶杯狐","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable": 1,"ext": {"分类url": "https://www.cupfox7.com/cupfox/{cateId}/area/{area}/by/{by}/class/{class}/lang/{lang}/page/{catePg}/year/{year}.html","分类": "电影$fenlei1#电视剧$fenlei2#综艺$fenlei3#动漫$fenlei4"},"header": {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"}},
         {"key":"dd","name":"修罗|弹幕","type":3,"api":"csp_XBPQ","ext":{"数组":"card card-sm card-link&&</div>","图片":"src=\"&&\"","标题":"mb-0 card-title text-truncate\">&&<","副标题":"start-0 text-red-fg\">&&</span>","链接":"href=\"&&\"","简介":"剧情简介：&&\"","线路标题":"磁力+>&&<","播放数组":"download-list&&</tbody>","播放列表":"<tr&&</tr>","播放标题":"text-muted\">&&</td>[不包含:网盘下载]","跳转播放链接":"href=\"&&\"","分类url":"https://v.xlys.ltd.ua/s/all/{catePg}?type={cateId};;d0","分类":"电影$0#电视剧$1"}},
         {"key":"xiaozhen","name":"小镇影视","type":3,"api":"csp_XBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":{"线路数组":"<a data-toggle=\"tab\"&&/a>","线路标题":">&&<","分类url":"http://dyxz.tv/list/{cateId}_{catePg}.html","分类":"电影$1#电视剧$2#动漫$3#综艺$4"}}
     ],
    "parses":[{"name":"解析聚合","type":3,"url":"Demo"},{"name":"Json轮询","type":2,"url":"Sequence"},
-    {"name":"巧技","type":1,"url":"https://kalbim.xatut.top/kalbim2025/781718/play/video_player.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","tnmb","seven","bilibili"],"header":{"User-Agent":"okhttp/4.9.1"}}},
     {"name":"虾米","type":0,"url":"https://jx.xmflv.com/?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","tnmb","seven","bilibili"],"header":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"}}},
     {"name":"HLS","type":0,"url":"https://jx.hls.one/?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","mgtv","芒果","letv","乐视","pptv","PPTV","sohu","bilibili","哔哩哔哩","哔哩"],"header":{"User-Agent":"okhttp/4.1.0"}}},
     {"name":"ckplayer","type":0,"url":"https://www.ckplayer.vip/jiexi/?url=","ext":{"flag":["qiyi","imgo","qiyi","爱奇艺","奇艺","youku","优酷"],"header":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"}}},
