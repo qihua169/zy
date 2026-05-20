@@ -28,9 +28,6 @@
         {"api":"https://newtv.ggff.net/oule?token=P69Phb_y","key":"裤佬欧乐影视","name":"欧乐丨影视","type":4},
         {"api":"https://newtv.ggff.net/ikanbot?token=P69Phb_y","key":"裤佬爱看影视","name":"爱看丨影视","type":4},
         {"key": "八戒影视[APP]","name": "八戒影视[APP]","type": 3,"api": "https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/testboxapi/refs/heads/main/py/app/%E5%85%AB%E6%88%92%E5%BD%B1%E8%A7%86.py"},
-        {"key": "裤佬聚合采集","name": "聚合丨采集","type": 3,"api": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/drpy2.min.js",
-        "ext": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/采集之王.js?type=url&params=https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/json/采集静态.json"
-        },
         { "key": "裤佬毒舌影视","name": "毒舌丨影视","type": 4,"api": "http://zhangqun1818.serv00.net:6628/?spider=毒舌影视"},
         {"key":"裤佬王子影视","name":"王子丨影视","type":3,"api":"csp_AppGet","searchable":1,"changeable":1,"ext":{"url":"https://app.95112475.xyz","dataKey":"5a9w6x58dsq6z3a6","dataIv":"5a9w6x58dsq6z3a6"}},
         {"key":"裤佬星辰影视","name":"星辰丨影视","type":3,"api":"http://rihou.cc:88/js/星辰影院.js"},
