@@ -1,11 +1,11 @@
 {
   "wallpaper": "https://xn--spsx60cgim8pd.xxooo.cf/",
-   "spider": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/testboxapi/refs/heads/main/xiaosa/spider.jar",
+   "spider": "https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/testboxapi/refs/heads/main/xiaosa/spider.jar",
   "lives":[
-    {"name":"直播-2","type":0,"url":"https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt"},
-    {"name":"直播-3","type":0,"url":"https://gh-proxy.com/https://raw.githubusercontent.com/ewctt/tvbox/refs/heads/main/lib/iptv.txt"},
-    {"name":"直播-4","type":0,"url":"https://gh-proxy.com/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u"},
-    {"name":"直播-5","type":0,"url":"https://gh-proxy.com/https://raw.githubusercontent.com/fuxinyi0505/Ku9-IPTV-source/refs/heads/main/Ku9-IPTV-source.txt"}
+    {"name":"直播-2","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt"},
+    {"name":"直播-3","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/ewctt/tvbox/refs/heads/main/lib/iptv.txt"},
+    {"name":"直播-4","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u"},
+    {"name":"直播-5","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/fuxinyi0505/Ku9-IPTV-source/refs/heads/main/Ku9-IPTV-source.txt"}
   ],
   "sites": [
         {"key":"csp_非凡","name":"非凡资源","type":1,"api":"http://api.ffzyapi.com/api.php/provide/vod?ac=list","searchable": 1,"quickSearch": 1,"filterable": 1,"categories": [ "国产剧", "国产动漫","动画片","动作片", "喜剧片","科幻片", "恐怖片", "爱情片", "剧情片", "战争片", "记录片", "大陆综艺"]},
@@ -18,7 +18,6 @@
         {"key":"三秋影视","name":"三秋｜APP","type":3,"api":"csp_App3Q"},
         {"key": "三六零","name": "三六零｜视频","type": 3,"api": "csp_SP360"},
         {"key":"闪影","name":"闪影｜APP","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"http://38.47.213.61:41271/mogai_api.php/v1.vod"},
-        {"key":"顾我","name":"顾我｜APP","type":3,"api":"csp_AppDrama","searchable":1,"quickSearch":1,"filterable":1,"ext":{"appName":"顾我追剧","publicKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB","dataKey":"QK40VUWYWE45L0DOSTVOTEP0AM44PQ==","dataIv":"OC1A06E197EF10CF3F6058CA7A803B5E","pkg":"com.bingewatch.android","host":"","site":"https://guwoandroid-1372779881.cos.ap-guangzhou.myqcloud.com/app_guwozhuijuandroid.txt","version":"2.0.0.1","decrypt":"0"}},
         {"key":"农民影视","name":"农民｜影视","type":3,"api":"csp_Wwys","ext":"https://vip.wwgz.cn:5200"},
         {"key":"云播影视","name":"云播｜影视","type":3,"api":"csp_Tvyb","ext":"http://www.tvyb03.com"},
         {"key":"热播影视","name":"热播｜APP","type":3,"api":"csp_AppRJ","searchable":1,"quickSearch":1,"filterable":0,"ext":{"url":"http://v.rbotv.cn"}},
@@ -28,7 +27,13 @@
         {"key":"裤佬爬虫影视","name":"爬虫丨影视","type":1,"api":"https://dy.7772888.xyz/api.php/tvbox","searchable":1,"quickSearch":1,"filterable":1},
         {"api":"https://newtv.ggff.net/oule?token=P69Phb_y","key":"裤佬欧乐影视","name":"欧乐丨影视","type":4},
         {"api":"https://newtv.ggff.net/ikanbot?token=P69Phb_y","key":"裤佬爱看影视","name":"爱看丨影视","type":4},
-        {"key": "八戒影视[APP]","name": "八戒影视[APP]","type": 3,"api": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/testboxapi/refs/heads/main/py/app/%E5%85%AB%E6%88%92%E5%BD%B1%E8%A7%86.py"},
+        {"key": "八戒影视[APP]","name": "八戒影视[APP]","type": 3,"api": "https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/testboxapi/refs/heads/main/py/app/%E5%85%AB%E6%88%92%E5%BD%B1%E8%A7%86.py"},
+        {"key": "裤佬聚合采集","name": "聚合丨采集","type": 3,"api": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/drpy2.min.js",
+        "ext": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/采集之王.js?type=url&params=https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/json/采集静态.json"
+        },
+        { "key": "裤佬毒舌影视","name": "毒舌丨影视","type": 4,"api": "http://zhangqun1818.serv00.net:6628/?spider=毒舌影视"},
+        {"key":"裤佬王子影视","name":"王子丨影视","type":3,"api":"csp_AppGet","searchable":1,"changeable":1,"ext":{"url":"https://app.95112475.xyz","dataKey":"5a9w6x58dsq6z3a6","dataIv":"5a9w6x58dsq6z3a6"}},
+        {"key":"裤佬星辰影视","name":"星辰丨影视","type":3,"api":"http://rihou.cc:88/js/星辰影院.js"},
         {"key":"裤佬EmbyJS","name":"Emby丨JS","type":3,"api":"https://mpimg.cn/down.php/40d30fe3d9671e0d700f1c272bb20aaa.js","searchable":1,"quickSearch":1,"filterable":0},
         {"key":"裤佬界影PY","name":"界影丨PY","api":"https://mpimg.cn/down.php/4440a9a56b6d222647a856452eefb21a.py","filterable":1,"quickSearch":1,"searchable":1,"type":3},
         {"key":"裤佬永乐JS","name":"永乐丨JS","type":3,"api":"https://mpimg.cn/down.php/0338609bd59d7b27226f5a269ec97936.js","style":{"type":"rect","ratio":1.33},"changeable":1},
