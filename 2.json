@@ -106,10 +106,34 @@
             ]
         },
         {
+            "key": "电影天堂",
+            "name": "电影天堂",
+            "type": 1,
+            "api": "http://caiji.dyttzyapi.com/api.php/provide/vod/?ac=list",
+            "searchable": 1,
+            "quickSearch": 1,
+            "categories": [
+                "国产剧",
+                "动画片",
+                "大陆综艺",
+                "动画片",
+                "国产动漫",
+                "动作片",
+                "喜剧片",
+                "科幻片",
+                "恐怖片",
+                "爱情片",
+                "剧情片",
+                "战争片",
+                "记录片",
+                "爽文短剧"
+            ]
+        },
+        {
             "key": "GZ",
             "name": "瓜子APP",
             "type": 3,
-            "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/瓜子APP.py"
+            "api": "./jar/gz.py"
         },
         {
             "key": "91电视直播",
@@ -145,18 +169,54 @@
             "type": 3
         },
         {
-            "key": "山楂4k",
-            "name": "山楂4k",
-            "api": "./jar/山楂4k.py",
+            "key": "青禾影视",
+            "name": "青禾影视",
+            "api": "./jar/青禾影视.py",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
             "type": 3
         },
         {
-            "key": "布布4K",
-            "name": "布布4K",
-            "api": "./jar/布布4K.py",
+            "key": "开心影院",
+            "name": "开心影院",
+            "api": "./jar/开心影院.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "4k秒播修复",
+            "name": "4k秒播",
+            "api": "./jar/4k秒播修复.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "八戒影院",
+            "name": "八戒影院",
+            "api": "./jar/bj.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "大师兄",
+            "name": "大师兄",
+            "api": "./jar/dsx.js",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "简云",
+            "name": "简云",
+            "api": "./jar/简云.js",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
@@ -166,13 +226,13 @@
             "key": "cbh",
             "name": "茶杯狐",
             "type": 3,
-            "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/茶杯狐.py"
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/茶杯狐.py"
         },
         {
             "key": "枫叶影院",
             "name": "枫叶影院",
             "type": 3,
-            "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/jar_js/枫叶影院.js",
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/jar_js/枫叶影院.js",
             "changeable": 0
         },
         {
@@ -236,6 +296,18 @@
             "name": "低端影视",
             "type": 3,
             "api": "https://gh-proxy.com/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/低端影视.py"
+        },
+        {
+        "key": "rb",
+        "name": "热播APP.py[追剧]",
+        "type": 3,
+        "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/热播APP.py"
+        },
+        {
+        "key": "JP",
+        "name": "金牌APP.py[追剧]",
+        "type": 3,
+        "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/金牌APP.py"
         },
         {
             "key": "天堂",
@@ -373,15 +445,6 @@
             "category": "综合"
         },
         {
-            "key": "三六零",
-            "name": "三六零 • 视频",
-            "type": 3,
-            "api": "csp_SP360",
-            "ext": "",
-            "category": "综合",
-            "searchable": 1
-        },
-        {
             "key": "独播影视",
             "name": "独播 • 影视",
             "type": 3,
@@ -416,36 +479,6 @@
             "ext": "https://vip.wwgz.cn:5200",
             "category": "综合",
             "searchable": 1
-        },
-        {
-            "name": "大师兄|秒播",
-            "key": "AppV6Dxs",
-            "type": 3,
-            "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tbapi2/refs/heads/main/aowu/spider.jar",
-            "api": "csp_AppV6Amns",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 0,
-            "ext": "fbe15714a2413f05151fea6864509533510f3a0bb290dd40e3a2c65650bcf144db38b7a8945b776cf8933cb38e93a7d5d36988f5cbd33db73a1432681073eb45b4ce8224060c20ef229653f6b45f4e3a327a40e74bc51f710207b43b74b9bc3f9a2f70608e9c4783ddefc066662fb396be2d3c44dd2df48630d381176fd82e54565eccc47d944de1ff2bad4be0be043beaebd8fdcc0b6df5b1c2c3ec1f7d02b0e3f57e9af680cff3627e68d389379a8d3efdadb70e25135a3c473ddf249277ad12c9fa11002df91d7303627b06ac6bddd67ea082a758c6805628c06dcb22cafb109efad1389006e9c9518c7f85b2ab546315a1005adbf726ffe50d1f679fcf3b40e05f14698f8f5b6d1d829d6871d912056f1eee83cc1df1d9a126422781356e81cf24598a0216206fa59d2645a5812cc73e603190521454e77cc06c3640ea0799b83d60a3a0eaf5e28a7797ab77181d2b91aff50d9e1af419f10b839dc9fc61fb392ce138aaa6126f9eb3be09e94a87b96ac883c72c26d4b81d52de2696f40593b059ddd2279c354dc23d72a1f98150ec0be0dc0a5f6fdb93583b092c768b7fb8dd1bd43b59622810382fd21385606490610364fcd13e908f57a012f26e4cd4d1cee74c000bdc19edf27cb469f085c99cc9b8d9ae0f8b21473240c4a048a7dc8c6e5663258cc9184b1925ad8cb4e377f1cb78f06ee983263f47db396bb64d7118a2bb732d566408125f8ea1cb4158e6b70ac0bcff54ad45274772aaf96ca6183abfa8f0b3606404543823afc801edb734912f6777c30170a8fd0ddc9f69a3dc63885e23014f424e7a9fb8c29572d9d3004ea65a9dcf623f9c5c40abc52dc1c26e22ee9339b1ecdb0a3fe6e015cbeab7b7e091d8e7174fbbebdf82f2e1460ca94a61d3124272394619f9d84ac2b3be2fe70dfb9fa12fa8e153125327cb504b970380bf4bac66bcbf3fc3dd64855698ef82a4b0d88ef29e6bc89fe87a3354c941161e8c04a360402e906d30f095587c46ce26b9b7e1d15f7108cb01ff86c9b5a6c7bdfa9258d92602f04c6a77200754c0d4e8b1b5221e465ee36198100b53eb85eb59558016af86125162a95f24e329f87e371906d7f3fbed0f4994acd9a5b3fc2b206a5fcbc4316152f6fb6ac53b8dcffb65e2fde676f32cc9e24a2a954ade411b5ee92e809a86f8a8ac741aba21ce17a7dfb194a2ad36f5f44240669543e9051dc21c7a887d80f4a5cdfbab54903e7caaa2b7daa9ed00903093e33a95682a8fad5b5361a71a9f14f6917c964870994a6b9bca00732473bd6eed0c9e7d7a068d84cf395ae20639c545a1916786b27e85d5eb3189233da8e3361279a7d76ee6605fade068462ad8387a5be98a90d866807a98506d3efac36846329350701d3d0996f1c35009ac46493a76eccb702fd1762cd10bc50e22f3ea34c8902e2d92f07f9d519768e564c23fda9172b9b359bb8d3b508554bb4bf488f283c30f89a7320a542ba985b2df0ec20401a4ddf120f2cc427604c84d7b9340c323169cfd0a5e17d47991eb1bcc0d031297370df81f4ea242bdd5f4c76caac6f5651ba28683d2623ea5b988d3a5c938f2126bd9b49ee4579227ba7458a61bf7b2f88a0f6879242a1584593ca13d9915ec150110997cf3526d3dbdd70d9b1ef0f9c20ec0b7e394f9ae34d5b3b549805553434e9ad0baff73e8eb2dc58bcc38d2b377bb999dc5f940fed55a97951dfc5cda514c37dcdc88aff46de8617a66cfe1372c55e5bfc7d70634a51f39c665beb4bd95b7de9473da306ad9d3de48a301f01187864ff4682cb6852eb865aabb8bdb7de43daeedba1ebb755aba14d954d4a290fc6ac4e0af70577fe9850b631259eb63dfda69026955a6332fbbf84a63cba9d9253581771a61f2aa108c06e1e449637781d8c830b0e3ac20f10de7088175be90761afd66da37adead8a7241fcb4e2a571885bde71811daa240012cb6effe2fc7380027b3e85cf32c0dd40569775983451603ee7687273eeaad5825d58adec12b9489d5a22e8ba08978984f0274dc53537ecd285e2c12dafec32cd3419dde63a1639794bf70c102b6b53fa1fdff744d757c0d6c05a30a9b561821a8846ce9ef0f26"
-        },
-        {
-            "name": "橘汁|快速",
-            "key": "Woshinidie",
-            "type": 3,
-            "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tbapi2/refs/heads/main/aowu/jars/Woshinidie.jar",
-            "api": "csp_Woshinidie",
-            "searchable": 1,
-            "quickSearch": 1,
-            "changeable": 0,
-            "ext": {
-                "host": "",
-                "version": "3.0.2.1",
-                "abid": "8192",
-                "pkg": "com.lxf.snzlcgtzxyx",
-                "keys": "DGVQRUX5R1LWWDLHTGJSUKG1DJRVPQ==,OC1A06E197EF10CF3F6058CA7A803B5E",
-                "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
-                "pub": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB"
-            }
         }
     ],
     "parses": [
@@ -794,87 +827,39 @@
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
                 }
             }
+        },
+         {
+            "name": "踏云",
+            "type": 0,
+            "url": "http://www.taygml.cn/ljx/?url=",
+            "ext": {
+                "header": {
+                    "user-agent": "Mozilla/5.0 (Linux; Android 9; DUK-AL20) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.101 Mobile Safari/537.36"
+                }
+            }
+        },
+        {
+            "name": "米亚",
+            "type": 0,
+            "url": "https://play.gimyai.tw/v/?url=",
+            "ext": {
+                "header": {
+                    "user-agent": "Mozilla/5.0 (Linux; Android 9; DUK-AL20) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.101 Mobile Safari/537.36"
+                }
+            }
         }
     ],
     "rules": [
         {
-            "name": "TVBox·云端去广告JS注入【增强版】",
+            "name": "m3u8去广告",
             "hosts": [
-                "vip.wwgz.cn",
-                "lziplayer.com",
-                "m3u8.apibdzy.com",
-                "cj.ffzyapi.com",
-                "api.hbzyapi.com",
-                "toutiaovod.com",
-                "huoshan.com",
-                "douyin.com",
-                "www.maolvys.com"
+                "*"
             ],
-            "script": [
-                "(function(){",
-                "    // 保存原始方法快照",
-                "    const _origFuncCtor = Function.prototype.constructor;",
-                "    const _origAlert = window.alert;",
-                "    const _origConfirm = window.confirm;",
-                "    const _origPrompt = window.prompt;",
-                "    const _origOpen = window.open;",
-                "",
-                "    // 1. 屏蔽弹窗广告",
-                "    window.alert = ()=>{};",
-                "    window.confirm = ()=>false;",
-                "    window.prompt = ()=>null;",
-                "",
-                "    // 2. 拦截广告新窗口跳转",
-                "    window.open = function(){ return null; };",
-                "",
-                "    // 3. 拦截动态生成 debugger（原有逻辑优化）",
-                "    Function.prototype.constructor = function(){",
-                "        const str = Array.from(arguments).join('');",
-                "        if(str.includes('debugger')) return function(){};",
-                "        return _origFuncCtor.apply(this,arguments);",
-                "    };",
-                "",
-                "    // 4. 压制静态 debugger（主流反调试方案）",
-                "    Object.defineProperty(window,'debugger',{ configurable:false, get:()=>{} });",
-                "",
-                "    // 5. 视频自动静音，规避有声广告",
-                "    function initVideo(){",
-                "        document.querySelectorAll('video').forEach(v=>{",
-                "            v.muted=true;",
-                "            v.play().catch(()=>{});",
-                "            // 阻止视频被广告脚本暂停",
-                "            v.addEventListener('pause',()=>{ setTimeout(()=>v.play().catch(()=>{}),100); });",
-                "        });",
-                "    }",
-                "",
-                "    // 6. 扩容通用广告选择器",
-                "    const adSelectors = [",
-                "        '.adv','.ads','.ad','.pop','.popup','.pop-banner','.pop-ad','.notice','#notice-modal',",
-                "        '[class*=\"adv\"]','[class*=\"ads\"]','[class*=\"pop\"]','[class*=\"banner\"]','[class*=\"guide\"]',",
-                "        '[id*=\"adv\"]','[id*=\"ads\"]','[id*=\"pop\"]','[id*=\"banner\"]','[id*=\"notice\"]',",
-                "        'iframe[src*=\"game\"]','iframe[src*=\"bet\"]','iframe[src*=\"ad\"]','iframe[src*=\"baidu\"]',",
-                "        'a[href*=\"999\"]','a[href*=\"game\"]','a[href*=\"bet\"]','div[onclick*=\"location\"]'",
-                "    ];",
-                "",
-                "    // 7. 循环清理广告，页面卸载自动销毁定时器防内存泄漏",
-                "    const adTimer = setInterval(()=>{",
-                "        adSelectors.forEach(sel=>{",
-                "            document.querySelectorAll(sel).forEach(el=>{",
-                "                try{ el.remove(); }catch(e){}",
-                "            });",
-                "        });",
-                "        initVideo();",
-                "    },350);",
-                "",
-                "    window.addEventListener('beforeunload',()=>clearInterval(adTimer));",
-                "",
-                "    // 8. 页面初次就绪执行一次",
-                "    if(document.readyState==='loading'){",
-                "        document.addEventListener('DOMContentLoaded',initVideo);",
-                "    }else{",
-                "        initVideo();",
-                "    }",
-                "})();"
+            "regex": [
+                "#EXT-X-DISCONTINUITY\\r?\\n#EXTINF:\\d{1,}(\\.\\d+)?,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXTINF:.*?\\s+.*?adjump.*?\\.ts\\s+",
+                "#EXTINF:.*?\\s+.*?/ad/.*?\\.ts\\s+",
+                "#EXTINF:.*?\\s+.*?_ad_.*?\\.ts\\s+"
             ]
         },
         {
