@@ -1,14 +1,9 @@
 {
     "wallpaper": "",
-    "spider": "https://cnb.cool/fish2035/xs/-/git/raw/main/spider.jar",
+    "spider": "",
     "lives": [
         {
-            "name": "直播-2",
-            "type": 0,
-            "url": "https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt"
-        },
-        {
-            "name": "直播-3",
+            "name": "直播",
             "type": 0,
             "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u"
         }
@@ -130,6 +125,24 @@
             ]
         },
         {
+            "key": "zkkm",
+            "name": "zkkm",
+            "type": 3,
+            "api": "./jar/zkkm.py"
+        },
+        {
+            "key": "片库网",
+            "name": "片库网",
+            "type": 3,
+            "api": "./jar/片库网.py"
+        },
+        {
+            "key": "星星影视",
+            "name": "星星影视",
+            "type": 3,
+            "api": "./jar/星星影视.py"
+        },
+         {
             "key": "GZ",
             "name": "瓜子APP",
             "type": 3,
@@ -169,6 +182,78 @@
             "type": 3
         },
         {
+            "key": "加菲猫影视",
+            "name": "加菲猫影视",
+            "api": "./jar/加菲猫影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "黑夜影院",
+            "name": "黑夜影院",
+            "api": "./jar/黑夜影院.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "蓝海影院",
+            "name": "蓝海影院",
+            "api": "./jar/蓝海影院.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "烈马影视",
+            "name": "烈马影视",
+            "api": "./jar/烈马影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "糯米影视",
+            "name": "糯米影视",
+            "api": "./jar/糯米影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "青橙影视",
+            "name": "青橙影视",
+            "api": "./jar/青橙影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "玄武影视",
+            "name": "玄武影视",
+            "api": "./jar/玄武影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "ace影院",
+            "name": "ace影院",
+            "api": "./jar/ace影院.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
             "key": "青禾影视",
             "name": "青禾影视",
             "api": "./jar/青禾影视.py",
@@ -181,15 +266,6 @@
             "key": "开心影院",
             "name": "开心影院",
             "api": "./jar/开心影院.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "4k秒播修复",
-            "name": "4k秒播",
-            "api": "./jar/4k秒播修复.py",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
@@ -212,21 +288,6 @@
             "quickSearch": 1,
             "searchable": 1,
             "type": 3
-        },
-        {
-            "key": "简云",
-            "name": "简云",
-            "api": "./jar/简云.js",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "cbh",
-            "name": "茶杯狐",
-            "type": 3,
-            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/茶杯狐.py"
         },
         {
             "key": "枫叶影院",
@@ -299,187 +360,17 @@
         },
         {
         "key": "rb",
-        "name": "热播APP.py[追剧]",
+        "name": "热播APP",
         "type": 3,
         "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/热播APP.py"
         },
         {
         "key": "JP",
-        "name": "金牌APP.py[追剧]",
+        "name": "金牌APP",
         "type": 3,
         "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/金牌APP.py"
-        },
-        {
-            "key": "天堂",
-            "name": "天堂 • APP",
-            "type": 3,
-            "api": "csp_AppDrama",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "appName": "电影天堂",
-                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-                "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
-                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.dytiantang.one",
-                "host": "",
-                "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
-                "version": "3.0.0.7",
-                "decrypt": "0"
-            },
-            "category": "综合"
-        },
-        {
-            "key": "橘汁",
-            "name": "橘汁 • APP",
-            "type": 3,
-            "api": "csp_AppDrama",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "appName": "橘汁",
-                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
-                "dataKey": "DGVQRUX5R1LWWDLHTGJSUKG1DJRVPQ==",
-                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.lxf.snzlcgtzxyx",
-                "host": "",
-                "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
-                "version": "3.0.2.1",
-                "decrypt": "1"
-            },
-            "category": "综合"
-        },
-        {
-            "key": "华谊",
-            "name": "华谊 • APP",
-            "type": 3,
-            "api": "csp_AppDrama",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "appName": "华谊",
-                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
-                "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
-                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.muyue.tool",
-                "host": "",
-                "site": "https://vip.123pan.cn/1851089669/oss/az5.txt",
-                "version": "1.0.0.4",
-                "decrypt": "1"
-            },
-            "category": "综合"
-        },
-        {
-            "key": "苹果",
-            "name": "苹果 • APP",
-            "type": 3,
-            "api": "csp_AppDrama",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "appName": "小苹果",
-                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-                "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
-                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.juechufsh.android.xpg1",
-                "host": "",
-                "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
-                "version": "1.0.0.3",
-                "decrypt": "0"
-            },
-            "category": "综合"
-        },
-        {
-            "key": "薯条",
-            "name": "薯条 • APP",
-            "type": 3,
-            "api": "csp_AppDrama",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "appName": "薯条影视",
-                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-                "dataKey": "A1VACZJWDKRZY1P3MFV0DDRAZ3F3PT0=",
-                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-                "pkg": "com.st.standroid",
-                "host": "",
-                "site": "https://dyttandroid-1372779881.cos.ap-guangzhou.myqcloud.com/app_dyttandroid.txt",
-                "version": "5.0.0.1",
-                "decrypt": "0"
-            },
-            "category": "综合"
-        },
-        {
-            "key": "蓝鹰",
-            "name": "蓝鹰 • APP",
-            "type": 3,
-            "api": "csp_AppQi",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": {
-                "site": "https://xinlanyinghb.oss-cn-wuhan-lr.aliyuncs.com/xly.txt",
-                "dataKey": "ca94b06ca359d80e",
-                "dataIv": "ca94b06ca359d80e",
-                "init": "initV120",
-                "ua": "okhttp/3.10.0"
-            },
-            "category": "综合"
-        },
-        {
-            "key": "王子",
-            "name": "王子 • APP",
-            "type": 3,
-            "api": "csp_AppGet",
-            "searchable": 1,
-            "changeable": 1,
-            "ext": {
-                "url": "https://app.95112475.xyz",
-                "dataKey": "5a9w6x58dsq6z3a6",
-                "dataIv": "5a9w6x58dsq6z3a6"
-            },
-            "category": "综合"
-        },
-        {
-            "key": "独播影视",
-            "name": "独播 • 影视",
-            "type": 3,
-            "api": "csp_Duboku",
-            "ext": "",
-            "category": "综合",
-            "searchable": 1
-        },
-        {
-            "key": "修罗影视",
-            "name": "修罗 • 影视",
-            "api": "csp_Xlys",
-            "type": 3,
-            "ext": "https://www.xlysw.ggff.net",
-            "category": "综合",
-            "searchable": 1
-        },
-        {
-            "key": "骚火影视",
-            "name": "骚火 • 影视",
-            "type": 3,
-            "api": "csp_SaoHuo",
-            "ext": "https://shdy5.us",
-            "category": "综合",
-            "searchable": 1
-        },
-        {
-            "key": "农民影视",
-            "name": "农民 • 影视",
-            "type": 3,
-            "api": "csp_Wwys",
-            "ext": "https://vip.wwgz.cn:5200",
-            "category": "综合",
-            "searchable": 1
         }
+
     ],
     "parses": [
         {
