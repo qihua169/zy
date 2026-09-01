@@ -1,44 +1,74 @@
 {
     "wallpaper": "",
-    "spider": "",
+    "spider": "./jar/spider.jar",
     "lives": [
         {
             "name": "直播",
             "type": 0,
             "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u"
+        },
+        {
+            "name": "直播2",
+            "type": 0,
+            "url": "https://gh-proxy.com/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.m3u"
         }
     ],
     "sites": [
         {
-            "key": "csp_非凡",
-            "name": "非凡资源",
-            "type": 1,
-            "api": "http://api.ffzyapi.com/api.php/provide/vod?ac=list",
-            "searchable": 1,
+            "key": "少儿",
+            "name": "少儿",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "./jar/小学.json"
+        },
+        {
+            "key": "幼儿启蒙",
+            "name": "🌏幼儿启蒙",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
             "quickSearch": 1,
             "filterable": 1,
-            "categories": [
-                "国产剧",
-                "国产动漫",
-                "动画片",
-                "动作片",
-                "喜剧片",
-                "科幻片",
-                "恐怖片",
-                "爱情片",
-                "剧情片",
-                "战争片",
-                "记录片",
-                "大陆综艺"
-            ]
+            "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tbapi1/refs/heads/main/SEPD/json/幼儿启蒙.json"
         },
         {
-            "key": "csp_量子",
-            "name": "量子资源",
-            "type": 1,
-            "api": "https://cj.lziapi.com/api.php/provide/vod/?ac=list",
-            "searchable": 1,
+            "key": "益智",
+            "name": "🌏益智┃动画",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tbapi1/refs/heads/main/SEPD/json/益智动画.json"
+        },
+         {
+            "key": "儿童拼音",
+            "name": "🌏儿童拼音",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
             "quickSearch": 1,
+            "filterable": 1,
+            "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tbapi1/refs/heads/main/SEPD/json/儿童拼音.json"
+        },
+        {
+            "key": "儿童识字",
+            "name": "🌏儿童识字",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tbapi1/refs/heads/main/SEPD/json/儿童识字.json"
+        },
+        {
+            "key": "ffzyapi",
+            "name": "非凡资源",
+            "type": 3,
+            "api": "./jar/ffzyapi.py",
             "categories": [
                 "国产剧",
                 "国产动漫",
@@ -55,10 +85,30 @@
             ]
         },
         {
-            "key": "新浪资源",
+            "key": "sp_lz",
+            "name": "量子资源",
+            "type": 3,
+            "api": "./jar/sp_lz.py",
+            "categories": [
+                "国产剧",
+                "国产动漫",
+                "动画片",
+                "动作片",
+                "喜剧片",
+                "科幻片",
+                "恐怖片",
+                "爱情片",
+                "剧情片",
+                "战争片",
+                "记录片",
+                "大陆综艺"
+            ]
+        },
+        {
+            "key": "sp_xinlang",
             "name": "新浪资源",
-            "type": 1,
-            "api": "http://api.xinlangapi.com/xinlangapi.php/provide/vod/",
+            "type": 3,
+            "api": "./jar/sp_xinlang.py",
             "searchable": 1,
             "quickSearch": 1,
             "categories": [
@@ -78,8 +128,8 @@
         {
             "key": "360资源",
             "name": "360资源",
-            "type": 1,
-            "api": "https://360zy.com/api.php/provide/vod",
+            "type": 3,
+            "api": "./jar/sp_360zy.py",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
@@ -96,15 +146,14 @@
                 "爱情片",
                 "剧情片",
                 "战争片",
-                "记录片",
-                "爽文短剧"
+                "记录片"
             ]
         },
         {
             "key": "电影天堂",
             "name": "电影天堂",
-            "type": 1,
-            "api": "http://caiji.dyttzyapi.com/api.php/provide/vod/?ac=list",
+            "type": 3,
+            "api": "./jar/sp_dyttzy.py",
             "searchable": 1,
             "quickSearch": 1,
             "categories": [
@@ -131,10 +180,22 @@
             "api": "./jar/zkkm.py"
         },
         {
+            "key": "zkkm",
+            "name": "zkkm",
+            "type": 3,
+            "api": "./jar/zkkm.py"
+        },
+        {
             "key": "片库网",
             "name": "片库网",
             "type": 3,
             "api": "./jar/片库网.py"
+        },
+         {
+            "key": "骚火电影",
+            "name": "骚火电影",
+            "type": 3,
+            "api": "./jar/骚火电影.py"
         },
         {
             "key": "星星影视",
@@ -281,6 +342,15 @@
             "type": 3
         },
         {
+            "key": "ylys",
+            "name": "永乐",
+            "api": "./jar/ylys.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
             "key": "大师兄",
             "name": "大师兄",
             "api": "./jar/dsx.js",
@@ -322,17 +392,6 @@
             "quickSearch": 1,
             "searchable": 1,
             "type": 3
-        },
-        {
-            "key": "裤佬永乐JS",
-            "name": "永乐丨JS",
-            "type": 3,
-            "api": "https://mpimg.cn/down.php/0338609bd59d7b27226f5a269ec97936.js",
-            "style": {
-                "type": "rect",
-                "ratio": 1.33
-            },
-            "changeable": 1
         },
         {
             "key": "裤佬猎手PY",
