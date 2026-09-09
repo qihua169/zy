@@ -62,6 +62,7 @@ t5lYKfpe8k83ZA==
         self.token = ""
         self.token_id = ""
         self.registered = False
+        self.auth_fail_until = 0
 
         self.header = {
             'User-Agent': 'Lavf/57.83.100',
@@ -95,7 +96,13 @@ t5lYKfpe8k83ZA==
         print("===== 初始化设备认证 =====")
         try:
             if not self.registered:
-                self.sign_up()
+                try:
+                    self.sign_up()
+                except Exception as e:
+                    # deviceId 池只有 1 万个且注册后长期占用, 命中已注册设备会返回
+                    # 403「用户已经存在，请以设备号登入」, 此时应回退到设备号登录而不是直接失败
+                    print(f"注册失败({e})，改为设备号登录")
+                    self.sign_in()
             # 刷新获取最终token
             self.refresh_token()
         except Exception as e:
@@ -125,9 +132,12 @@ t5lYKfpe8k83ZA==
         }
         result = self._auth_request('/App/Authentication/Device/signIn', params)
         self._apply_auth(result)
+        self.registered = True
 
     def _apply_auth(self, result):
         """从认证响应中提取token"""
+        if not isinstance(result, dict):
+            raise Exception("认证失败，无有效响应: {}".format(result))
         new_token = result.get('token', '')
         if not new_token:
             raise Exception("认证失败，无token返回: {}".format(result))
@@ -149,13 +159,31 @@ t5lYKfpe8k83ZA==
 
     # ---------- 业务请求核心（修复加密与签名） ----------
     def ensure_token(self):
-        """确保token有效，如未就绪则重新获取"""
-        if not self.token or not self.token_id:
+        """
+        确保token有效，如未就绪则重新获取。
+
+        只校验 token 本身：业务接口请求体里 token_id 本就是空串，实测不需要它，
+        若把它列为前置条件会导致每次请求都白跑一遍设备认证（拖慢搜索）。
+        认证失败后冷却 60s，避免每个请求都重试已经被拒绝的认证。
+        """
+        if self.token:
+            return
+        if time.time() < self.auth_fail_until:
+            return
+        try:
             if self.registered:
                 self.sign_in()
             else:
                 self.sign_up()
-            self.refresh_token()
+        except Exception as e:
+            print(f"认证失败({e})，改用另一种认证方式")
+            try:
+                self.sign_up() if self.registered else self.sign_in()
+            except Exception as e2:
+                print(f"备选认证方式同样失败: {e2}")
+                self.auth_fail_until = time.time() + 60
+                return
+        self.refresh_token()
 
     def _send_encrypted_request(self, data, path, is_auth=False):
         """
@@ -269,6 +297,47 @@ t5lYKfpe8k83ZA==
             print(f"get_data异常: {e}")
             return None
 
+    # ---------- 片名匹配工具（搜索结果过滤用） ----------
+    @staticmethod
+    def _to_int(value, default=0):
+        """
+        接口数值字段普遍返回字符串（如 vod_continu='0'/'46'）。
+        直接写 `v == 0` 会因 '0' == 0 为 False 而把电影误判成"更新至0集"，故统一转 int。
+        """
+        try:
+            return int(str(value).strip())
+        except (TypeError, ValueError):
+            return default
+
+    @staticmethod
+    def _norm_name(text):
+        """片名归一化：全角转半角、转小写、去掉空白与常见标点，便于子串匹配。"""
+        s = str(text or '').strip().lower()
+        buf = []
+        for ch in s:
+            code = ord(ch)
+            if code == 0x3000:
+                buf.append(' ')
+            elif 0xFF01 <= code <= 0xFF5E:
+                buf.append(chr(code - 0xFEE0))
+            else:
+                buf.append(ch)
+        return re.sub(r'[\s\-_·:：，,。.！!？?、~*\'"()\[\]【】]+', '', ''.join(buf))
+
+    @classmethod
+    def _match_score(cls, name, kw):
+        """关键词与片名的相关度，0 表示不相关（会被过滤掉）。"""
+        n = cls._norm_name(name)
+        if not n or not kw:
+            return 0
+        if n == kw:
+            return 100
+        if n.startswith(kw):
+            return 80
+        if kw in n:
+            return 60
+        return 0
+
     # ---------- 加解密工具 ----------
     def aes_encrypt(self, text, key, iv):
         try:
@@ -375,7 +444,7 @@ t5lYKfpe8k83ZA==
             data = self.get_cached_data(cache_key, body, '/App/IndexList/indexList')
             if data and 'list' in data:
                 for item in data['list']:
-                    vod_continu = item.get('vod_continu', 0)
+                    vod_continu = self._to_int(item.get('vod_continu'))
                     remarks = '电影' if vod_continu == 0 else f'更新至{vod_continu}集'
                     video = {
                         "vod_id": f"{item.get('vod_id', '')}/{vod_continu}",
@@ -430,23 +499,51 @@ t5lYKfpe8k83ZA==
             return {'list': []}
 
     def searchContent(self, key, quick, pg=1):
+        """
+        搜索。
+
+        实测该接口的两个坑（这是"搜索结果不对"的根因）：
+        1. /App/Index/findMoreVod 是模糊 OR 匹配，任意关键词都固定返回约 100 条，
+           连 "zzzzqqqqxxxx" 这种乱码都能返回 99 条毫不相关的影片；
+        2. 它完全忽略 page 参数，page=1 与 page=2 返回完全相同的数据（100/100 重叠）。
+        因此必须：① 客户端按片名做相关性过滤；② pagecount 固定为 1，只认第 1 页，
+        否则 TVBox 会一直下拉出无穷无尽的重复内容。
+        """
         videos = []
         try:
-            body = {"keywords": key, "order_val": "1", "page": str(pg)}
-            data = self.get_data(body, '/App/Index/findMoreVod', use_cache=False)
-            if data and 'list' in data:
-                for item in data['list']:
-                    vod_continu = item.get('vod_continu', 0)
-                    remarks = '电影' if vod_continu == 0 else f'更新至{vod_continu}集'
+            pg = int(str(pg).strip())
+        except (TypeError, ValueError):
+            pg = 1
+        try:
+            kw = self._norm_name(key)
+            if kw and pg <= 1:
+                body = {"keywords": key, "order_val": "1", "page": "1"}
+                data = self.get_data(body, '/App/Index/findMoreVod', use_cache=False)
+                scored, seen = [], set()
+                for item in (data or {}).get('list') or []:
+                    vod_id = str(item.get('vod_id', '') or '')
+                    if not vod_id or vod_id in seen:
+                        continue
+                    score = self._match_score(item.get('vod_name', ''), kw)
+                    if score <= 0:
+                        score = self._match_score(item.get('vod_douban_name', ''), kw)
+                    if score <= 0:
+                        continue          # 与关键词无关，丢弃（原逻辑会把它们全部吐出去）
+                    seen.add(vod_id)
+                    scored.append((score, item))
+                scored.sort(key=lambda x: -x[0])
+                for _, item in scored:
+                    vod_continu = self._to_int(item.get('vod_continu'))
                     videos.append({
                         "vod_id": f"{item.get('vod_id', '')}/{vod_continu}",
                         "vod_name": item.get('vod_name', ''),
                         "vod_pic": item.get('vod_pic', ''),
-                        "vod_remarks": remarks
+                        "vod_remarks": '电影' if vod_continu == 0 else f'更新至{vod_continu}集'
                     })
         except Exception as e:
             print(f"搜索失败: {e}")
-        return {'list': videos, 'page': int(pg), 'pagecount': 9999, 'limit': 30, 'total': 999999}
+        return {'list': videos, 'page': pg, 'pagecount': 1,
+                'limit': len(videos) or 30, 'total': len(videos)}
 
     def playerContent(self, flag, id, vipFlags):
         try:

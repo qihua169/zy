@@ -7,6 +7,9 @@
     detail   /voddetail/{id}/  play /play/{id}-{sid}-{nid}/  search /vodsearch/{quote(kw)}-------------/
 - vodshow 12 段布局（实测）：segs[0]=tid segs[1]=area segs[3]=class segs[8]=pg segs[11]=year
     组合限制：year 只能单独；area 不可与 pg 组合（categoryContent 已降级处理）
+- vodsearch 14 段布局（实测）：segs[0]=kw segs[10]=pg
+    ★ 页码在 idx10 而非 idx8，且与 vodshow 段数不同（14 vs 12），原代码把 pg 只写进
+      回包 page 字段、没拼进 URL，导致搜索永远停在第 1 页（站点每页仅 16 条）
 - 列表卡片：module-poster-item（分类）/ module-card-item（搜索，<strong> 标题）
 - 选集：ylsp-detail-old-playlist 内 module-play-list-link；线路名=tab-item 顺序
 - 播放：player_aaaa.encrypt=0 直链 m3u8；无广告分片，直链播放
@@ -107,7 +110,10 @@ RE_CARD = re.compile(
     r'<div class="module-card-item-title"><a[^>]*><strong>([^<]*)</strong></a>',
     re.S | re.I)
 RE_TAB_ITEM = re.compile(r'data-dropdown-value="([^"]+)"')
-RE_BLOCK = re.compile(r'<div class="module-list sort-list tab-list his-tab-list">')
+# 选集分组容器。实测带 id 属性（id="panel1"），原先写死以 '>' 结尾会 0 命中，
+# 导致整页 276 个选集链接全部解析不出来（搜到了却点不进播放）
+RE_BLOCK = re.compile(
+    r'<div class="module-list sort-list tab-list his-tab-list"[^>]*>')
 RE_EP_LINK = re.compile(
     r'<a class="module-play-list-link" href="/play/\d+-(\d+)-(\d+)/"[^>]*>'
     r'<span>([^<]*)</span></a>', re.S | re.I)
@@ -123,8 +129,10 @@ RE_DESC = re.compile(r'<div class="module-info-introduction-content">(.*?)</div>
 RE_POSTER_IMG = re.compile(
     r'<div class="module-info-poster">.*?<img[^>]*?(?:data-original|src)="([^"]*)"',
     re.S | re.I)
-# 分页器：尾页链接 / 页码链接（pg 段在 vodshow 12 段 idx8）
-RE_PAGE_LAST = re.compile(r'href="(/vodshow/[^"]*?)"[^>]*title="尾页"', re.I)
+# 分页器：尾页链接 / 页码链接
+# 段位差异（实测）：vodshow 是 12 段、页码 idx8；vodsearch 是 14 段、页码 idx10
+RE_PAGE_LAST = re.compile(
+    r'href="(/(?:vodshow|vodsearch)/[^"]*?)"[^>]*title="尾页"', re.I)
 RE_PAGE_NUM = re.compile(r'class="page-link page-number[^"]*"[^>]*>(\d+)</a>', re.I)
 RE_PAGE_CUR = re.compile(r'page-link page-number page-current[^>]*>(\d+)</', re.I)
 
@@ -269,18 +277,38 @@ class YlysSpider(_TVBase):
             segs[8] = str(int(page or 1))
         return BASE_URL + "/vodshow/" + "-".join(segs) + "/"
 
+    @staticmethod
+    def _page_seg(url):
+        """从分页链接里取页码段位：vodsearch 在 idx10，vodshow 在 idx8（实测站点链接）。"""
+        # 注意 strip("/") 会去掉前导斜杠，这里必须用 startswith 判断路由，
+        # 写 "/vodsearch/" in u 会永远为假，导致尾页页数读不到、退化成页码最大值
+        u = (url or "").strip("/")
+        if u.startswith("vodsearch/"):
+            idx = 10
+        elif u.startswith("vodshow/"):
+            idx = 8
+        else:
+            return 0
+        seg = u.split("/")[-1].split("-")
+        if len(seg) > idx and seg[idx].isdigit():
+            return int(seg[idx])
+        return 0
+
     def _pagecount(self, html):
-        """从分页器提取真实总页数（尾页链接优先，其次页码链接最大值）。"""
+        """
+        从分页器提取真实总页数（尾页链接优先，其次页码链接最大值）。
+
+        只靠页码链接会严重低估：搜索页分页器只渲染 1~5 这几个页码，
+        但尾页可能是 250（实测关键词"我"），必须优先读尾页。
+        """
         m = RE_PAGE_LAST.search(html or "")
         if m:
-            p = m.group(1).strip("/").split("/")[-1].split("-")
-            if len(p) == 12 and p[8].isdigit():
-                return int(p[8])
+            pg = self._page_seg(m.group(1))
+            if pg:
+                return pg
         nums = [int(n) for n in RE_PAGE_NUM.findall(html or "")]
         nums += [int(n) for n in RE_PAGE_CUR.findall(html or "")]
-        if nums:
-            return max(nums)
-        return 1
+        return max(nums) if nums else 1
 
     # ═══════════ TVBox 接口 ═══════════
     def homeContent(self, filter):
@@ -338,23 +366,45 @@ class YlysSpider(_TVBase):
                               "vod_play_from": "默认线路",
                               "vod_play_url": "播放$/play/%s-1-1/" % vid}]}
 
+    # ── 搜索 URL（vodsearch 14 段，页码在 idx10） ──
+    def _search_url(self, key, page=1):
+        """
+        实测站点搜索分页链接形态：/vodsearch/我----------2---/
+        即 14 段、页码在 idx10。原代码固定用 kw + 13 个短横（页码段恒为空），
+        导致无论 TVBox 请求第几页，拿到的永远是第 1 页。
+        """
+        from urllib.parse import quote
+        segs = [""] * 14
+        segs[0] = quote((key or "").strip())
+        if int(page or 1) > 1:
+            segs[10] = str(int(page or 1))
+        return BASE_URL + "/vodsearch/" + "-".join(segs) + "/"
+
     def searchContent(self, key, quick, pg="1"):
-        page = int(pg) if pg else 1
         try:
-            from urllib.parse import quote
-            url = BASE_URL + "/vodsearch/" + quote(key) + "-------------/"
+            page = int(str(pg).strip() or 1)
+        except (TypeError, ValueError):
+            page = 1
+        if not (key or "").strip():
+            return {"list": [], "page": page, "pagecount": 1, "limit": 16, "total": 0}
+        try:
+            url = self._search_url(key, page)
             # 空结果重试（搜索接口限流：连续搜索偶发返回空页）
             import time
-            items = []
+            items, html = [], ""
             for attempt in range(3):
-                items = self._parse_list(self._fetch_html(url))
+                html = self._fetch_html(url)
+                items = self._parse_list(html)
                 if items or attempt == 2:
                     break
                 time.sleep(1.5)
+            # 无结果时把 pagecount 收敛到当前页，避免 TVBox 继续空翻
+            pc = self._pagecount(html) if items else page
             return {"list": items, "page": page,
-                    "pagecount": 1, "limit": 20, "total": len(items)}
+                    "pagecount": pc, "limit": len(items) or 16,
+                    "total": len(items)}
         except Exception:
-            return {"list": [], "page": page, "pagecount": 1, "limit": 20, "total": 0}
+            return {"list": [], "page": page, "pagecount": 1, "limit": 16, "total": 0}
 
     def playerContent(self, flag, id, vipFlags):
         hd = self._header_json()

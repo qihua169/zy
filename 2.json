@@ -180,22 +180,10 @@
             "api": "./jar/zkkm.py"
         },
         {
-            "key": "zkkm",
-            "name": "zkkm",
+            "key": "懂片帝",
+            "name": "懂片帝",
             "type": 3,
-            "api": "./jar/zkkm.py"
-        },
-        {
-            "key": "片库网",
-            "name": "片库网",
-            "type": 3,
-            "api": "./jar/片库网.py"
-        },
-         {
-            "key": "骚火电影",
-            "name": "骚火电影",
-            "type": 3,
-            "api": "./jar/骚火电影.py"
+            "api": "./jar/sp_dongpian.py"
         },
         {
             "key": "星星影视",
@@ -353,7 +341,7 @@
         {
             "key": "大师兄",
             "name": "大师兄",
-            "api": "./jar/dsx.js",
+            "api": "./jar/sp_dsxys.py",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
@@ -376,15 +364,6 @@
             "filterable": 1
         },
         {
-            "key": "裤佬EmbyJS",
-            "name": "Emby丨JS",
-            "type": 3,
-            "api": "https://mpimg.cn/down.php/40d30fe3d9671e0d700f1c272bb20aaa.js",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 0
-        },
-        {
             "key": "裤佬界影PY",
             "name": "界影丨PY",
             "api": "https://mpimg.cn/down.php/4440a9a56b6d222647a856452eefb21a.py",
@@ -394,42 +373,23 @@
             "type": 3
         },
         {
-            "key": "裤佬猎手PY",
-            "name": "猎手丨PY",
-            "api": "https://mpimg.cn/down.php/60fab5ff33f0b0fd88f099ae3be708bf.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "裤佬兄弟PY",
-            "name": "兄弟丨PY",
-            "api": "https://mpimg.cn/down.php/b1cdcf76574a0cb24d5b937d46458cdf.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "kkvm",
-            "name": "低端影视",
-            "type": 3,
-            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/低端影视.py"
-        },
-        {
-        "key": "rb",
-        "name": "热播APP",
+        "key": "天寒影视",
+        "name": "天寒影视",
         "type": 3,
-        "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/热播APP.py"
+        "api": "./jar/天寒影视.py"
         },
         {
-        "key": "JP",
-        "name": "金牌APP",
+        "key": "柯南影视",
+        "name": "柯南影视",
         "type": 3,
-        "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/金牌APP.py"
+        "api": "./jar/柯南影视.py"
+        },
+        {
+        "key": "铜镜影剧",
+        "name": "铜镜影剧",
+        "type": 3,
+        "api": "./jar/铜镜影剧.py"
         }
-
     ],
     "parses": [
         {
