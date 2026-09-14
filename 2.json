@@ -65,6 +65,12 @@
             "ext": "./json/儿童识字.json"
         },
         {
+            "key": "91电视直播",
+            "name": "91电视直播",
+            "type": 3,
+            "api": "./jar/91.py"
+        },
+        {
             "key": "ffzyapi",
             "name": "非凡资源",
             "type": 3,
@@ -153,56 +159,53 @@
             "key": "电影天堂",
             "name": "电影天堂",
             "type": 3,
-            "api": "./jar/sp_dyttzy.py",
+            "api": "./jar/py_电影天堂.py",
             "searchable": 1,
-            "quickSearch": 1,
-            "categories": [
-                "国产剧",
-                "动画片",
-                "大陆综艺",
-                "动画片",
-                "国产动漫",
-                "动作片",
-                "喜剧片",
-                "科幻片",
-                "恐怖片",
-                "爱情片",
-                "剧情片",
-                "战争片",
-                "记录片",
-                "爽文短剧"
-            ]
+            "quickSearch": 1
         },
         {
-            "key": "zkkm",
-            "name": "zkkm",
-            "type": 3,
-            "api": "./jar/zkkm.py"
+        "key": "柯南影视",
+        "name": "柯南影视",
+        "type": 3,
+        "api": "./jar/柯南影视.py"
         },
         {
-            "key": "懂片帝",
-            "name": "懂片帝",
-            "type": 3,
-            "api": "./jar/sp_dongpian.py"
-        },
-        {
-            "key": "星星影视",
-            "name": "星星影视",
-            "type": 3,
-            "api": "./jar/星星影视.py"
+        "key": "枫叶4k",
+        "name": "枫叶4k",
+        "type": 3,
+        "api": "./jar/py_枫叶4k.py"
         },
          {
-            "key": "GZ",
-            "name": "瓜子APP",
-            "type": 3,
-            "api": "./jar/gz.py"
+        "key": "大海影视",
+        "name": "大海影视",
+        "type": 3,
+        "api": "./jar/大海影视.py"
+        },
+         {
+        "key": "py_奇优影院",
+        "name": "奇优影院",
+        "type": 3,
+        "api": "./jar/py_奇优影院.py"
         },
         {
-            "key": "91电视直播",
-            "name": "91电视直播",
+            "key": "饭搭子影视_v3",
+            "name": "饭搭子影视",
             "type": 3,
-            "api": "./jar/91.py"
+            "api": "./jar/饭搭子影视_v3.py"
         },
+        {
+            "key": "魅影影视",
+            "name": "魅影影视",
+            "type": 3,
+            "api": "./jar/魅影影视.py"
+        },
+         {
+            "key": "DIANLE影视",
+            "name": "DIANLE影视",
+            "type": 3,
+            "api": "./jar/DIANLE影视.py"
+        },
+
         {
             "key": "YK",
             "name": "YK影视",
@@ -252,15 +255,6 @@
             "key": "蓝海影院",
             "name": "蓝海影院",
             "api": "./jar/蓝海影院.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "烈马影视",
-            "name": "烈马影视",
-            "api": "./jar/烈马影视.py",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
@@ -348,11 +342,13 @@
             "type": 3
         },
         {
-            "key": "枫叶影院",
-            "name": "枫叶影院",
-            "type": 3,
-            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/jar_js/枫叶影院.js",
-            "changeable": 0
+            "key": "剧圈圈",
+            "name": "剧圈圈",
+            "api": "./jar/剧圈圈.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
         },
         {
             "key": "裤佬爬虫影视",
@@ -372,23 +368,12 @@
             "searchable": 1,
             "type": 3
         },
+
         {
-        "key": "天寒影视",
-        "name": "天寒影视",
+        "key": "糖豆影视",
+        "name": "糖豆影视",
         "type": 3,
-        "api": "./jar/天寒影视.py"
-        },
-        {
-        "key": "柯南影视",
-        "name": "柯南影视",
-        "type": 3,
-        "api": "./jar/柯南影视.py"
-        },
-        {
-        "key": "铜镜影剧",
-        "name": "铜镜影剧",
-        "type": 3,
-        "api": "./jar/铜镜影剧.py"
+        "api": "./jar/糖豆影视.py"
         }
     ],
     "parses": [
