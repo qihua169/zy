@@ -205,33 +205,11 @@
             "type": 3,
             "api": "./jar/DIANLE影视.py"
         },
-
         {
-            "key": "YK",
-            "name": "YK影视",
+            "key": "农民影视",
+            "name": "农民影视",
             "type": 3,
-            "api": "./jar/Yk.py"
-        },
-        {
-            "key": "AQY影视",
-            "name": "AQY影视",
-            "type": 3,
-            "api": "./jar/AQY.py"
-        },
-        {
-            "key": "TX影视",
-            "name": "TX影视",
-            "type": 3,
-            "api": "./jar/TX.py"
-        },
-        {
-            "key": "MG",
-            "name": "MG影视",
-            "api": "./jar/MG.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
+            "api": "./jar/农民影视.py"
         },
         {
             "key": "加菲猫影视",
