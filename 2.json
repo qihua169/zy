@@ -15,36 +15,6 @@
     ],
     "sites": [
         {
-            "key": "少儿",
-            "name": "少儿",
-            "type": 3,
-            "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 0,
-            "filterable": 1,
-            "ext": "./jar/小学.json"
-        },
-         {
-            "key": "儿童思维",
-            "name": "🌏儿童思维",
-            "type": 3,
-            "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "./json/儿童思维.json"
-        },
-         {
-            "key": "儿童口才",
-            "name": "🌏儿童口才",
-            "type": 3,
-            "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "./json/儿童口才.json"
-        },
-         {
             "key": "小灯塔",
             "name": "🌏小灯塔",
             "type": 3,
@@ -55,20 +25,255 @@
             "ext": "./json/小灯塔百科.json"
         },
         {
-            "key": "儿童识字",
-            "name": "🌏儿童识字",
-            "type": 3,
-            "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "./json/儿童识字.json"
-        },
-        {
             "key": "91电视直播",
             "name": "91电视直播",
             "type": 3,
             "api": "./jar/91.py"
+        },
+        {
+            "key": "咕噜咕噜4K",
+            "name": "咕噜咕噜4K",
+            "type": 3,
+            "api": "./jar/咕噜咕噜4K.py"
+        },
+        {
+            "key": "剧圈圈",
+            "name": "剧圈圈",
+            "api": "./jar/剧圈圈.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "枫叶4k",
+            "name": "枫叶4k",
+            "type": 3,
+            "api": "./jar/枫叶4K.py"
+        },
+        {
+            "key": "影探4K",
+            "name": "影探4K",
+            "type": 3,
+            "api": "./jar/影探4K.py"
+        },
+        {
+            "key": "橘汁4K",
+            "name": "橘汁4K",
+            "type": 3,
+            "api": "./jar/橘汁4K.py"
+        },
+        {
+            "key": "剧下饭4K",
+            "name": "剧下饭4K",
+            "type": 3,
+            "api": "./jar/剧下饭4K.py"
+        },
+        {
+            "key": "py_奇优影院",
+            "name": "奇优影院",
+            "type": 3,
+            "api": "./jar/py_奇优影院.py"
+        },
+        {
+            "key": "农民影视",
+            "name": "农民影视",
+            "type": 3,
+            "api": "./jar/农民影视.py"
+        },
+        {
+            "key": "威视TV",
+            "name": "威视TV",
+            "type": 3,
+            "api": "./jar/威视TV.py"
+        },
+        {
+            "key": "无水印资源",
+            "name": "无水印资源",
+            "type": 3,
+            "api": "./jar/无水印资源.py"
+        },
+        {
+            "key": "飞快",
+            "name": "飞快",
+            "api": "./jar/飞快.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "咸鱼影视",
+            "name": "咸鱼影视",
+            "api": "./jar/咸鱼影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "Vidhub",
+            "name": "Vidhub",
+            "api": "./jar/Vidhub.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+         {
+            "key": "ayfox",
+            "name": "ayfox",
+            "api": "./jar/ayfox.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "msyy",
+            "name": "暮色影视",
+            "api": "./jar/msyy.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "电影天堂",
+            "name": "电影天堂",
+            "type": 3,
+            "api": "./jar/py_电影天堂.py",
+            "searchable": 1,
+            "quickSearch": 1
+        },
+        {
+            "key": "高清点播4K",
+            "name": "高清点播4K",
+            "type": 3,
+            "api": "./jar/高清点播4K.py",
+            "searchable": 1,
+            "quickSearch": 1
+        },
+        {
+            "key": "APTV影视",
+            "name": "APTV影视",
+            "type": 3,
+            "api": "./jar/APTV影视.py",
+            "searchable": 1,
+            "quickSearch": 1
+        },
+        {
+            "key": "大海影视",
+            "name": "大海影视",
+            "type": 3,
+            "api": "./jar/大海影视.py"
+        },
+
+        {
+            "key": "饭搭子影视_v3",
+            "name": "饭搭子影视",
+            "type": 3,
+            "api": "./jar/饭搭子影视_v3.py"
+        },
+
+        {
+            "key": "加菲猫影视",
+            "name": "加菲猫影视",
+            "api": "./jar/加菲猫影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "黑夜影院",
+            "name": "黑夜影院",
+            "api": "./jar/黑夜影院.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "玄武影视",
+            "name": "玄武影视",
+            "api": "./jar/玄武影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+         {
+            "key": "暖秋剧场",
+            "name": "暖秋剧场",
+            "api": "./jar/暖秋剧场.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "4KAV",
+            "name": "4KAV",
+            "api": "./jar/4KAV.js",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "搜剧AI",
+            "name": "搜剧AI",
+            "api": "./jar/搜剧AI.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "仙腾影院",
+            "name": "仙腾影院",
+            "api": "./jar/仙腾影院.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "追剧达人",
+            "name": "追剧达人",
+            "api": "./jar/追剧达人.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "厂长资源",
+            "name": "厂长资源",
+            "api": "./jar/厂长资源.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "Freeok",
+            "name": "Freeok",
+            "api": "./jar/Freeok.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
+        },
+        {
+            "key": "八戒影院",
+            "name": "八戒影院",
+            "api": "./jar/bj.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "type": 3
         },
         {
             "key": "ffzyapi",
@@ -109,249 +314,6 @@
                 "记录片",
                 "大陆综艺"
             ]
-        },
-        {
-            "key": "sp_xinlang",
-            "name": "新浪资源",
-            "type": 3,
-            "api": "./jar/sp_xinlang.py",
-            "searchable": 1,
-            "quickSearch": 1,
-            "categories": [
-                "大陆剧",
-                "动漫",
-                "动画片",
-                "动作片",
-                "喜剧片",
-                "科幻片",
-                "恐怖片",
-                "爱情片",
-                "剧情片",
-                "战争片",
-                "记录片"
-            ]
-        },
-        {
-            "key": "360资源",
-            "name": "360资源",
-            "type": 3,
-            "api": "./jar/sp_360zy.py",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "categories": [
-                "国产剧",
-                "动画片",
-                "大陆综艺",
-                "动画片",
-                "国产动漫",
-                "动作片",
-                "喜剧片",
-                "科幻片",
-                "恐怖片",
-                "爱情片",
-                "剧情片",
-                "战争片",
-                "记录片"
-            ]
-        },
-        {
-            "key": "电影天堂",
-            "name": "电影天堂",
-            "type": 3,
-            "api": "./jar/py_电影天堂.py",
-            "searchable": 1,
-            "quickSearch": 1
-        },
-        {
-        "key": "柯南影视",
-        "name": "柯南影视",
-        "type": 3,
-        "api": "./jar/柯南影视.py"
-        },
-        {
-        "key": "枫叶4k",
-        "name": "枫叶4k",
-        "type": 3,
-        "api": "./jar/py_枫叶4k.py"
-        },
-         {
-        "key": "大海影视",
-        "name": "大海影视",
-        "type": 3,
-        "api": "./jar/大海影视.py"
-        },
-         {
-        "key": "py_奇优影院",
-        "name": "奇优影院",
-        "type": 3,
-        "api": "./jar/py_奇优影院.py"
-        },
-        {
-            "key": "饭搭子影视_v3",
-            "name": "饭搭子影视",
-            "type": 3,
-            "api": "./jar/饭搭子影视_v3.py"
-        },
-        {
-            "key": "魅影影视",
-            "name": "魅影影视",
-            "type": 3,
-            "api": "./jar/魅影影视.py"
-        },
-         {
-            "key": "DIANLE影视",
-            "name": "DIANLE影视",
-            "type": 3,
-            "api": "./jar/DIANLE影视.py"
-        },
-        {
-            "key": "农民影视",
-            "name": "农民影视",
-            "type": 3,
-            "api": "./jar/农民影视.py"
-        },
-        {
-            "key": "加菲猫影视",
-            "name": "加菲猫影视",
-            "api": "./jar/加菲猫影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "黑夜影院",
-            "name": "黑夜影院",
-            "api": "./jar/黑夜影院.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "蓝海影院",
-            "name": "蓝海影院",
-            "api": "./jar/蓝海影院.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "糯米影视",
-            "name": "糯米影视",
-            "api": "./jar/糯米影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "青橙影视",
-            "name": "青橙影视",
-            "api": "./jar/青橙影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "玄武影视",
-            "name": "玄武影视",
-            "api": "./jar/玄武影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "ace影院",
-            "name": "ace影院",
-            "api": "./jar/ace影院.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "青禾影视",
-            "name": "青禾影视",
-            "api": "./jar/青禾影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "开心影院",
-            "name": "开心影院",
-            "api": "./jar/开心影院.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "八戒影院",
-            "name": "八戒影院",
-            "api": "./jar/bj.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "ylys",
-            "name": "永乐",
-            "api": "./jar/ylys.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "大师兄",
-            "name": "大师兄",
-            "api": "./jar/sp_dsxys.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "剧圈圈",
-            "name": "剧圈圈",
-            "api": "./jar/剧圈圈.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-        {
-            "key": "裤佬爬虫影视",
-            "name": "爬虫丨影视",
-            "type": 1,
-            "api": "https://dy.7772888.xyz/api.php/tvbox",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1
-        },
-        {
-            "key": "裤佬界影PY",
-            "name": "界影丨PY",
-            "api": "https://mpimg.cn/down.php/4440a9a56b6d222647a856452eefb21a.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "type": 3
-        },
-
-        {
-        "key": "糖豆影视",
-        "name": "糖豆影视",
-        "type": 3,
-        "api": "./jar/糖豆影视.py"
         }
     ],
     "parses": [
@@ -701,7 +663,7 @@
                 }
             }
         },
-         {
+        {
             "name": "踏云",
             "type": 0,
             "url": "http://www.taygml.cn/ljx/?url=",
@@ -724,124 +686,121 @@
     ],
     "rules": [
         {
-            "name": "m3u8去广告",
+            "name": "cdn.ryplay",
             "hosts": [
-                "*"
+                "cdn.ryplay"
             ],
             "regex": [
-                "#EXT-X-DISCONTINUITY\\r?\\n#EXTINF:\\d{1,}(\\.\\d+)?,[\\s\\S]*?#EXT-X-DISCONTINUITY",
-                "#EXTINF:.*?\\s+.*?adjump.*?\\.ts\\s+",
-                "#EXTINF:.*?\\s+.*?/ad/.*?\\.ts\\s+",
-                "#EXTINF:.*?\\s+.*?_ad_.*?\\.ts\\s+"
-            ]
-        },
-        {
-            "name": "量非",
-            "hosts": [
-                "lz",
-                "vip.lz",
-                "v.cdnlz",
-                "hd.lz",
-                "ffzy",
-                "vip.ffzy",
-                "hd.ffzy"
-            ],
-            "regex": [
-                "#EXT-X-DISCONTINUITY\r*\n*#EXTINF:6.666667,[\\s\\S]*?#EXT-X-DISCONTINUITY",
-                "#EXT-X-DISCONTINUITY\r*\n*#EXTINF:6.600000,[\\s\\S]*?#EXT-X-DISCONTINUITY"
-            ]
-        },
-        {
-            "name": "索尼",
-            "hosts": [
-                "suonizy",
-                "qrssv.com"
-            ],
-            "regex": [
-                "15.1666",
-                "15.2666"
-            ]
-        },
-        {
-            "name": "乐视",
-            "hosts": [
-                "leshiyun"
-            ],
-            "regex": [
-                "15.92"
-            ]
-        },
-        {
-            "name": "优质",
-            "hosts": [
-                "yzzy",
-                "playback"
-            ],
-            "regex": [
-                "16.63",
-                "18.66",
-                "17.66",
-                "19.13"
-            ]
-        },
-        {
-            "name": "快看",
-            "hosts": [
-                "kuaikan",
-                "vip.kuaikan"
-            ],
-            "regex": [
-                "15.32",
-                "15.231",
-                "18.066"
-            ]
-        },
-        {
-            "name": "360",
-            "hosts": [
-                "lyhuicheng"
-            ],
-            "regex": [
-                "#EXTINF.*?\\s+.*?hrz8QcR9.*?\\.ts\\s+",
-                "#EXT-X-KEY:METHOD=NONE[\\s\\S]*?#EXT-X-DISCONTINUITY"
-            ]
-        },
-        {
-            "name": "开源棋牌",
-            "hosts": [
-                "askzycdn",
-                "jkunbf",
-                "bfikuncdn",
-                "bfaskcdn"
-            ],
-            "regex": [
-                "#EXT-X-KEY:METHOD=NONE\r*\n*#EXTINF:5,[\\s\\S]*?#EXT-X-DISCONTINUITY",
-                "#EXT-X-KEY:METHOD=AES-128,URI=\"[^\"]+\"\r*\n*#EXTINF:3.333,[\\s\\S]*?#EXT-X-DISCONTINUITY"
+                "5.480000",
+                "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:5.480000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:5.320000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:3.360000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+                "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:4.000000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:0.560000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+                "#EXTINF.*?\\s+.*?1o.*?\\.ts\\s+"
             ]
         },
         {
             "name": "暴风",
             "hosts": [
-                "bfengbf.com",
                 "bfzy",
-                "c1"
+                "bfbfvip",
+                "bfengbf"
             ],
             "regex": [
-                "#EXTINF.*?\\s+.*?adjump.*?\\.ts\\s+",
-                "#EXT-X-DISCONTINUITY\r*\n*#EXTINF:3,[\\s\\S]*?#EXT-X-DISCONTINUITY"
+                "#EXTINF.*?\\s+.*?adjump.*?\\.ts"
             ]
         },
         {
-            "name": "农民",
+            "name": "量子",
             "hosts": [
-                "toutiaovod.com"
+                "vip.lz",
+                "hd.lz",
+                ".cdnlz"
             ],
             "regex": [
-                "video/tos/cn"
+                "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:7\\.166667,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:4\\.066667,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "17.19"
             ]
         },
         {
-            "name": "火山",
+            "name": "非凡",
+            "hosts": [
+                "vip.ffzy",
+                "hd.ffzy",
+                "super.ffzy"
+            ],
+            "regex": [
+                "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.400000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.666667,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXTINF.*?\\s+.*?1171(057).*?\\.ts",
+                "#EXTINF.*?\\s+.*?6d7b(077).*?\\.ts",
+                "#EXTINF.*?\\s+.*?6718a(403).*?\\.ts",
+                "17.99",
+                "14.45"
+            ]
+        },
+        {
+            "name": "索尼",
+            "hosts": [
+                "suonizy"
+            ],
+            "regex": [
+                "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:1\\.000000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXTINF.*?\\s+.*?p1ayer.*?\\.ts",
+                "#EXTINF.*?\\s+.*?\\/video\\/original.*?\\.ts"
+            ]
+        },
+        {
+            "name": "快看",
+            "hosts": [
+                "kuaikan"
+            ],
+            "regex": [
+                "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:5,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:2\\.4,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+                "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:1\\.467,[\\s\\S]*?#EXT-X-DISCONTINUITY"
+            ]
+        },
+        {
+            "name": "一起看广告",
+            "hosts": [
+                "yqk88"
+            ],
+            "regex": [
+                "18.4",
+                "15.1666",
+                "16.5333",
+                "#EXT-X-DISCONTINUITY\\r*\\n*[\\s\\S]*?#EXT-X-CUE-IN"
+            ]
+        },
+        {
+            "name": "磁力广告",
+            "hosts": [
+                "magnet"
+            ],
+            "regex": [
+                "更多",
+                "请访问",
+                "example",
+                "社 區",
+                "x u u",
+                "直 播",
+                "更 新",
+                "社 区",
+                "有趣",
+                "有 趣",
+                "英皇体育",
+                "全中文AV在线",
+                "澳门皇冠赌场",
+                "哥哥快来",
+                "美女荷官",
+                "裸聊",
+                "新片首发",
+                "UUE29"
+            ]
+        },
+        {
+            "name": "火山嗅探",
             "hosts": [
                 "huoshan.com"
             ],
@@ -850,7 +809,7 @@
             ]
         },
         {
-            "name": "抖音",
+            "name": "抖音嗅探",
             "hosts": [
                 "douyin.com"
             ],
@@ -859,34 +818,12 @@
             ]
         },
         {
-            "name": "磁力",
+            "name": "农民嗅探",
             "hosts": [
-                "magnet"
+                "toutiaovod.com"
             ],
             "regex": [
-                "最 新",
-                "直 播",
-                "更 新"
-            ]
-        },
-        {
-            "name": "饭团点击",
-            "hosts": [
-                "dadagui",
-                "freeok",
-                "dadagui"
-            ],
-            "script": [
-                "document.querySelector(\"#playleft iframe\").contentWindow.document.querySelector(\"#start\").click();"
-            ]
-        },
-        {
-            "name": "毛驴点击",
-            "hosts": [
-                "www.maolvys.com"
-            ],
-            "script": [
-                "document.getElementsByClassName('swal-button swal-button--confirm')[0].click()"
+                "video/tos/cn"
             ]
         }
     ],
@@ -933,5 +870,12 @@
                 "149.112.112.112"
             ]
         }
+    ],
+    "ads": [
+        "static-mozai.4gtv.tv",
+        "wan.51img1.com",
+        "iqiyi.hbuioo.com",
+        "vip.ffzyad.com",
+        "[s3t3d2y8.afcdn.net](https://s3t3d2y8.afcdn.net)"
     ]
 }
