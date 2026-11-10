@@ -1,4 +1,4 @@
-import re, sys, json, base64
+import re, sys, json, base64, time, random
 from Crypto.Cipher import AES
 from urllib.parse import urljoin, quote
 from Crypto.Util.Padding import unpad
@@ -17,13 +17,31 @@ class Spider(Spider):
         'cmskey': 'wP5bvxoc3yv7FoBQENFZuAF0EUYr4LTy',
         'RawPlayUrl': 0,
         # ldmax 内置解析接口
-        'parse_api': 'http://61.184.23.217:6163/api/index?parsesId=4&appid=10001&videoUrl='
+        'parse_api': 'http://61.184.23.217:6163/api/index?parsesId=4&appid=10001&videoUrl=',
+        # 可选: 给解析请求单独走一个出口,留空则使用本机直连
+        # 例: {'http': 'http://127.0.0.1:7890', 'https': 'http://127.0.0.1:7890'}
+        # 注意: 基类 fetch 若不支持 proxies 参数会自动降级为直连,不报错
+        'proxies': {}
     }
+
+    # ===== 解析服务防封策略参数 =====
+    # 解析服务按出口 IP 封禁(实测换 appid / parsesId 均返回 403),唯一有效的
+    # 降低手段是把单 IP 的请求次数与突发频率压下来,而不是换参数重试。
+    PARSE_CACHE_TTL = 6 * 3600      # 真实地址缓存 6 小时,同一集不重复解析
+    PARSE_CACHE_MAX = 300           # 缓存条目上限,超出先清过期再整体清空
+    PARSE_MIN_INTERVAL = 1.2        # 两次解析请求最小间隔(秒),避免突发
+    PARSE_COOLDOWN = 1800           # 失败/被封后熔断 30 分钟,期间不再打接口
+    PARSE_COOLDOWN_MAX = 7200       # 连续失败时熔断上限
+
+    # 类级共享: TVBox 可能为每次调用重建实例,状态必须挂在类上才能生效
+    _pcache = {}
+    _pstate = {'last': 0.0, 'blocked_until': 0.0, 'fail': 0}
 
     def init(self, extend=''):
         self.host = self.FIXED_CONFIG['host']
         self.cmskey = self.FIXED_CONFIG.get('cmskey', '')
         self.parse_api = self.FIXED_CONFIG.get('parse_api', '')
+        self.proxies = self.FIXED_CONFIG.get('proxies') or {}
         raw_play_url = self.FIXED_CONFIG.get('RawPlayUrl', 0)
         if raw_play_url == 1:
             self.raw_play_url = 1
@@ -67,22 +85,80 @@ class Spider(Spider):
             return self.ldmax_decrypt(base64.b64encode(result.encode('utf-8')).decode('utf-8'), depth + 1)
         return result
 
+    def _parse_fetch(self, url):
+        # 统一出口: 配了代理就走代理,基类不支持 proxies 时静默降级为直连
+        if self.proxies:
+            try:
+                return self.fetch(url, headers=self.parse_headers, timeout=30, proxies=self.proxies)
+            except TypeError:
+                pass
+        return self.fetch(url, headers=self.parse_headers, timeout=30)
+
+    def _pcache_put(self, key, url):
+        cache = self._pcache
+        if len(cache) >= self.PARSE_CACHE_MAX:
+            now = time.time()
+            for k in [k for k, v in cache.items() if v[0] <= now]:
+                cache.pop(k, None)
+            if len(cache) >= self.PARSE_CACHE_MAX:
+                cache.clear()
+        cache[key] = (time.time() + self.PARSE_CACHE_TTL, url)
+
     def ldmax_parse(self, video_url):
         # 对应 PHP 主流程:解密 -> 调用解析接口 -> 二次解密
+        # 增加三层保护,减少单 IP 请求暴露: 缓存复用 -> 熔断跳过 -> 节流抖动
+        now = time.time()
+        hit = self._pcache.get(video_url)
+        if hit and hit[0] > now:
+            return {'url': hit[1], 'type': 'video'}
+
+        st = self._pstate
+        if now < st['blocked_until']:
+            remain = int(st['blocked_until'] - now)
+            print(f"[影探4K] 解析接口冷却中,{remain}s 内跳过请求: {video_url[:60]}")
+            return None
+
         decrypted = self.ldmax_decrypt(video_url)
         if not decrypted or not re.match(r'^https?://', decrypted):
             return None
+
+        wait = self.PARSE_MIN_INTERVAL - (now - st['last'])
+        if wait > 0:
+            time.sleep(wait + random.uniform(0, 0.6))
+        st['last'] = time.time()
+
         try:
             parse_url = self.parse_api + quote(decrypted, safe='')
-            resp = self.fetch(parse_url, headers=self.parse_headers, timeout=30).json()
+            resp = self._parse_fetch(parse_url).json()
         except Exception:
+            self._cooldown(st, '请求异常')
             return None
-        if not resp or resp.get('code') != 200 or not resp.get('url'):
+
+        if not isinstance(resp, dict) or resp.get('code') != 200 or not resp.get('url'):
+            msg = str(resp.get('msg', '')) if isinstance(resp, dict) else ''
+            # 命中封禁关键字直接长熔断,不再重试(重试只会维持封禁状态)
+            if '封' in msg or '禁' in msg:
+                st['blocked_until'] = time.time() + self.PARSE_COOLDOWN_MAX
+                print(f"[影探4K] 解析接口返回封禁,冷却 {self.PARSE_COOLDOWN_MAX}s: {msg}")
+            else:
+                self._cooldown(st, msg or '返回异常')
             return None
+
         final_url = self.ldmax_decrypt(resp['url'])
-        if final_url and re.match(r'^https?://', final_url):
-            return {'url': final_url, 'type': resp.get('type', 'video')}
-        return None
+        if not final_url or not re.match(r'^https?://', final_url):
+            self._cooldown(st, '二次解密失败')
+            return None
+
+        st['fail'] = 0
+        self._pcache_put(video_url, final_url)
+        return {'url': final_url, 'type': resp.get('type', 'video')}
+
+    def _cooldown(self, st, reason):
+        # 连续失败按次数递增熔断时长,避免失败重试把风控越惹越重
+        st['fail'] += 1
+        span = min(self.PARSE_COOLDOWN * st['fail'], self.PARSE_COOLDOWN_MAX)
+        st['blocked_until'] = time.time() + span
+        print(f"[影探4K] 解析失败({reason}),冷却 {int(span)}s")
 
     def homeVideoContent(self):
         data = self.fetch(f"{self.host}/api.php/app/index_video?token=", headers=self.headers).json()
@@ -152,39 +228,48 @@ class Spider(Spider):
         data = self.fetch(f"{self.host}/api.php/app/video_detail?id={ids[0]}", headers=self.headers).json()['data']
         show, paly_urls = [], []
 
-        for i in data['vod_url_with_player']:
-            urls = i['url'].split('#')
+        for i in data.get('vod_url_with_player') or []:
+            urls = (i.get('url') or '').split('#')
             urls2 = []
             for j in urls:
-                if j:
-                    url = j.split('$', 1)
-                    urls2.append(f"{url[0]}${self.lvdou(url[1])}")
+                if not j:
+                    continue
+                # 用 partition 代替 split,避免某路地址没有 '$' 时抛 IndexError 导致整页白屏
+                name, sep, raw = j.partition('$')
+                if not sep:
+                    urls2.append(name)
+                    continue
+                try:
+                    urls2.append(f"{name}${self.lvdou(raw)}")
+                except Exception:
+                    urls2.append(f"{name}${raw}")
             paly_urls.append('#'.join(urls2))
+            show.append((i.get('name') or '').strip())
 
-            show.append(i['name'].strip())
-
-        data.pop('vod_url_with_player')
+        data.pop('vod_url_with_player', None)
         data['vod_play_from'] = '$$$'.join(show)
         data['vod_play_url'] = '$$$'.join(paly_urls)
         return {'list': [data]}
 
     def playerContent(self, flag, video_id, vipFlags):
-        # 移除URL中的百分号编码（如 %26 %20 等），直接删除而非解码
-        # 例: 04.国%26粤.mp4 → 04.国粤.mp4
-        video_id = re.sub(r'%[0-9A-Fa-f]{2}', '', video_id)
-        # 需要内置解析的情况:
-        # 1. 非明文URL(base64密文等)
-        # 2. 本站域名URL(lyyytv.cn 伪直链,需经 parse_api 二次解析才能拿到真实播放地址)
+        # 注意: 不要删除或解码 URL 里的 %XX。
+        # 本站片源大量是中文文件名(如 %E7%A7%98%E5%AE%A4...mp4),删掉 %XX 会把
+        # 路径拆成残缺字符串(→ 4K.mp4),必然 404。
+        video_id = (video_id or '').strip()
         is_plain_url = video_id.startswith(('http://', 'https://'))
-        if (not is_plain_url) or (is_plain_url and 'lyyytv.cn' in video_id):
+        # 本站域名(lyyytv.cn)的 /d/ 是伪直链,必须经 parse_api 还原真实地址,当直链播必 404
+        need_parse = (not is_plain_url) or ('lyyytv.cn' in video_id)
+        if need_parse:
             parsed = self.ldmax_parse(video_id)
-            if parsed:
-                return {'jx': 0, 'parse': 0, 'playUrl': '', 'url': parsed['url'], 'header': self.headers}
+            if parsed and parsed.get('url'):
+                return {'parse': 0, 'jx': 0, 'playUrl': '', 'url': parsed['url'], 'header': self.headers}
+            # 解析失败:如实交给外置解析,不要把它当直链谎报(否则播放器直接 404 黑屏)
+            return {'parse': 1, 'jx': 1, 'playUrl': '', 'url': video_id, 'header': self.headers}
         # 真正的直链(mp4/m3u8 等)直接播放
         if self.check_paly_url(video_id):
-            return {'jx': 0, 'parse': 0, 'playUrl': '', 'url': video_id, 'header': self.headers}
-        # 其他情况交给 tvbox 外置解析
-        return {'jx': 1, 'playUrl': '', 'parse': 0, 'url': video_id, 'header': self.headers}
+            return {'parse': 0, 'jx': 0, 'playUrl': '', 'url': video_id, 'header': self.headers}
+        # 其他情况(腾讯/爱奇艺/优酷等网页地址)交给 tvbox 外置解析
+        return {'parse': 1, 'jx': 1, 'playUrl': '', 'url': video_id, 'header': self.headers}
 
     def lvdou(self, text):
         key = self.cmskey[:16].encode("utf-8")
@@ -217,8 +302,9 @@ class Spider(Spider):
             return original_url
 
     def check_paly_url(self, content):
-        pattern = r"https?://.*(?:\.(?:mp4|m3u8|flv|avi|mkv|ts|mov|wmv|webm)|lyyytv\.cn/)"
-        return bool(re.search(pattern, content, re.IGNORECASE))
+        # 只认真正的媒体文件后缀;lyyytv.cn 的 /d/ 是伪直链,不能算直链
+        pattern = r"https?://[^\s\"'<>]+\.(?:mp4|m3u8|flv|avi|mkv|ts|mov|wmv|webm)(?:\?[^\s\"'<>]*)?$"
+        return bool(re.search(pattern, content.strip(), re.IGNORECASE))
 
     def getName(self):
         pass

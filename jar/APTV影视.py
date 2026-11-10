@@ -1,22 +1,37 @@
 # -*- coding: utf-8 -*-
 """
 APTV 影视 (https://aptv.pro) - TVBox 爬虫源
+
+站点已于 2026-10 改版：由 PHP(苹果CMS) 模板改为 Next.js 单页应用，
+页面 HTML 只剩骨架屏（Suspense fallback），数据全部走同源 JSON 接口，
+因此本脚本完全基于 /api/* 抓取，不再解析 HTML（分享页除外）。
+
+接口清单（均同源，需带移动端 UA + Referer）：
+  分类树   GET  /api/categories/tree            -> [{id,name,children:[{id,name}]}]
+  首页聚合 GET  /api/home                       -> {banners,hot,cn_show,kids,cn_drama,
+                                                    movie_rec,short_drama,latest,rankings}
+  分类列表 GET  /api/videos?category_id=&page=&page_size=&sort=(new|hot|rating)
+  详情     GET  /api/videos/{video_id}           -> {title,description,cover_url,play_url,
+                                                    director,actors,year,area,duration,
+                                                    episodes:[{episode_num,title,play_url}]}
+  搜索     GET  /api/search?keyword=&page=&page_size=
+  热词     GET  /api/search/hot
+
+播放解析：
+  episodes[].play_url 形如 https://v.gsuus.com/play/{code}（分享页），
+  分享页 JS 里有 `const vid = 'https://v.gsuus.com/play/{code}/index.m3u8';`
+  取出该地址即为可直连的 HLS 主播放列表（实测无需 Referer）。
+  旧版分享页用 `var main = "...";` 的形式，一并做兼容兜底。
 """
 
 import re
 import json
 import time
 import threading
-import base64
-from urllib.parse import quote, unquote
+from urllib.parse import quote
 
 import requests
 from requests.adapters import HTTPAdapter
-
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    BeautifulSoup = None
 
 try:
     import urllib3
@@ -35,31 +50,78 @@ except ImportError:
 # 常量
 # ============================================================
 HOST = "https://aptv.pro"
-UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+API = HOST + "/api"
 
-TIMEOUT_PAGE = 6
-TIMEOUT_API = 5
-TIMEOUT_PLAY = 4
+UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
+      "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1")
+PLAY_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 
+TIMEOUT_API = 8
+TIMEOUT_PLAY = 6
+
+PAGE_SIZE = 36
+
+TTL_CLASS = 21600
 TTL_HOME = 600
-TTL_DETAIL_OK = 600
+TTL_LIST = 180
+TTL_DETAIL_OK = 1800
 TTL_DETAIL_EMPTY = 30
-TTL_SEARCH = 180
-TTL_PLAY = 900
-TTL_LIVE = 1800
+TTL_SEARCH = 300
+TTL_PLAY = 3600
 
-SOURCES = ["暴风资源", "量子源"]
-
-GROUPS = [
-    {"id": "movie", "name": "电影", "subs": ["剧情片", "喜剧片", "动作片", "恐怖片", "爱情片", "电影解说", "动画片"]},
-    {"id": "tv", "name": "电视剧", "subs": ["国产剧", "台湾剧", "香港剧", "韩国剧", "日本剧", "泰国剧", "欧美剧", "海外剧"]},
-    {"id": "variety", "name": "综艺", "subs": ["大陆综艺", "日韩综艺", "港台综艺", "欧美综艺"]},
-    {"id": "anime", "name": "动漫", "subs": ["国产动漫", "日韩动漫", "欧美动漫"]},
-    {"id": "short", "name": "短剧", "subs": ["短剧"]},
-    
+# 分类树兜底（/api/categories/tree 拉取失败时使用，值为线上真实 category_id）
+FALLBACK_TREE = [
+    {"id": 1, "name": "电影", "children": [
+        {"id": 6, "name": "动作片"}, {"id": 7, "name": "喜剧片"},
+        {"id": 8, "name": "爱情片"}, {"id": 9, "name": "科幻片"},
+        {"id": 10, "name": "剧情片"}, {"id": 11, "name": "恐怖片"},
+        {"id": 12, "name": "战争片"}, {"id": 20, "name": "动漫电影"},
+    ]},
+    {"id": 2, "name": "电视剧", "children": [
+        {"id": 13, "name": "大陆剧"}, {"id": 14, "name": "欧美剧"},
+        {"id": 15, "name": "港澳剧"}, {"id": 16, "name": "韩剧"},
+        {"id": 21, "name": "日剧"}, {"id": 22, "name": "台湾剧"},
+        {"id": 23, "name": "泰剧"},
+    ]},
+    {"id": 3, "name": "综艺", "children": [
+        {"id": 37, "name": "大陆综艺"}, {"id": 38, "name": "日韩综艺"},
+        {"id": 39, "name": "港台综艺"}, {"id": 40, "name": "欧美综艺"},
+    ]},
+    {"id": 4, "name": "动漫", "children": [
+        {"id": 41, "name": "中国动漫"}, {"id": 42, "name": "日本动漫"},
+        {"id": 43, "name": "欧美动漫"},
+    ]},
+    {"id": 999, "name": "少儿", "children": []},
+    {"id": 24, "name": "记录片", "children": []},
+    {"id": 30, "name": "体育赛事", "children": [
+        {"id": 33, "name": "足球"}, {"id": 34, "name": "篮球"},
+        {"id": 35, "name": "台球"}, {"id": 36, "name": "其他赛事"},
+    ]},
+    {"id": 31, "name": "短剧", "children": [
+        {"id": 44, "name": "古装仙侠"}, {"id": 45, "name": "现代都市"},
+        {"id": 46, "name": "穿越年代"}, {"id": 47, "name": "言情总裁"},
+        {"id": 48, "name": "重生民国"}, {"id": 49, "name": "反转爽剧"},
+        {"id": 50, "name": "脑洞悬疑"}, {"id": 51, "name": "擦边短剧"},
+        {"id": 52, "name": "AI漫剧"},
+    ]},
+    {"id": 32, "name": "预告片", "children": []},
 ]
 
-ALL_CLASSES = [{"type_id": g["id"], "type_name": g["name"]} for g in GROUPS]
+SORTS = [{"n": "最新", "v": "new"}, {"n": "最热", "v": "hot"}, {"n": "评分", "v": "rating"}]
+
+# 站点后端对以下分类始终返回 total>0 但 items 为空（体育赛事 30 及其子类 33~36），
+# 挂出来只会是个空 Tab，直接不展示；若日后恢复，删掉这行即可。
+SKIP_CATS = {30}
+
+# 首页聚合接口里各分区的展示顺序
+HOME_SECTIONS = ["hot", "banners", "movie_rec", "cn_drama", "cn_show",
+                 "short_drama", "kids", "latest", "rankings"]
+
+TYPE_NAME_MAP = {
+    "movie": "电影", "series": "电视剧", "show": "综艺", "variety": "综艺",
+    "anime": "动漫", "short": "短剧", "documentary": "记录片",
+    "sports": "体育赛事", "trailer": "预告片",
+}
 
 _Base = _BaseSpider if _BaseSpider is not None else object
 
@@ -68,9 +130,12 @@ class Spider(_Base):
     siteUrl = HOST
     headers = {
         'User-Agent': UA,
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'zh-CN,zh;q=0.9',
-        'Accept-Encoding': 'gzip, deflate',
+        'Referer': HOST + '/',
+    }
+    playHeaders = {
+        'User-Agent': PLAY_UA,
         'Referer': HOST + '/',
     }
 
@@ -79,630 +144,517 @@ class Spider(_Base):
         self.session.headers.update(self.headers)
         self.session.headers['Connection'] = 'keep-alive'
         self.session.verify = False
-        adapter = HTTPAdapter(pool_connections=20, pool_maxsize=40, max_retries=0, pool_block=False)
+        adapter = HTTPAdapter(pool_connections=20, pool_maxsize=40,
+                              max_retries=0, pool_block=False)
         self.session.mount('http://', adapter)
         self.session.mount('https://', adapter)
 
         self._lock = threading.Lock()
-        self._home_data = {}
+        self._tree = None
+        self._tree_time = 0
+        self._class_data = None
+        self._home_data = None
         self._home_time = 0
+        self._list_cache = {}
         self._detail_cache = {}
         self._search_cache = {}
-        self._share_cache = {}
+        self._play_cache = {}
+        # 详情接口没有分类字段(category/category_id 恒为 null)，只能靠列表项的
+        # category_name 回填，这里做一份 vod_id -> 分类名 的轻量映射
+        self._type_cache = {}
 
     def init(self, extend=""):
         self.extend = extend or ""
 
-    def _get(self, url, referer='', timeout=TIMEOUT_PAGE):
+    def getName(self):
+        return "APTV影视"
+
+    @staticmethod
+    def isVideoFormat(url):
+        u = str(url or '').lower()
+        return '.m3u8' in u or '.mp4' in u or '.flv' in u or '.mkv' in u
+
+    # ============================================================
+    # HTTP
+    # ============================================================
+    def _get(self, url, referer='', timeout=TIMEOUT_API, ua=None):
         headers = {'Connection': 'keep-alive'}
+        if ua:
+            headers['User-Agent'] = ua
         if referer:
             headers['Referer'] = referer
-        for attempt in range(2):
+        # 站点在连续请求下偶发连接重置，重试到 3 次降低误判为空数据的概率
+        for attempt in range(3):
             try:
                 r = self.session.get(url, timeout=timeout, headers=headers)
-                if r.status_code == 429:
-                    time.sleep(1.5)
+                if r.status_code in (429, 500, 502, 503, 504):
+                    time.sleep(0.4 + attempt * 0.5)
                     continue
-                r.raise_for_status()
-                r.encoding = r.apparent_encoding or 'utf-8'
+                if r.status_code != 200:
+                    return None
                 return r
             except Exception:
-                if attempt == 0:
-                    time.sleep(0.3)
-                else:
-                    return None
+                if attempt < 2:
+                    time.sleep(0.3 + attempt * 0.3)
         return None
 
-    def _get_text(self, url, referer='', timeout=TIMEOUT_PAGE):
+    def _get_json(self, url, referer=HOST + '/', timeout=TIMEOUT_API):
         r = self._get(url, referer, timeout)
-        return r.text if r is not None else ""
-
-    def _get_json(self, url, referer='', timeout=TIMEOUT_API):
-        text = self._get_text(url, referer, timeout)
-        if not text:
+        if r is None:
             return None
         try:
-            return json.loads(text)
+            return json.loads(r.text)
         except Exception:
             return None
 
+    def _get_text(self, url, referer=HOST + '/', timeout=TIMEOUT_PLAY, ua=None):
+        r = self._get(url, referer, timeout, ua)
+        return r.text if r is not None else ""
+
     @staticmethod
-    def _cache_get(cache, key, ttl=None):
+    def _cache_get(cache, key, ttl):
         item = cache.get(key)
-        if item and time.time() - item[0] < (ttl if ttl is not None else item[2]):
+        if item and time.time() - item[0] < ttl:
             return item[1]
         return None
 
     @staticmethod
-    def _cache_set(cache, key, value, ttl=TTL_DETAIL_OK):
+    def _cache_set(cache, key, value, ttl):
         if len(cache) > 512:
             cache.clear()
-        cache[key] = (time.time(), value, ttl)
-
-    @staticmethod
-    def _scan_json(text, start):
-        depth = 0
-        in_str = False
-        esc = False
-        n = len(text)
-        i = start
-        while i < n:
-            c = text[i]
-            if in_str:
-                if esc:
-                    esc = False
-                elif c == '\\':
-                    esc = True
-                elif c == '"':
-                    in_str = False
-            else:
-                if c == '"':
-                    in_str = True
-                elif c in '[{':
-                    depth += 1
-                elif c in ']}':
-                    depth -= 1
-                    if depth == 0:
-                        return text[start:i + 1]
-            i += 1
-        return None
-
-    @staticmethod
-    def _find_json_var(text, marker):
-        i = text.find(marker)
-        if i < 0:
-            return None
-        j = i + len(marker)
-        while j < len(text) and text[j] in ' \t\r\n=':
-            j += 1
-        if j >= len(text) or text[j] not in '[{':
-            return None
-        chunk = Spider._scan_json(text, j)
-        if not chunk:
-            return None
-        try:
-            return json.loads(chunk)
-        except Exception:
-            return None
+        cache[key] = (time.time(), value)
 
     # ============================================================
-    # 首页数据解析（保持不变）
+    # 字段映射
     # ============================================================
-    def _load_home_data(self, force=False):
-        now = int(time.time())
-        with self._lock:
-            if not force and self._home_data and now - self._home_time < TTL_HOME:
-                return self._home_data
-        data = {}
-        html = self._get_text(HOST, timeout=TIMEOUT_PAGE)
-        if html:
-            data = self._parse_home(html)
-        if data:
-            with self._lock:
-                self._home_data = data
-                self._home_time = int(time.time())
-        return data
+    @staticmethod
+    def _pic(url):
+        u = str(url or '').strip()
+        if not u:
+            return ''
+        if u.startswith('//'):
+            return 'https:' + u
+        if u.startswith('/'):
+            return HOST + u
+        return u
 
-    def _parse_home(self, html):
-        result = {}
+    def _to_vod(self, it):
+        """列表项 -> TVBox vod"""
+        if not isinstance(it, dict):
+            return None
+        vid = str(it.get('id') or '').strip()
+        name = str(it.get('title') or '').strip()
+        if not vid or not name:
+            return None
 
-        def _extract_id(href):
-            m = re.search(r'vod_play\.php\?id=(\d+)&source=([^&"\']+)', href or '')
-            if m:
-                return m.group(1), unquote(m.group(2))
-            return None, None
+        cat = str(it.get('category_name') or '').strip()
+        sub = str(it.get('category_sub') or '').strip()
+        if not cat:
+            cat = TYPE_NAME_MAP.get(str(it.get('video_type') or ''), '')
 
-        def _card_from(a, cat):
-            href = str(a.get('href') or '')
-            vid, src = _extract_id(href)
-            if not vid:
-                return None
-            title = str(a.get('title') or '').strip()
-            if not title:
-                name_el = a.select_one('.hot-name')
-                title = name_el.get_text(strip=True) if name_el else ''
-            if not title:
-                title = str(a.get('alt') or '').strip()
-            if not title:
-                return None
-            pic = ''
-            img = a.select_one('.hot-thumb img')
-            if img:
-                pic = str(img.get('src') or img.get('data-src') or '').strip()
-            remarks = ''
-            meta_el = a.select_one('.hot-meta')
-            if meta_el:
-                remarks = meta_el.get_text(strip=True)
-            return {
-                'vod_id': (vid + '|' + src) if src else vid,
-                'vod_name': title,
-                'vod_pic': pic,
-                'vod_remarks': remarks,
-                'source': src,
-            }
+        type_name = (cat + '/' + sub) if (cat and sub) else (cat or sub)
+        if type_name:
+            if len(self._type_cache) > 2048:
+                self._type_cache.clear()
+            self._type_cache[vid] = type_name
 
-        if BeautifulSoup is not None:
-            try:
-                soup = BeautifulSoup(html, 'html.parser')
-                nav = soup.find('div', id='hotNav')
-                cats = []
-                if nav is not None:
-                    cats = [str(t.get('data-cat') or '') for t in nav.find_all(attrs={'data-cat': True})]
-                    cats = [c for c in cats if c]
-                grids = soup.select('.hot-grid')
-                for cat, grid in zip(cats, grids):
-                    cards = []
-                    for a in grid.select('a.hot-card'):
-                        card = _card_from(a, cat)
-                        if card:
-                            cards.append(card)
-                    if cards:
-                        result[cat] = cards
-                if result:
-                    return result
-            except Exception:
-                pass
+        remarks = str(it.get('duration') or '').strip()
+        if not remarks:
+            bits = []
+            year = it.get('year')
+            if year:
+                bits.append(str(year))
+            area = str(it.get('area') or '').strip()
+            if area:
+                bits.append(area)
+            remarks = ' '.join(bits)
 
-        cats = [c for c in re.findall(r'data-cat="([^"]+)"', html) if c][:30]
-        blocks = re.findall(
-            r'<div class="hot-grid(.*?)(?=<div class="hot-grid|'
-            r'<div class="ranking-section|<div class="hot-section|$)', html, re.S
-        )
-        for cat, block in zip(cats, blocks):
-            cards = []
-            for am in re.finditer(r'<a[^>]*class="hot-card[^"]*"[^>]*href="([^"]*)"[^>]*>(.*?)</a>', block, re.S):
-                href, inner = am.group(1), am.group(2)
-                vid, src = _extract_id(href)
-                if not vid:
-                    continue
-                tm = re.search(r'class="hot-name">([^<]+)<', inner)
-                title = tm.group(1).strip() if tm else ''
-                if not title:
-                    continue
-                pm = re.search(r'<img[^>]*src="([^"]+)"', inner)
-                pic = pm.group(1) if pm else ''
-                mm = re.search(r'class="hot-meta">([^<]+)<', inner)
-                remarks = mm.group(1).strip() if mm else ''
-                cards.append({
-                    'vod_id': (vid + '|' + src) if src else vid,
-                    'vod_name': title, 'vod_pic': pic, 'vod_remarks': remarks, 'source': src,
-                })
-            if cards:
-                result[cat] = cards
-        return result
+        return {
+            'vod_id': vid,
+            'vod_name': name,
+            'vod_pic': self._pic(it.get('cover_url')),
+            'vod_remarks': remarks,
+            'type_name': type_name,
+            'vod_year': str(it.get('year') or ''),
+            'vod_area': str(it.get('area') or ''),
+        }
 
-    def _all_cards(self, limit=60):
-        data = self._load_home_data()
-        out, seen, ordered = [], set(), []
-        for cat in data:
-            for c in data[cat]:
-                ordered.append(c)
-        ordered.sort(key=lambda c: 0 if c.get('vod_pic') else 1)
-        for c in ordered:
-            vid = c['vod_id'].split('|')[0]
-            if vid in seen:
+    def _to_vod_list(self, items, limit=None):
+        out, seen = [], set()
+        for it in items or []:
+            v = self._to_vod(it)
+            if not v or v['vod_id'] in seen:
                 continue
-            seen.add(vid)
-            out.append(c)
-            if len(out) >= limit:
+            seen.add(v['vod_id'])
+            out.append(v)
+            if limit and len(out) >= limit:
                 break
         return out
 
     # ============================================================
-    # 首页（保持不变）
+    # 分类树
+    # ============================================================
+    def _load_tree(self):
+        now = time.time()
+        with self._lock:
+            if self._tree and now - self._tree_time < TTL_CLASS:
+                return self._tree
+
+        tree = self._get_json(API + "/categories/tree")
+        if not isinstance(tree, list) or not tree:
+            with self._lock:
+                return self._tree or FALLBACK_TREE
+
+        clean = []
+        for g in tree:
+            if not isinstance(g, dict) or not g.get('id'):
+                continue
+            kids = []
+            for k in (g.get('children') or []):
+                if isinstance(k, dict) and k.get('id') and k.get('name'):
+                    kids.append({'id': int(k['id']), 'name': str(k['name']).strip()})
+            clean.append({'id': int(g['id']), 'name': str(g.get('name') or '').strip(), 'children': kids})
+
+        if not clean:
+            with self._lock:
+                return self._tree or FALLBACK_TREE
+
+        with self._lock:
+            self._tree = clean
+            self._tree_time = now
+            self._class_data = None
+        return clean
+
+    def _build_class(self):
+        tree = self._load_tree()
+        classes, filters = [], {}
+        for g in tree:
+            if g['id'] in SKIP_CATS:
+                continue
+            tid = str(g['id'])
+            classes.append({'type_id': tid, 'type_name': g['name']})
+            fs = []
+            if g['children']:
+                vals = [{'n': '全部', 'v': ''}]
+                vals += [{'n': k['name'], 'v': str(k['id'])} for k in g['children']]
+                fs.append({'key': 'cate', 'name': '分类', 'value': vals})
+            fs.append({'key': 'sort', 'name': '排序', 'value': SORTS})
+            filters[tid] = fs
+        return classes, filters
+
+    # ============================================================
+    # 首页
     # ============================================================
     def homeContent(self, filter=False):
-        return {"class": ALL_CLASSES}
+        try:
+            if self._class_data is None:
+                self._class_data = self._build_class()
+            classes, filters = self._class_data
+            return {'class': classes, 'filters': filters}
+        except Exception:
+            classes = [{'type_id': str(g['id']), 'type_name': g['name']} for g in FALLBACK_TREE]
+            return {'class': classes}
+
+    def _load_home(self):
+        now = time.time()
+        with self._lock:
+            if self._home_data and now - self._home_time < TTL_HOME:
+                return self._home_data
+
+        data = self._get_json(API + "/home")
+        if not isinstance(data, dict):
+            return self._home_data or {}
+
+        with self._lock:
+            self._home_data = data
+            self._home_time = now
+        return data
 
     def homeVideoContent(self):
         try:
-            return {"list": self._all_cards(40)}
+            data = self._load_home()
+            items = []
+            for key in HOME_SECTIONS:
+                sec = data.get(key)
+                if isinstance(sec, list):
+                    items.extend(sec)
+            vod_list = self._to_vod_list(items, limit=60)
+            if vod_list:
+                return {'list': vod_list}
+            # 首页接口异常时退化到"最新"列表
+            r = self._get_json(API + "/videos?page=1&page_size=36&sort=new")
+            if isinstance(r, dict):
+                return {'list': self._to_vod_list(r.get('items'), limit=36)}
+            return {'list': []}
         except Exception:
-            return {"list": []}
+            return {'list': []}
 
     # ============================================================
     # 分类列表
     # ============================================================
-    def _empty_category(self, page=1):
-        return {"list": [], "page": page, "pagecount": 1, "limit": 36, "total": 0}
-
-    # 🚨 修复点 1：为每个频道补充 type 字段，否则 TVBox 判为无效数据
-    def _live_category(self, pg=1):
-        page = max(1, int(pg or 1))
-        ckey = "live_all"
-        cached = self._cache_get(self._detail_cache, ckey, TTL_LIVE)
-        if cached is not None:
-            return cached
-
-        live_list = []
-        url = f"{HOST}/tv/channels.json"
-        data = self._get_json(url, referer=f"{HOST}/tv/", timeout=TIMEOUT_API)
-
-        if isinstance(data, dict):
-            data = data.get('data') or data.get('channels') or data.get('list') or []
-
-        if isinstance(data, list):
-            for it in data:
-                if not isinstance(it, dict):
-                    continue
-                name = str(it.get('name') or '').strip()
-                raw_url = str(it.get('url') or '').strip()
-                group = str(it.get('group') or '其他').strip()
-                if not name or not raw_url:
-                    continue
-
-                # 用 base64 编码真实 URL 作为 vod_id，避免 TVBox 对 URL 做编码破坏
-                try:
-                    safe_id = 'live_' + base64.urlsafe_b64encode(
-                        raw_url.encode('utf-8')
-                    ).decode('ascii').rstrip('=')
-                except Exception:
-                    safe_id = raw_url
-
-                live_list.append({
-                    "vod_id": safe_id,
-                    "vod_name": name,
-                    "vod_pic": "",
-                    "vod_remarks": group,
-                    "type_name": group,
-                    "type": "m3u8",          # 🚨 关键修复：TVBox 直播列表必填字段
-                })
-
-        result = {"list": live_list, "page": page, "pagecount": 1, "limit": 9999, "total": len(live_list)}
-        self._cache_set(self._detail_cache, ckey, result, TTL_LIVE)
-        return result
+    @staticmethod
+    def _empty_category(page=1):
+        return {'list': [], 'page': page, 'pagecount': 1,
+                'limit': PAGE_SIZE, 'total': 0}
 
     def categoryContent(self, tid, pg, filter, extend):
         try:
             page = max(1, int(pg or 1))
-            tid = str(tid)
-            if tid == "live":
-                return self._live_category(page)
+        except Exception:
+            page = 1
+        tid = str(tid or '').strip()
 
-            ext = {}
-            if extend:
-                if isinstance(extend, dict):
-                    ext = extend
-                elif isinstance(extend, str):
-                    try:
-                        ext = json.loads(extend)
-                    except Exception:
-                        ext = {}
+        try:
+            ext = extend or {}
+            if isinstance(ext, str):
+                try:
+                    ext = json.loads(ext)
+                except Exception:
+                    ext = {}
+            if not isinstance(ext, dict):
+                ext = {}
 
-            sub = (ext.get('class') or '').strip()
-            group = None
-            for g in GROUPS:
-                if g["id"] == tid:
-                    group = g
-                    break
-            if group is None:
+            cid = str(ext.get('cate') or '').strip() or tid
+            if not cid:
                 return self._empty_category(page)
 
-            data = self._load_home_data()
-            cards = []
-            subs = [sub] if sub else group["subs"]
-            for s in subs:
-                cards.extend(data.get(s, []))
-            seen, out = set(), []
-            for c in cards:
-                if c['vod_id'].split('|')[0] in seen:
-                    continue
-                seen.add(c['vod_id'].split('|')[0])
-                out.append(c)
-            return {"list": out, "page": page, "pagecount": 1, "limit": 36, "total": len(out)}
+            sort = str(ext.get('sort') or '').strip()
+            if sort not in ('new', 'hot', 'rating'):
+                sort = ''
+
+            ckey = "%s|%s|%s" % (cid, sort, page)
+            cached = self._cache_get(self._list_cache, ckey, TTL_LIST)
+            if cached is not None:
+                return cached
+
+            url = "%s/videos?category_id=%s&page=%d&page_size=%d" % (API, quote(cid), page, PAGE_SIZE)
+            if sort:
+                url += "&sort=" + sort
+
+            data = self._get_json(url)
+            if not isinstance(data, dict):
+                return self._empty_category(page)
+
+            items = data.get('items') or []
+            total = int(data.get('total') or 0)
+            size = int(data.get('page_size') or PAGE_SIZE) or PAGE_SIZE
+            pagecount = (total + size - 1) // size if total else 1
+
+            result = {
+                'list': self._to_vod_list(items),
+                'page': page,
+                'pagecount': max(1, pagecount),
+                'limit': size,
+                'total': total,
+            }
+            if result['list']:
+                self._cache_set(self._list_cache, ckey, result, TTL_LIST)
+            return result
         except Exception:
-            return self._empty_category(1)
+            return self._empty_category(page)
 
     # ============================================================
-    # 详情页（保持不变）
+    # 详情
     # ============================================================
+    @staticmethod
+    def _clean_id(ids):
+        if isinstance(ids, (list, tuple)):
+            raw = ids[0] if ids else ''
+        else:
+            raw = ids
+        raw = str(raw or '').split(',')[0].strip()
+        m = re.search(r'(\d+)', raw)
+        return m.group(1) if m else ''
+
     def detailContent(self, ids):
-        if isinstance(ids, str):
-            ids = [ids]
-        raw = str(ids[0]).split(',')[0].strip()
-        raw = unquote(raw)
-        parts = raw.split('|')
-        vid = parts[0].strip()
-        src = parts[1].strip() if len(parts) > 1 else ''
-        if not vid or not vid.isdigit():
-            return {"list": []}
+        vid = self._clean_id(ids)
+        if not vid:
+            return {'list': []}
 
-        ckey = f"{vid}|{src}"
-        cached = self._cache_get(self._detail_cache, ckey, None)
+        cached = self._cache_get(self._detail_cache, vid, TTL_DETAIL_OK)
         if cached is not None:
             return cached
 
-        result = self._fetch_detail(vid, src)
-        ttl = TTL_DETAIL_OK if result.get("list") else TTL_DETAIL_EMPTY
-        self._cache_set(self._detail_cache, ckey, result, ttl)
+        data = self._get_json("%s/videos/%s" % (API, vid))
+        if data is None:
+            # 网络/限流导致的失败不写缓存，下次请求重试
+            return {'list': []}
+        if not isinstance(data, dict) or not data.get('title'):
+            self._cache_set(self._detail_cache, vid, {'list': []}, TTL_DETAIL_EMPTY)
+            return {'list': []}
+
+        episodes = self._sorted_episodes(data.get('episodes'))
+        if not episodes:
+            # 兜底：部分片目（多为单片/正片类）episodes 为空，播放地址只在顶层 play_url
+            top = str(data.get('play_url') or '').replace('\\/', '/').strip()
+            if top:
+                episodes = [{'title': str(data.get('duration') or '').strip() or '正片',
+                             'play_url': top}]
+        if not episodes:
+            self._cache_set(self._detail_cache, vid, {'list': []}, TTL_DETAIL_EMPTY)
+            return {'list': []}
+
+        play_items = []
+        for i, ep in enumerate(episodes):
+            name = str(ep.get('title') or '').strip() or ('第%d集' % (i + 1))
+            url = str(ep.get('play_url') or '').replace('\\/', '/').strip()
+            if not url:
+                continue
+            play_items.append("%s$%s" % (name, url))
+        if not play_items:
+            self._cache_set(self._detail_cache, vid, {'list': []}, TTL_DETAIL_EMPTY)
+            return {'list': []}
+
+        name = str(data.get('title') or '').strip()
+        duration = str(data.get('duration') or '').strip()
+        remarks = duration or ('全%d集' % len(play_items))
+
+        vod = {
+            'vod_id': vid,
+            'vod_name': name,
+            'vod_pic': self._pic(data.get('cover_url')),
+            'vod_year': str(data.get('year') or ''),
+            'vod_area': str(data.get('area') or ''),
+            'vod_remarks': remarks,
+            'type_name': (self._type_cache.get(vid)
+                          or TYPE_NAME_MAP.get(str(data.get('video_type') or ''), '')),
+            'vod_director': str(data.get('director') or '').strip(),
+            'vod_actor': str(data.get('actors') or '').strip(),
+            'vod_content': str(data.get('description') or '').strip()[:1500],
+            'vod_play_from': 'APTV线路',
+            'vod_play_url': '#'.join(play_items),
+        }
+
+        result = {'list': [vod]}
+        self._cache_set(self._detail_cache, vid, result, TTL_DETAIL_OK)
         return result
 
-    def _fetch_detail(self, vid, prefer=''):
-        sources = [prefer] if prefer else []
-        sources += [s for s in SOURCES if s != prefer]
-        for src in sources:
-            url = f"{HOST}/vod_play.php?id={vid}&source={quote(src)}"
-            html = self._get_text(url, referer=HOST + '/', timeout=TIMEOUT_PAGE)
-            if not html:
-                continue
-            detail = self._parse_play_page(html, vid, src)
-            if detail:
-                return {"list": [detail]}
-        return {"list": []}
+    @staticmethod
+    def _sorted_episodes(eps):
+        if not isinstance(eps, list):
+            return []
+        out = [e for e in eps if isinstance(e, dict) and e.get('play_url')]
 
-    def _parse_play_page(self, html, vid, src):
-        eps = []
-        lines = self._find_json_var(html, 'linesData')
-        if isinstance(lines, list):
-            for line in lines:
-                if not isinstance(line, dict):
-                    continue
-                line_name = str(line.get('name') or '线路').strip()
-                for ep in (line.get('eps') or []):
-                    if not isinstance(ep, dict):
-                        continue
-                    name = str(ep.get('name') or '').strip() or '播放'
-                    u = str(ep.get('url') or '').replace('\\/', '/').strip()
-                    if u:
-                        eps.append((line_name, name, u))
-
-        if not eps:
-            m3u8_urls = re.findall(r'https?://[^"\'<>\s\\]+\.m3u8[^"\'<>\s\\]*', html)
-            for i, u in enumerate(list(set(m3u8_urls))):
-                eps.append(("默认线路", f"第{i+1}集", u))
-
-        if not eps:
-            return None
-
-        pic, year, area, director, actor, content, type_name = ('', '', '', '', '', '', '')
-        ld_name = ''
-        for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
+        def _key(e):
             try:
-                d = json.loads(m.group(1))
+                return int(e.get('episode_num') or 0)
             except Exception:
-                continue
-            if not isinstance(d, dict) or not d.get('name'):
-                continue
-            ld_name = str(d.get('name') or '').strip() or ld_name
-            year = str(d.get('dateCreated') or '')[:4] or year
-            area = str(d.get('countryOfOrigin') or '') or area
-            type_name = str(d.get('genre') or '') or type_name
-            content = str(d.get('description') or '').strip() or content
-            dr = d.get('director')
-            if isinstance(dr, dict) and dr.get('name'):
-                director = str(dr['name']).strip() or director
-            ac = d.get('actor')
-            if isinstance(ac, list):
-                names = [str(x.get('name') or '').strip() for x in ac if isinstance(x, dict) and x.get('name')]
-                if names:
-                    actor = '、'.join(names)
+                return 0
 
-        name = ''
-        tm = re.search(r'<title>([^<]+?)\s*-\s*APTV', html)
-        if tm:
-            name = tm.group(1).strip()
-        if not name:
-            name = ld_name
-        if not name:
-            return None
-
-        if not pic:
-            om = re.search(r'<meta property="og:image" content="([^"]+)"', html)
-            if om:
-                pic = om.group(1)
-
-        remarks = ''
-        last_ep = eps[-1][1]
-        remarks = last_ep if len(eps) < 200 else f'共{len(eps)}集'
-        rm = re.search(r'更新至([^\s<"]{0,20})', html)
-        if rm:
-            remarks = '更新至' + rm.group(1)
-
-        lines_map = {}
-        for line_name, ep_name, u in eps:
-            lines_map.setdefault(line_name, []).append((ep_name, u))
-        play_from = '$$$'.join(lines_map.keys())
-        play_url = '$$$'.join(
-            '#'.join(f"{n}${u}" for n, u in items)
-            for items in lines_map.values()
-        )
-
-        return {
-            "vod_id": vid,
-            "vod_name": name,
-            "vod_pic": pic,
-            "type_name": type_name or src,
-            "vod_remarks": remarks,
-            "vod_year": year,
-            "vod_area": area,
-            "vod_director": director,
-            "vod_actor": actor,
-            "vod_content": content[:500],
-            "vod_play_from": play_from,
-            "vod_play_url": play_url,
-        }
+        out.sort(key=_key)
+        return out
 
     # ============================================================
     # 播放解析
     # ============================================================
-    def _resolve_share(self, share_url):
-        cached = self._cache_get(self._share_cache, share_url, TTL_PLAY)
+    def _resolve_play(self, url):
+        """分享页 -> m3u8 直链"""
+        url = str(url or '').strip()
+        if not url:
+            return ''
+        if '.m3u8' in url.lower() or '.mp4' in url.lower():
+            return url
+
+        cached = self._cache_get(self._play_cache, url, TTL_PLAY)
         if cached:
             return cached
+
+        text = self._get_text(url, referer=HOST + '/', ua=PLAY_UA)
+        if not text:
+            return ''
+
         real = ''
-        text = self._get_text(share_url, referer=HOST + '/', timeout=TIMEOUT_PLAY)
-        if text:
-            m = re.search(r'var\s+main\s*=\s*["\']([^"\']+)', text)
+
+        # 新版分享页：const vid = 'https://.../index.m3u8';
+        m = re.search(r"""vid\s*=\s*['"]([^'"]+\.m3u8[^'"]*)['"]""", text)
+        if m:
+            real = m.group(1).replace('\\/', '/').strip()
+        if not real:
+            m = re.search(r"""['"](https?://[^'"]+?\.m3u8[^'"]*)['"]""", text)
             if m:
-                path = m.group(1).strip()
-                if path:
-                    if path.startswith('http'):
-                        real = path.replace('\\/', '/')
-                    else:
-                        base = re.match(r'(https?://[^/]+)', share_url)
-                        if base:
-                            real = base.group(1) + ('' if path.startswith('/') else '/') + path.replace('\\/', '/')
+                real = m.group(1).replace('\\/', '/').strip()
+        if not real:
+            # 旧版分享页：var main = "相对路径";
+            m = re.search(r"""var\s+main\s*=\s*['"]([^'"]+)['"]""", text)
+            if m:
+                path = m.group(1).replace('\\/', '/').strip()
+                if path.startswith('http'):
+                    real = path
+                elif path:
+                    base = re.match(r'(https?://[^/]+)', url)
+                    if base:
+                        real = base.group(1) + ('' if path.startswith('/') else '/') + path
+
         if real:
-            self._cache_set(self._share_cache, share_url, real, TTL_PLAY)
+            self._cache_set(self._play_cache, url, real, TTL_PLAY)
         return real
 
-    def _play_payload(self, playurl, referer=HOST + '/'):
-        return {
-            "parse": 0,
-            "playUrl": "",
-            "url": playurl,
-            "header": {
-                "User-Agent": UA,
-                "Referer": referer,
-                "Origin": HOST,
-            },
-            "format": "application/x-mpegURL" if '.m3u8' in playurl.lower() else "",
-            "contentType": "application/x-mpegURL" if '.m3u8' in playurl.lower() else "",
-        }
-
-    # 🚨 修复点 2：直播用 live_ 前缀的 base64 id，返回时只填 url 字段
     def playerContent(self, flag, id, vipFlags):
-        if not id:
-            return {"parse": 0, "url": ""}
-
-        playurl = unquote(str(id).strip())
-
-        # 电视直播：base64 编码的 id
-        if playurl.startswith('live_'):
-            try:
-                s = playurl[5:]
-                s += '=' * (-len(s) % 4)
-                real_url = base64.urlsafe_b64decode(s.encode('ascii')).decode('utf-8')
-                if real_url:
-                    # http 源走网站 /live/ 代理，避免 https 环境下的混合内容限制
-                    if real_url.startswith('http://'):
-                        play_url = f"{HOST}/live/{real_url}"
-                    else:
-                        play_url = real_url
-                    return {
-                        "parse": 0,
-                        "url": play_url,
-                        "header": {
-                            "User-Agent": UA,
-                            "Referer": HOST + '/tv/',
-                        },
-                    }
-            except Exception:
-                pass
-
-        # 电视直播（旧格式兜底，以防缓存里还有）
-        if playurl.startswith(HOST + '/live/'):
-            return {
-                "parse": 0,
-                "url": playurl,
-                "header": {"User-Agent": UA, "Referer": HOST + '/tv/'},
-            }
+        raw = str(id or '').strip()
+        if not raw:
+            return {'parse': 0, 'url': ''}
 
         # 直链
-        if '.m3u8' in playurl.lower() or '.mp4' in playurl.lower():
-            return {
-                "parse": 0,
-                "url": playurl,
-                "header": {"User-Agent": UA, "Referer": HOST + '/'},
-            }
+        if '.m3u8' in raw.lower() or '.mp4' in raw.lower():
+            return {'parse': 0, 'url': raw, 'header': dict(self.playHeaders)}
 
-        # 分享页
-        if '/share/' in playurl.lower():
-            real = self._resolve_share(playurl)
+        # 分享页（详情给出的标准形态）
+        if '/play/' in raw or 'gsuus.com' in raw:
+            real = self._resolve_play(raw)
             if real:
-                return {
-                    "parse": 0,
-                    "url": real,
-                    "header": {"User-Agent": UA, "Referer": HOST + '/'},
-                }
-            return {"parse": 1, "url": playurl,
-                    "header": {"User-Agent": UA, "Referer": HOST + "/"}}
+                return {'parse': 0, 'url': real, 'header': dict(self.playHeaders)}
+            return {'parse': 1, 'url': raw, 'header': dict(self.playHeaders)}
 
-        # 兜底：id 是播放页 URL 或纯 vod_id
-        vid = None
-        m = re.search(r'id=(\d+)', playurl)
-        if m:
-            vid = m.group(1)
-        elif playurl.isdigit():
-            vid = playurl
+        # 兜底：纯数字 id 或含 id 的链接
+        vid = self._clean_id(raw)
         if vid:
-            result = self._fetch_detail(vid)
-            if result.get("list"):
-                d = result["list"][0]
-                first = ''
-                for seg in (d.get("vod_play_url") or "").split("$$$"):
-                    for item in seg.split("#"):
-                        parts = item.split("$", 1)
-                        if len(parts) == 2 and parts[1]:
-                            first = parts[1]
-                            break
-                    if first:
+            detail = self.detailContent([vid])
+            if detail.get('list'):
+                play_url = detail['list'][0].get('vod_play_url') or ''
+                for item in play_url.split('#'):
+                    parts = item.split('$', 1)
+                    if len(parts) == 2 and parts[1]:
+                        real = self._resolve_play(parts[1])
+                        if real:
+                            return {'parse': 0, 'url': real, 'header': dict(self.playHeaders)}
                         break
-                if first:
-                    self._cache_set(self._detail_cache, vid, result, TTL_DETAIL_OK)
-                    return {
-                        "parse": 0,
-                        "url": first,
-                        "header": {"User-Agent": UA, "Referer": HOST + '/'},
-                    }
-        return {"parse": 1, "url": playurl,
-                "header": {"User-Agent": UA, "Referer": HOST + "/"}}
+
+        return {'parse': 1, 'url': raw, 'header': dict(self.playHeaders)}
 
     # ============================================================
-    # 搜索（保持不变）
+    # 搜索
     # ============================================================
     def searchContent(self, keyword, quick=False, pg=1):
         raw = (keyword or '').strip()
         if not raw:
-            return {"list": [], "msg": "请输入搜索关键词"}
-        page = int(pg or 1)
+            return {'list': [], 'msg': '请输入搜索关键词'}
+        try:
+            page = max(1, int(pg or 1))
+        except Exception:
+            page = 1
+
         ckey = "%s|%s" % (page, raw)
         cached = self._cache_get(self._search_cache, ckey, TTL_SEARCH)
         if cached is not None:
             return cached
-        result = {"list": [], "msg": "未找到相关内容"}
+
+        result = {'list': [], 'msg': '未找到相关内容'}
         data = self._get_json(
-            f"{HOST}/index.php?action=ai_recommend&desc={quote(raw)}",
-            referer=HOST + '/', timeout=TIMEOUT_API,
+            "%s/search?keyword=%s&page=%d&page_size=%d" % (API, quote(raw), page, PAGE_SIZE)
         )
-        if data and isinstance(data, dict) and data.get('results'):
-            out = []
-            for it in data['results']:
-                if not isinstance(it, dict):
-                    continue
-                vid = str(it.get('vod_id') or '')
-                nm = str(it.get('vod_name') or it.get('title') or '').strip()
-                if not vid or not nm:
-                    continue
-                out.append({
-                    'vod_id': vid,
-                    'vod_name': nm,
-                    'vod_pic': str(it.get('vod_pic') or ''),
-                    'vod_remarks': str(it.get('vod_remarks') or ''),
-                    'type_name': str(it.get('type_name') or ''),
-                })
-            if out:
-                result = {"list": out}
+        if isinstance(data, dict):
+            vod_list = self._to_vod_list(data.get('items'))
+            if vod_list:
+                total = int(data.get('total') or len(vod_list))
+                size = int(data.get('page_size') or PAGE_SIZE) or PAGE_SIZE
+                result = {
+                    'list': vod_list,
+                    'page': page,
+                    'pagecount': max(1, (total + size - 1) // size),
+                    'limit': size,
+                    'total': total,
+                }
+
         self._cache_set(self._search_cache, ckey, result, TTL_SEARCH)
         return result
 

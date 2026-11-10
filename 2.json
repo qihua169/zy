@@ -31,10 +31,28 @@
             "api": "./jar/91.py"
         },
         {
-            "key": "咕噜咕噜4K",
-            "name": "咕噜咕噜4K",
+            "key": "[直]央视频",
+            "name": "[直]央视频",
             "type": 3,
-            "api": "./jar/咕噜咕噜4K.py"
+            "api": "./jar/[直]央视频.py"
+        },
+        {
+            "key": "IPTV2.9.9",
+            "name": "IPTV",
+            "type": 3,
+            "api": "./jar/IPTV2.9.9.py"
+        },
+        {
+            "key": "蚂蚁影视",
+            "name": "蚂蚁影视",
+            "type": 3,
+            "api": "./jar/蚂蚁影视.py"
+        },
+        {
+            "key": "红果短剧",
+            "name": "红果短剧",
+            "type": 3,
+            "api": "./jar/红果短剧.py"
         },
         {
             "key": "剧圈圈",
@@ -50,6 +68,12 @@
             "name": "枫叶4k",
             "type": 3,
             "api": "./jar/枫叶4K.py"
+        },
+        {
+            "key": "咕噜咕噜4K",
+            "name": "咕噜咕噜4K",
+            "type": 3,
+            "api": "./jar/咕噜咕噜4K.py"
         },
         {
             "key": "影探4K",
@@ -76,16 +100,35 @@
             "api": "./jar/py_奇优影院.py"
         },
         {
+            "key": "毒舌影院",
+            "name": "毒舌影院",
+            "type": 3,
+            "api": "./jar/毒舌.py"
+        },
+        {
+            "key": "66大片网",
+            "name": "66大片网",
+            "type": 3,
+            "api": "./jar/66大片网.py"
+        },
+        {
+            "key": "河豚4K",
+            "name": "河豚4K",
+            "type": 3,
+            "api": "./jar/河豚4K.py"
+        },
+        {
             "key": "农民影视",
             "name": "农民影视",
             "type": 3,
             "api": "./jar/农民影视.py"
         },
         {
-            "key": "威视TV",
-            "name": "威视TV",
+            "key": "小苹果",
+            "name": "小苹果",
             "type": 3,
-            "api": "./jar/威视TV.py"
+            "api": "./jar/小苹果.py",
+            "categories":["电视剧","电影","动漫","综艺"]
         },
         {
             "key": "无水印资源",
@@ -275,6 +318,8 @@
             "searchable": 1,
             "type": 3
         },
+
+        {"key":"奇迹云","name":"奇迹云","type":3,"api":"./jar/奇迹云.py"},
         {
             "key": "ffzyapi",
             "name": "非凡资源",
