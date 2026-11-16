@@ -377,13 +377,13 @@ class Spider(BaseSpider):
 
     def categoryContent(self, tid, pg, filter, extend):
         params = {
-            "pagesize": "21", 
-            "typeId1": str(tid), 
+            "pagesize": "21",
+            "typeId1": str(tid),
             "page": str(pg),
             "vodOrderBy": (extend or {}).get("排序", "最新"),
-            "vodArea": (extend or {}).get("地区", ""), 
+            "vodArea": (extend or {}).get("地区", ""),
             "vodLang": (extend or {}).get("语言", ""),
-            "vodClass": (extend or {}).get("类型", ""), 
+            "vodClass": (extend or {}).get("类型", ""),
             "vodYear": (extend or {}).get("年份", "")
         }
         try:
@@ -435,12 +435,12 @@ class Spider(BaseSpider):
                 else:
                     token = path
                 sources.setdefault(line_name, []).append((video["title"] or "播放") + "$" + token)
-            
+
             lines = [{"name": name, "urls": urls} for name, urls in sources.items()]
             lines = self._sort_and_filter_lines(lines)
             play_from = "$$$".join([line["name"] for line in lines])
             play_url = "$$$".join(["#".join(line["urls"]) for line in lines])
-            
+
             vod = {
                 "vod_id": str(ids[0]), "vod_name": self._text(self._first(f, 9)),
                 "vod_pic": cover.get("path") or cover.get("thumb", ""),
