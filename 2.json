@@ -1,7 +1,11 @@
 {
     "wallpaper": "https://动态壁纸.饭.eu.org/",
     "spider": "./jar/spider.jar",
-    "lives": [],
+    "lives": [
+        {"name": "综合","type": 0,"url": "http://193.123.86.190:14888/TV/iptv.php","ua": "bingcha/1.1 (mianfeifenxiang)","playerType": 2},
+        {"name": "综合2","type": 0,"url": "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt","playerType": 2},
+        {"name": "觅影直播","type": 0,"url": "https://sd.shandong.bbroot.com/xk/zb.txt","timeout": 10}
+    ],
     "sites": [
         {
             "key": "小灯塔",
@@ -13,17 +17,11 @@
             "filterable": 1,
             "ext": "./json/小灯塔百科.json"
         },
-        {
+       {
             "key": "91电视直播",
             "name": "91电视直播",
             "type": 3,
             "api": "./jar/91.py"
-        },
-        {
-            "key": "[直]央视频",
-            "name": "[直]央视频",
-            "type": 3,
-            "api": "./jar/[直]央视频.py"
         },
         {
             "key": "IPTV2.9.9",
@@ -41,10 +39,34 @@
             "filterable": 1
         },
         {
+            "key": "华谊影视",
+            "name": "华谊影视",
+            "type": 3,
+            "api": "./jar/华谊影视.py",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "TVB云播",
+            "name": "TVB云播",
+            "type": 3,
+            "api": "./jar/TVB云播.py",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
             "key": "枫叶4k",
             "name": "枫叶4k",
             "type": 3,
             "api": "./jar/枫叶4K.py"
+        },
+        {
+            "key": "半月4K",
+            "name": "半月4K",
+            "type": 3,
+            "api": "./jar/半月4K.py"
         },
         {
             "key": "布布追剧",
@@ -98,7 +120,6 @@
             "type": 3,
             "api": "./jar/蚂蚁影视.py"
         },
-        {"key":"蝶卡影视","name":"蝶卡影视","type": 3,"api":"./jar/蝶卡影视.py","searchable":1,"quickSearch":1},
         {
             "key": "新云帧享",
             "name": "新云帧享",
@@ -132,7 +153,7 @@
             "quickSearch": 1,
             "filterable": 1
         },
-
+        {"key":"蝶卡影视","name":"蝶卡影视","type": 3,"api":"./jar/蝶卡影视.py","searchable":1,"quickSearch":1},
         {
             "key": "毒舌影院",
             "name": "毒舌影院",
@@ -292,7 +313,7 @@
         },
         {
             "key": "4KAV",
-            "name": "4KAV",
+            "name": "4KTV",
             "api": "./jar/4KAV.js",
             "filterable": 1,
             "quickSearch": 1,
