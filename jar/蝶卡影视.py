@@ -12,6 +12,11 @@ from base.spider import Spider as BaseSpider
 
 class Spider(BaseSpider):
 
+    # 内容屏蔽: 名称/备注命中任一关键词的条目不在列表、搜索、筛选项中展示
+    BLOCK_KEYWORDS = ("伦理", "倫理", "理论片", "理論片", "理论剧", "三级", "三級")
+    # 屏蔽子分类 id: 460 = 伦理片
+    BLOCK_CATES = {"460"}
+
     def __init__(self):
         # __init__ 只做本地初始化，禁止网络请求，保证壳子首页秒出 class。
         self.extend = ""
@@ -41,7 +46,6 @@ class Spider(BaseSpider):
                     {"n": "冒险片", "v": "19"},
                     {"n": "纪录片", "v": "20"},
                     {"n": "战争片", "v": "21"},
-                    {"n": "倫理片", "v": "460"},
                 ]},
             ],
             "2": [
@@ -116,6 +120,18 @@ class Spider(BaseSpider):
             "Referer": self.host + "/",
         }
 
+        # 统一在这里做一次屏蔽清洗: 分类入口、筛选项都去掉命中屏蔽词的条目，
+        # 避免用户能在 UI 上选到「伦理片 / 理论片」分类。
+        self.classes = [
+            c for c in self.classes if not self._blocked(c.get("type_name"))
+        ]
+        for tid, groups in self.filters.items():
+            for group in groups:
+                group["value"] = [
+                    v for v in group.get("value", [])
+                    if not self._blocked(v.get("n")) and str(v.get("v")) not in self.BLOCK_CATES
+                ]
+
     def getName(self):
         return "蝶卡影视"
 
@@ -126,6 +142,17 @@ class Spider(BaseSpider):
         self.extend = extend or ""
 
     # ==================== 内部工具模块 ====================
+
+    def _blocked(self, *texts):
+        """命中屏蔽词返回 True（伦理/理论片等不展示）"""
+        for t in texts:
+            if not t:
+                continue
+            t = str(t)
+            for kw in self.BLOCK_KEYWORDS:
+                if kw in t:
+                    return True
+        return False
 
     def _cleanText(self, text):
         """清洗 HTML 标签和空白字符"""
@@ -198,6 +225,9 @@ class Spider(BaseSpider):
             # 提取评分/备注: label.rate
             remark = re.search(r'class="[^"]*rate[^"]*"[^>]*>(.*?)</label>', block, re.S)
             remark = self._cleanText(remark.group(1)) if remark else ""
+            # 屏蔽伦理/理论片: 标题或备注命中即丢弃
+            if self._blocked(name, remark):
+                continue
             # 打包轻量字段到 vod_id
             vod_id = vid + '|$|' + name + '|$|' + pic + '|$|' + remark
             result.append({
@@ -221,12 +251,18 @@ class Spider(BaseSpider):
                 name = self._cleanText(name.group(1)) if name else ""
                 if not name:
                     continue
+                # 屏蔽伦理/理论片
+                if self._blocked(name):
+                    continue
                 pic = re.search(r'data-original="([^"]+)"', block)
                 if not pic:
                     pic = re.search(r'src="([^"]+)"', block)
                 pic = self._absUrl(pic.group(1)) if pic else ""
                 remark = re.search(r'class="[^"]*rate[^"]*"[^>]*>(.*?)</label>', block, re.S)
                 remark = self._cleanText(remark.group(1)) if remark else ""
+                # 屏蔽伦理/理论片: 标题或备注命中即丢弃
+                if self._blocked(name, remark):
+                    continue
                 vod_id = vid + '|$|' + name + '|$|' + pic + '|$|' + remark
                 result.append({
                     "vod_id": vod_id,
@@ -268,6 +304,9 @@ class Spider(BaseSpider):
             info_spans = re.findall(r'<span[^>]*>(.*?)</span>', block, re.S)
             info_parts = [self._cleanText(s) for s in info_spans if self._cleanText(s)]
             remark = " ".join(info_parts[:3]) if info_parts else ""
+            # 屏蔽伦理/理论片: 标题或类型/地区信息命中即丢弃
+            if self._blocked(name, remark):
+                continue
             vod_id = vid + '|$|' + name + '|$|' + pic + '|$|' + remark
             result.append({
                 "vod_id": vod_id,
@@ -332,6 +371,16 @@ class Spider(BaseSpider):
         page = str(pg) if pg else "1"
         extend = extend or {}
         sub_type = extend.get("cate", "0") or "0"
+
+        # 直接访问被屏蔽分类（如 460 伦理片）时直接返回空，不请求站点
+        if str(tid) in self.BLOCK_CATES or str(sub_type) in self.BLOCK_CATES:
+            return {
+                "list": [],
+                "page": int(page) if page.isdigit() else 1,
+                "pagecount": 1,
+                "limit": 10,
+                "total": 0,
+            }
 
         url = f"{self.host}/vod/list/{page}/{tid}/{sub_type}"
         try:
